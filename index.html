@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokeCard Shop – Deine Pokémon-Karten Destination</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">⚡</span>
+        PokeCard<span class="logo-accent">Shop</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Vorteile</a></li>
+        <li><a href="#products">Produkte</a></li>
+        <li><a href="#testimonials">Bewertungen</a></li>
+        <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🔥 Neue Scarlet &amp; Violet Sets eingetroffen</div>
+      <h1>Pokémon-Karten.<br /><span class="gradient-text">Leidenschaft pur.</span></h1>
+      <p class="hero-sub">
+        Von Basis-Boostern bis zu seltenen Holo-Rares – finde deine nächste Lieblingsarte in unserem kurierten Shop.
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary">Jetzt shoppen</a>
+        <a href="#features" class="btn btn-secondary">Mehr erfahren</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">50 000+</span>
+          <span class="stat-label">Karten verfügbar</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">12 000+</span>
+          <span class="stat-label">Zufriedene Sammler</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">24 h</span>
+          <span class="stat-label">Versand</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="card-float card-1">
+        <div class="poke-card fire">
+          <div class="card-type">Feuer</div>
+          <div class="card-pokemon">Glumanda</div>
+          <div class="card-hp">HP 60</div>
+        </div>
+      </div>
+      <div class="card-float card-2">
+        <div class="poke-card water">
+          <div class="card-type">Wasser</div>
+          <div class="card-pokemon">Schiggy</div>
+          <div class="card-hp">HP 50</div>
+        </div>
+      </div>
+      <div class="card-float card-3">
+        <div class="poke-card electric">
+          <div class="card-type">Elektro ⚡</div>
+          <div class="card-pokemon">Pikachu</div>
+          <div class="card-hp">HP 70</div>
+        </div>
+      </div>
+      <div class="card-float card-4">
+        <div class="poke-card grass">
+          <div class="card-type">Pflanze</div>
+          <div class="card-pokemon">Bisasam</div>
+          <div class="card-hp">HP 45</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Warum PokeCard<span class="logo-accent">Shop</span>?</h2>
+        <p>Wir lieben Pokémon-Karten genauso sehr wie du – und das merkt man.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Echtheitsprüfung</h3>
+          <p>Jede Karte wird von unseren Experten auf Echtheit geprüft – du kaufst immer das Original.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Sicherer Versand</h3>
+          <p>Kartenschutz, Bubble-Mailer und tracked shipping – deine Karten kommen makellos an.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💎</div>
+          <h3>Raritäten & Grails</h3>
+          <p>Seltene First Editions, PSA-Grades und Promo-Karten – wir haben, was andere nicht haben.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Sammler-Community</h3>
+          <p>Tausche dich mit anderen Fans aus, zeig deine Pulls und nimm an Events teil.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Faire Preise</h3>
+          <p>Marktgerechte Preise, wöchentliche Deals und ein Treueprogramm für Stammkunden.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Blitzschnelle Lieferung</h3>
+          <p>Bestellungen bis 15 Uhr werden noch am gleichen Tag verschickt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Beliebte <span class="gradient-text">Produkte</span></h2>
+        <p>Von Boostern bis zu kompletten Sets – hier ist für jeden Sammler etwas dabei.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-badge">Bestseller</div>
+          <div class="product-img fire-bg">
+            <span class="product-emoji">🔥</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Scarlet &amp; Violet</span>
+            <h3>Booster-Display</h3>
+            <p>36 Boosterpacks – die beste Chance auf seltene EX &amp; Full Art Karten.</p>
+            <div class="product-price">
+              <span class="price">89,99 €</span>
+              <a href="#" class="btn btn-sm">In den Warenkorb</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-badge new">Neu</div>
+          <div class="product-img electric-bg">
+            <span class="product-emoji">⚡</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Obsidian Flames</span>
+            <h3>Elite Trainer Box</h3>
+            <p>8 Boosterpacks, Pokémon-Münze, Deckboxen und Sleeves im Bundle.</p>
+            <div class="product-price">
+              <span class="price">54,99 €</span>
+              <a href="#" class="btn btn-sm">In den Warenkorb</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-badge rare">Selten</div>
+          <div class="product-img gold-bg">
+            <span class="product-emoji">✨</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Base Set 1999</span>
+            <h3>Holo Charizard PSA 8</h3>
+            <p>Ikonische Karte aus dem Basis-Set, professionell begutachtet – ein echter Grail.</p>
+            <div class="product-price">
+              <span class="price">1 299,00 €</span>
+              <a href="#" class="btn btn-sm">Anfragen</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img water-bg">
+            <span class="product-emoji">🌊</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Paldea Evolved</span>
+            <h3>Booster Bundle (6er)</h3>
+            <p>Sechs handverlesene Packs aus dem neuesten Paldea-Set.</p>
+            <div class="product-price">
+              <span class="price">19,99 €</span>
+              <a href="#" class="btn btn-sm">In den Warenkorb</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img grass-bg">
+            <span class="product-emoji">🌿</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Starter-Kit</span>
+            <h3>Einsteiger-Set</h3>
+            <p>Perfekt für Neulinge: 3 Booster, Sleeves, Deckbox und Regelkarte.</p>
+            <div class="product-price">
+              <span class="price">14,99 €</span>
+              <a href="#" class="btn btn-sm">In den Warenkorb</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-badge deal">Deal</div>
+          <div class="product-img purple-bg">
+            <span class="product-emoji">💜</span>
+          </div>
+          <div class="product-info">
+            <span class="product-set">Mystery</span>
+            <h3>Mystery Rare Box</h3>
+            <p>Mindestens 3 seltene Karten (Rare oder besser) – garantiert oder Geld zurück.</p>
+            <div class="product-price">
+              <span class="price-old">29,99 €</span>
+              <span class="price">19,99 €</span>
+              <a href="#" class="btn btn-sm">In den Warenkorb</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>Was Sammler sagen</h2>
+        <p>Echte Stimmen aus unserer Community.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Habe meinen Charizard Holo hier gekauft – absolut authentisch und blitzschnell geliefert. Bester Shop!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <strong>Markus K.</strong>
+              <span>Sammler seit 1999</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Meine Tochter wollte anfangen zu sammeln – das Einsteiger-Set war perfekt. Tolle Beratung per Chat!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <strong>Sandra L.</strong>
+              <span>Neukunde</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Faire Preise, schneller Versand und die Karten kommen immer in Topzustand an. Klare Empfehlung!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">T</div>
+            <div>
+              <strong>Tobias R.</strong>
+              <span>Competitive Player</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <h2>Verpasse keine Deals! 🔔</h2>
+          <p>Melde dich an und erhalte exklusive Angebote, Restocks-Benachrichtigungen und News direkt in dein Postfach.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input type="email" placeholder="deine@email.de" required />
+          <button type="submit" class="btn btn-primary">Anmelden</button>
+        </form>
+        <p id="newsletter-msg" class="newsletter-msg" hidden>🎉 Du bist dabei! Schau in dein Postfach.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon">⚡</span>
+            PokeCard<span class="logo-accent">Shop</span>
+          </a>
+          <p>Deine vertrauenswürdige Anlaufstelle für Pokémon-Karten aller Generationen.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">Boosterpacks</a></li>
+            <li><a href="#">Displays &amp; Sets</a></li>
+            <li><a href="#">Einzelkarten</a></li>
+            <li><a href="#">Zubehör</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Versand &amp; Rückgabe</a></li>
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">Impressum</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PokeCardShop. Alle Rechte vorbehalten. Pokémon und alle damit verbundenen Namen sind Marken von Nintendo / Game Freak.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
