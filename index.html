@@ -1063,16 +1063,16 @@
                 return (seed >>> 0) / 0xffffffff;
             }
 
-            // 4. Jittered grid — spacing 11px keeps dots clearly separate
-            const spacing = 11;
+            // 4. Dense jittered grid — spacing 6px, ~1400 dots fill the plate
+            const spacing = 6;
             for (let gx = spacing / 2; gx < W; gx += spacing) {
                 for (let gy = spacing / 2; gy < H; gy += spacing) {
-                    const jx = gx + (rnd() - 0.5) * spacing * 0.8;
-                    const jy = gy + (rnd() - 0.5) * spacing * 0.8;
+                    const jx = gx + (rnd() - 0.5) * spacing * 0.7;
+                    const jy = gy + (rnd() - 0.5) * spacing * 0.7;
                     const dx = jx - CX, dy = jy - CY;
                     if (dx*dx + dy*dy > (R-2)*(R-2)) continue;
 
-                    const dotR = 2.5 + rnd() * 2.2;   // 2.5 – 4.7 px, never overlapping at spacing 11
+                    const dotR = 1.5 + rnd() * 1.5;   // 1.5 – 3.0 px — fits spacing 6 without big gaps
                     const fig   = isFigure(jx, jy);
                     const pal   = fig ? figureColors : bgColors;
                     const base  = pal[Math.floor(rnd() * pal.length)];
