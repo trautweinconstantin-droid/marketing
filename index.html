@@ -531,51 +531,7 @@
 
                 <div class="ishihara-container">
                     <div class="ishihara-item">
-                        <svg class="ishihara-svg" id="ishihara1" viewBox="0 0 200 200">
-                            <defs>
-                                <filter id="blur1"><feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/></filter>
-                            </defs>
-                            <circle cx="100" cy="100" r="98" fill="#B8860B"/>
-                            <!-- Rote Punkte für die Zahl "12" -->
-                            <circle cx="65" cy="70" r="3.5" fill="#CD5C5C"/>
-                            <circle cx="70" cy="65" r="3" fill="#DC143C"/>
-                            <circle cx="75" cy="75" r="3.2" fill="#CD5C5C"/>
-                            <circle cx="60" cy="85" r="3" fill="#DC143C"/>
-                            <circle cx="68" cy="90" r="2.8" fill="#CD5C5C"/>
-                            <circle cx="80" cy="80" r="3" fill="#DC143C"/>
-                            <!-- "1" Teil -->
-                            <circle cx="65" cy="60" r="3" fill="#DC143C"/>
-                            <circle cx="65" cy="50" r="3.2" fill="#CD5C5C"/>
-                            <circle cx="68" cy="55" r="2.8" fill="#DC143C"/>
-                            <circle cx="62" cy="65" r="3" fill="#CD5C5C"/>
-                            <!-- "2" Teil -->
-                            <circle cx="130" cy="55" r="3.2" fill="#DC143C"/>
-                            <circle cx="138" cy="60" r="3" fill="#CD5C5C"/>
-                            <circle cx="135" cy="68" r="3" fill="#DC143C"/>
-                            <circle cx="140" cy="75" r="2.8" fill="#CD5C5C"/>
-                            <circle cx="128" cy="70" r="3.2" fill="#DC143C"/>
-                            <!-- Hintergrund-Punkte in ähnlichen Farben -->
-                            <circle cx="50" cy="50" r="2.5" fill="#D4A574"/>
-                            <circle cx="150" cy="50" r="2.5" fill="#D4A574"/>
-                            <circle cx="100" cy="40" r="2.3" fill="#DAA520"/>
-                            <circle cx="40" cy="100" r="2.5" fill="#D4A574"/>
-                            <circle cx="160" cy="100" r="2.5" fill="#D4A574"/>
-                            <circle cx="50" cy="150" r="2.5" fill="#D4A574"/>
-                            <circle cx="150" cy="150" r="2.5" fill="#DAA520"/>
-                            <circle cx="100" cy="160" r="2.3" fill="#D4A574"/>
-                            <circle cx="55" cy="45" r="2" fill="#DAA520"/>
-                            <circle cx="145" cy="155" r="2" fill="#D4A574"/>
-                            <circle cx="35" cy="120" r="2.5" fill="#DAA520"/>
-                            <circle cx="165" cy="80" r="2" fill="#D4A574"/>
-                            <circle cx="70" cy="140" r="2.3" fill="#DAA520"/>
-                            <circle cx="130" cy="150" r="2.2" fill="#D4A574"/>
-                            <circle cx="85" cy="30" r="2" fill="#D4A574"/>
-                            <circle cx="115" cy="170" r="2.2" fill="#DAA520"/>
-                            <circle cx="30" cy="70" r="2.3" fill="#D4A574"/>
-                            <circle cx="170" cy="130" r="2" fill="#DAA520"/>
-                            <circle cx="45" cy="160" r="2.2" fill="#D4A574"/>
-                            <circle cx="155" cy="40" r="2.1" fill="#DAA520"/>
-                        </svg>
+                        <canvas id="ishihara1" width="220" height="220" style="border-radius:50%; border:3px solid #ddd; width:180px; height:180px; display:block; margin:0 auto; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;"></canvas>
                         <p style="margin-top: 10px; font-weight: 600;">Bild 1</p>
                         <input type="text" id="input1" placeholder="Zahl?" maxlength="2">
                         <button onclick="checkIshihara(1, this)">Prüfen</button>
@@ -583,51 +539,7 @@
                     </div>
 
                     <div class="ishihara-item">
-                        <svg class="ishihara-svg" id="ishihara2" viewBox="0 0 200 200">
-                            <defs>
-                                <filter id="blur2"><feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/></filter>
-                            </defs>
-                            <circle cx="100" cy="100" r="98" fill="#B8860B"/>
-                            <!-- Grüne Punkte für die Zahl "8" -->
-                            <circle cx="75" cy="65" r="3.5" fill="#7CB342"/>
-                            <circle cx="80" cy="60" r="3" fill="#558B2F"/>
-                            <circle cx="85" cy="70" r="3.2" fill="#7CB342"/>
-                            <circle cx="70" cy="75" r="3" fill="#558B2F"/>
-                            <circle cx="78" cy="80" r="2.8" fill="#7CB342"/>
-                            <circle cx="90" cy="75" r="3" fill="#558B2F"/>
-                            <!-- Oberer Teil der "8" -->
-                            <circle cx="80" cy="50" r="3" fill="#558B2F"/>
-                            <circle cx="85" cy="45" r="3.2" fill="#7CB342"/>
-                            <circle cx="75" cy="48" r="2.8" fill="#558B2F"/>
-                            <circle cx="90" cy="52" r="3" fill="#7CB342"/>
-                            <!-- Unterer Teil der "8" -->
-                            <circle cx="85" cy="130" r="3.2" fill="#558B2F"/>
-                            <circle cx="78" cy="140" r="3" fill="#7CB342"/>
-                            <circle cx="92" cy="135" r="3" fill="#558B2F"/>
-                            <circle cx="80" cy="150" r="2.8" fill="#7CB342"/>
-                            <circle cx="88" cy="145" r="3.2" fill="#558B2F"/>
-                            <!-- Hintergrund-Punkte in ähnlichen Farben -->
-                            <circle cx="50" cy="50" r="2.5" fill="#D4A574"/>
-                            <circle cx="150" cy="50" r="2.5" fill="#D4A574"/>
-                            <circle cx="100" cy="40" r="2.3" fill="#DAA520"/>
-                            <circle cx="40" cy="100" r="2.5" fill="#D4A574"/>
-                            <circle cx="160" cy="100" r="2.5" fill="#D4A574"/>
-                            <circle cx="50" cy="150" r="2.5" fill="#D4A574"/>
-                            <circle cx="150" cy="150" r="2.5" fill="#DAA520"/>
-                            <circle cx="100" cy="160" r="2.3" fill="#D4A574"/>
-                            <circle cx="55" cy="45" r="2" fill="#DAA520"/>
-                            <circle cx="145" cy="155" r="2" fill="#D4A574"/>
-                            <circle cx="35" cy="120" r="2.5" fill="#DAA520"/>
-                            <circle cx="165" cy="80" r="2" fill="#D4A574"/>
-                            <circle cx="70" cy="140" r="2.3" fill="#DAA520"/>
-                            <circle cx="130" cy="150" r="2.2" fill="#D4A574"/>
-                            <circle cx="55" cy="75" r="2" fill="#D4A574"/>
-                            <circle cx="115" cy="170" r="2.2" fill="#DAA520"/>
-                            <circle cx="30" cy="70" r="2.3" fill="#D4A574"/>
-                            <circle cx="170" cy="130" r="2" fill="#DAA520"/>
-                            <circle cx="120" cy="65" r="2.2" fill="#D4A574"/>
-                            <circle cx="155" cy="40" r="2.1" fill="#DAA520"/>
-                        </svg>
+                        <canvas id="ishihara2" width="220" height="220" style="border-radius:50%; border:3px solid #ddd; width:180px; height:180px; display:block; margin:0 auto; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;"></canvas>
                         <p style="margin-top: 10px; font-weight: 600;">Bild 2</p>
                         <input type="text" id="input2" placeholder="Zahl?" maxlength="2">
                         <button onclick="checkIshihara(2, this)">Prüfen</button>
@@ -1094,6 +1006,80 @@
 
         // Initialize
         updateSlide();
+
+        // ---- Ishihara Canvas Generator ----
+        function generateIshiharaPlate(canvasId, number, figureColors, bgColors) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const CX = W / 2, CY = H / 2, R = W / 2 - 2;
+
+            // 1. Render number to an offscreen mask canvas
+            const mask = document.createElement('canvas');
+            mask.width = W; mask.height = H;
+            const mCtx = mask.getContext('2d');
+            mCtx.fillStyle = 'white';
+            mCtx.fillRect(0, 0, W, H);
+            mCtx.fillStyle = 'black';
+            const fontSize = number.length > 1 ? 105 : 130;
+            mCtx.font = `bold ${fontSize}px Arial, sans-serif`;
+            mCtx.textAlign = 'center';
+            mCtx.textBaseline = 'middle';
+            mCtx.fillText(number, CX, CY);
+            const maskPx = mCtx.getImageData(0, 0, W, H).data;
+
+            function isFigure(x, y) {
+                const ix = Math.round(x), iy = Math.round(y);
+                if (ix < 0 || ix >= W || iy < 0 || iy >= H) return false;
+                return maskPx[(iy * W + ix) * 4] < 128;
+            }
+
+            // 2. Clip canvas to circle
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(CX, CY, R, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.fillStyle = '#9C8040';
+            ctx.fillRect(0, 0, W, H);
+
+            // 3. Deterministic pseudo-random (seeded so it looks the same each time)
+            let seed = 42 + canvasId.charCodeAt(canvasId.length - 1) * 7;
+            function rnd() {
+                seed = (seed * 16807 + 0) % 2147483647;
+                return (seed - 1) / 2147483646;
+            }
+
+            // 4. Place dots on a jittered grid
+            const spacing = 12;
+            for (let gx = spacing / 2; gx < W; gx += spacing) {
+                for (let gy = spacing / 2; gy < H; gy += spacing) {
+                    const jx = gx + (rnd() - 0.5) * spacing * 0.85;
+                    const jy = gy + (rnd() - 0.5) * spacing * 0.85;
+                    const dx = jx - CX, dy = jy - CY;
+                    if (dx * dx + dy * dy > (R - 1) * (R - 1)) continue;
+
+                    const dotR = 2.8 + rnd() * 3.6;
+                    const palette = isFigure(jx, jy) ? figureColors : bgColors;
+                    ctx.beginPath();
+                    ctx.arc(jx, jy, dotR, 0, Math.PI * 2);
+                    ctx.fillStyle = palette[Math.floor(rnd() * palette.length)];
+                    ctx.fill();
+                }
+            }
+            ctx.restore();
+        }
+
+        // Plate 1 – "12": orange-red figure, olive-green background (similar luminance → colorblind people can't tell apart)
+        generateIshiharaPlate('ishihara1', '12',
+            ['#C63000','#D94010','#E05020','#B82800','#CC3808','#D04015'],
+            ['#5A7A20','#4A6A10','#6A8A30','#3E5E08','#507018','#628232']
+        );
+        // Plate 2 – "8": same scheme
+        generateIshiharaPlate('ishihara2', '8',
+            ['#C63000','#D94010','#E05020','#B82800','#CC3808','#D04015'],
+            ['#5A7A20','#4A6A10','#6A8A30','#3E5E08','#507018','#628232']
+        );
     </script>
 </body>
 </html>
