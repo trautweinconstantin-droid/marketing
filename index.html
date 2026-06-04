@@ -532,27 +532,49 @@
                 <div class="ishihara-container">
                     <div class="ishihara-item">
                         <svg class="ishihara-svg" id="ishihara1" viewBox="0 0 200 200">
-                            <circle cx="100" cy="100" r="95" fill="#C4A77D"/>
-                            <circle cx="70" cy="70" r="8" fill="#A52A2A"/>
-                            <circle cx="75" cy="75" r="6" fill="#A52A2A"/>
-                            <circle cx="65" cy="65" r="7" fill="#A52A2A"/>
-                            <circle cx="80" cy="65" r="7" fill="#A52A2A"/>
-                            <circle cx="130" cy="130" r="8" fill="#A52A2A"/>
-                            <circle cx="125" cy="135" r="6" fill="#A52A2A"/>
-                            <circle cx="135" cy="135" r="7" fill="#A52A2A"/>
-                            <circle cx="120" cy="125" r="7" fill="#A52A2A"/>
-                            <circle cx="100" cy="100" r="4" fill="#A52A2A"/>
-                            <circle cx="105" cy="105" r="5" fill="#A52A2A"/>
-                            <circle cx="50" cy="50" r="3" fill="#DEB887"/>
-                            <circle cx="60" cy="80" r="3" fill="#DEB887"/>
-                            <circle cx="90" cy="50" r="3" fill="#DEB887"/>
-                            <circle cx="120" cy="70" r="3" fill="#DEB887"/>
-                            <circle cx="140" cy="80" r="3" fill="#DEB887"/>
-                            <circle cx="150" cy="120" r="3" fill="#DEB887"/>
-                            <circle cx="140" cy="150" r="3" fill="#DEB887"/>
-                            <circle cx="100" cy="150" r="3" fill="#DEB887"/>
-                            <circle cx="60" cy="140" r="3" fill="#DEB887"/>
-                            <circle cx="40" cy="100" r="3" fill="#DEB887"/>
+                            <defs>
+                                <filter id="blur1"><feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/></filter>
+                            </defs>
+                            <circle cx="100" cy="100" r="98" fill="#B8860B"/>
+                            <!-- Rote Punkte für die Zahl "12" -->
+                            <circle cx="65" cy="70" r="3.5" fill="#CD5C5C"/>
+                            <circle cx="70" cy="65" r="3" fill="#DC143C"/>
+                            <circle cx="75" cy="75" r="3.2" fill="#CD5C5C"/>
+                            <circle cx="60" cy="85" r="3" fill="#DC143C"/>
+                            <circle cx="68" cy="90" r="2.8" fill="#CD5C5C"/>
+                            <circle cx="80" cy="80" r="3" fill="#DC143C"/>
+                            <!-- "1" Teil -->
+                            <circle cx="65" cy="60" r="3" fill="#DC143C"/>
+                            <circle cx="65" cy="50" r="3.2" fill="#CD5C5C"/>
+                            <circle cx="68" cy="55" r="2.8" fill="#DC143C"/>
+                            <circle cx="62" cy="65" r="3" fill="#CD5C5C"/>
+                            <!-- "2" Teil -->
+                            <circle cx="130" cy="55" r="3.2" fill="#DC143C"/>
+                            <circle cx="138" cy="60" r="3" fill="#CD5C5C"/>
+                            <circle cx="135" cy="68" r="3" fill="#DC143C"/>
+                            <circle cx="140" cy="75" r="2.8" fill="#CD5C5C"/>
+                            <circle cx="128" cy="70" r="3.2" fill="#DC143C"/>
+                            <!-- Hintergrund-Punkte in ähnlichen Farben -->
+                            <circle cx="50" cy="50" r="2.5" fill="#D4A574"/>
+                            <circle cx="150" cy="50" r="2.5" fill="#D4A574"/>
+                            <circle cx="100" cy="40" r="2.3" fill="#DAA520"/>
+                            <circle cx="40" cy="100" r="2.5" fill="#D4A574"/>
+                            <circle cx="160" cy="100" r="2.5" fill="#D4A574"/>
+                            <circle cx="50" cy="150" r="2.5" fill="#D4A574"/>
+                            <circle cx="150" cy="150" r="2.5" fill="#DAA520"/>
+                            <circle cx="100" cy="160" r="2.3" fill="#D4A574"/>
+                            <circle cx="55" cy="45" r="2" fill="#DAA520"/>
+                            <circle cx="145" cy="155" r="2" fill="#D4A574"/>
+                            <circle cx="35" cy="120" r="2.5" fill="#DAA520"/>
+                            <circle cx="165" cy="80" r="2" fill="#D4A574"/>
+                            <circle cx="70" cy="140" r="2.3" fill="#DAA520"/>
+                            <circle cx="130" cy="150" r="2.2" fill="#D4A574"/>
+                            <circle cx="85" cy="30" r="2" fill="#D4A574"/>
+                            <circle cx="115" cy="170" r="2.2" fill="#DAA520"/>
+                            <circle cx="30" cy="70" r="2.3" fill="#D4A574"/>
+                            <circle cx="170" cy="130" r="2" fill="#DAA520"/>
+                            <circle cx="45" cy="160" r="2.2" fill="#D4A574"/>
+                            <circle cx="155" cy="40" r="2.1" fill="#DAA520"/>
                         </svg>
                         <p style="margin-top: 10px; font-weight: 600;">Bild 1</p>
                         <input type="text" id="input1" placeholder="Zahl?" maxlength="2">
@@ -562,22 +584,49 @@
 
                     <div class="ishihara-item">
                         <svg class="ishihara-svg" id="ishihara2" viewBox="0 0 200 200">
-                            <circle cx="100" cy="100" r="95" fill="#C4A77D"/>
-                            <circle cx="80" cy="75" r="8" fill="#228B22"/>
-                            <circle cx="85" cy="80" r="6" fill="#228B22"/>
-                            <circle cx="75" cy="75" r="7" fill="#228B22"/>
-                            <circle cx="90" cy="75" r="7" fill="#228B22"/>
-                            <circle cx="80" cy="125" r="8" fill="#228B22"/>
-                            <circle cx="85" cy="120" r="6" fill="#228B22"/>
-                            <circle cx="75" cy="125" r="7" fill="#228B22"/>
-                            <circle cx="90" cy="125" r="7" fill="#228B22"/>
-                            <circle cx="80" cy="100" r="5" fill="#228B22"/>
-                            <circle cx="50" cy="50" r="3" fill="#DEB887"/>
-                            <circle cx="60" cy="80" r="3" fill="#DEB887"/>
-                            <circle cx="120" cy="70" r="3" fill="#DEB887"/>
-                            <circle cx="140" cy="100" r="3" fill="#DEB887"/>
-                            <circle cx="120" cy="130" r="3" fill="#DEB887"/>
-                            <circle cx="60" cy="140" r="3" fill="#DEB887"/>
+                            <defs>
+                                <filter id="blur2"><feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/></filter>
+                            </defs>
+                            <circle cx="100" cy="100" r="98" fill="#B8860B"/>
+                            <!-- Grüne Punkte für die Zahl "8" -->
+                            <circle cx="75" cy="65" r="3.5" fill="#7CB342"/>
+                            <circle cx="80" cy="60" r="3" fill="#558B2F"/>
+                            <circle cx="85" cy="70" r="3.2" fill="#7CB342"/>
+                            <circle cx="70" cy="75" r="3" fill="#558B2F"/>
+                            <circle cx="78" cy="80" r="2.8" fill="#7CB342"/>
+                            <circle cx="90" cy="75" r="3" fill="#558B2F"/>
+                            <!-- Oberer Teil der "8" -->
+                            <circle cx="80" cy="50" r="3" fill="#558B2F"/>
+                            <circle cx="85" cy="45" r="3.2" fill="#7CB342"/>
+                            <circle cx="75" cy="48" r="2.8" fill="#558B2F"/>
+                            <circle cx="90" cy="52" r="3" fill="#7CB342"/>
+                            <!-- Unterer Teil der "8" -->
+                            <circle cx="85" cy="130" r="3.2" fill="#558B2F"/>
+                            <circle cx="78" cy="140" r="3" fill="#7CB342"/>
+                            <circle cx="92" cy="135" r="3" fill="#558B2F"/>
+                            <circle cx="80" cy="150" r="2.8" fill="#7CB342"/>
+                            <circle cx="88" cy="145" r="3.2" fill="#558B2F"/>
+                            <!-- Hintergrund-Punkte in ähnlichen Farben -->
+                            <circle cx="50" cy="50" r="2.5" fill="#D4A574"/>
+                            <circle cx="150" cy="50" r="2.5" fill="#D4A574"/>
+                            <circle cx="100" cy="40" r="2.3" fill="#DAA520"/>
+                            <circle cx="40" cy="100" r="2.5" fill="#D4A574"/>
+                            <circle cx="160" cy="100" r="2.5" fill="#D4A574"/>
+                            <circle cx="50" cy="150" r="2.5" fill="#D4A574"/>
+                            <circle cx="150" cy="150" r="2.5" fill="#DAA520"/>
+                            <circle cx="100" cy="160" r="2.3" fill="#D4A574"/>
+                            <circle cx="55" cy="45" r="2" fill="#DAA520"/>
+                            <circle cx="145" cy="155" r="2" fill="#D4A574"/>
+                            <circle cx="35" cy="120" r="2.5" fill="#DAA520"/>
+                            <circle cx="165" cy="80" r="2" fill="#D4A574"/>
+                            <circle cx="70" cy="140" r="2.3" fill="#DAA520"/>
+                            <circle cx="130" cy="150" r="2.2" fill="#D4A574"/>
+                            <circle cx="55" cy="75" r="2" fill="#D4A574"/>
+                            <circle cx="115" cy="170" r="2.2" fill="#DAA520"/>
+                            <circle cx="30" cy="70" r="2.3" fill="#D4A574"/>
+                            <circle cx="170" cy="130" r="2" fill="#DAA520"/>
+                            <circle cx="120" cy="65" r="2.2" fill="#D4A574"/>
+                            <circle cx="155" cy="40" r="2.1" fill="#DAA520"/>
                         </svg>
                         <p style="margin-top: 10px; font-weight: 600;">Bild 2</p>
                         <input type="text" id="input2" placeholder="Zahl?" maxlength="2">
