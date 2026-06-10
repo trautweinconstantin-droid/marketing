@@ -32,6 +32,8 @@
             color: var(--text-primary);
             line-height: 1.6;
             letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ========== HEADER ========== */
@@ -83,21 +85,20 @@
 
         /* ========== CONTAINER & SECTIONS ========== */
         .container {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            min-height: auto;
         }
 
         .content {
-            flex: 1;
+            flex: 0 1 auto;
         }
 
         .slide {
             display: none;
-            min-height: 100vh;
-            padding: 40px 20px;
+            padding: 60px 20px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             position: relative;
             opacity: 0;
