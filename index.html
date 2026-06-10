@@ -570,31 +570,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            gap: 20px;
-            backdrop-filter: blur(10px);
+            padding: 20px 30px;
             position: sticky;
             bottom: 0;
             z-index: 100;
         }
 
         .nav-button {
-            padding: 12px 28px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            background: transparent;
+            color: var(--text-secondary);
             cursor: pointer;
-            font-size: 0.95em;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            background: var(--surface-light);
-            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            padding: 0;
+            line-height: 1;
         }
 
-        .nav-button.prev:hover:not(:disabled) { border-color: var(--text-secondary); transform: translateX(-4px); }
-        .nav-button.next:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); transform: translateX(4px); box-shadow: 0 8px 24px rgba(79,142,247,0.3); }
-        .nav-button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .nav-button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+        .nav-button:disabled { opacity: 0.2; cursor: not-allowed; }
 
         .slide-indicator {
             text-align: center;
@@ -735,6 +735,9 @@
             color: var(--accent);
             line-height: 1;
             text-shadow: 0 0 80px rgba(79, 142, 247, 0.6);
+        }
+
+        .countdown-number.run {
             animation: countPulse 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
@@ -994,8 +997,7 @@
             .slide h2 { font-size: 1.8rem; flex-wrap: wrap; }
             .slide-bg-number { font-size: 25vw; top: 20px; right: 10px; }
             .simulator-container { grid-template-columns: 1fr; }
-            .navigation { flex-direction: column; }
-            .nav-button { width: 100%; }
+            .navigation { padding: 16px 20px; }
             .treatment-categories { grid-template-columns: 1fr; }
             .header::before { font-size: 30vw; }
             .countdown-number { font-size: clamp(120px, 50vw, 200px); }
@@ -1250,10 +1252,6 @@
                         </div>
                     </div>
 
-                    <div class="emoji-list">
-                        <div>💡 <strong>Praktische Hilfen:</strong><br>✓ Spezielle Farbsehhilfen-Brillen (z.B. EnChroma)<br>✓ Farb-Erkennungs-Apps für das Handy<br>✓ Bessere Beleuchtung nutzen<br>✓ Andere Hinweise statt Farbe verwenden (z.B. Muster, Symbole)</div>
-                    </div>
-
                     <div class="highlight green">
                         <span class="icon">🌟</span>Mit modernen Technologien können Menschen mit Farbenblindheit heute viel besser ihre Herausforderungen meistern!
                     </div>
@@ -1406,9 +1404,9 @@
         </div>
 
         <div class="navigation">
-            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">← Zurück</button>
+            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">←</button>
             <div class="slide-indicator"><span id="slideNum">1</span> / 10</div>
-            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">Weiter →</button>
+            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">→</button>
         </div>
     </div>
 
@@ -1894,25 +1892,26 @@
             const overlay = document.getElementById('countdownOverlay');
             const numEl = document.getElementById('countdownNumber');
             overlay.classList.add('active');
-            let count = 3;
 
-            function tick() {
-                numEl.style.animation = 'none';
-                numEl.textContent = count;
-                void numEl.offsetWidth;
-                numEl.style.animation = 'countPulse 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards';
-                count--;
-                if (count >= 1) {
-                    setTimeout(tick, 900);
-                } else {
-                    setTimeout(() => {
-                        overlay.classList.remove('active');
-                        openFinalQuiz();
-                    }, 900);
+            const numbers = [3, 2, 1];
+            let idx = 0;
+
+            function showNext() {
+                if (idx >= numbers.length) {
+                    overlay.classList.remove('active');
+                    openFinalQuiz();
+                    return;
                 }
+                // Strip class, force reflow, re-add to restart animation
+                numEl.classList.remove('run');
+                numEl.textContent = numbers[idx];
+                void numEl.offsetWidth;
+                numEl.classList.add('run');
+                idx++;
+                setTimeout(showNext, 950);
             }
 
-            tick();
+            showNext();
         }
 
         // ========== FINAL QUIZ ==========
