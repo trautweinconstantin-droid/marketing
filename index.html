@@ -684,27 +684,23 @@
         }
 
         .nav-button {
-            padding: 12px 28px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
             cursor: pointer;
-            font-size: 0.95em;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            background: var(--surface-light);
+            font-size: 1.2em;
             color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .nav-button.prev:hover:not(:disabled) {
-            border-color: var(--text-secondary);
-            transform: translateX(-4px);
-        }
-
-        .nav-button.next:hover:not(:disabled) {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: translateX(4px);
-            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.3);
+        .nav-button:hover:not(:disabled) {
+            color: var(--accent);
+            transform: scale(1.15);
         }
 
         .nav-button:disabled {
@@ -1439,7 +1435,6 @@
                     </div>
 
                     <div class="emoji-list">
-                        <div>💡 <strong>Praktische Hilfen:</strong><br>✓ Spezielle Farbsehhilfen-Brillen (z.B. EnChroma)<br>✓ Farb-Erkennungs-Apps für das Handy<br>✓ Bessere Beleuchtung nutzen<br>✓ Andere Hinweise statt Farbe verwenden (z.B. Muster, Symbole)</div>
                     </div>
 
                     <div class="highlight green">
@@ -1519,37 +1514,9 @@
                 </div>
             </div>
 
-            <!-- Slide 8: Zusammenfassung -->
+            <!-- Slide 8: Challenge -->
             <div class="slide">
                 <div class="slide-bg-number">08</div>
-                <div class="slide-inner">
-                    <h2><span class="slide-number">8</span>Zusammenfassung</h2>
-                    <div class="content-text">
-                        <p>🎯 Hier sind die wichtigsten Dinge, die du gelernt hast!</p>
-                    </div>
-
-                    <div class="summary-box">
-                        <h3>Das solltest du dir merken:</h3>
-                        <ul>
-                            <li><strong>Farbenblindheit ist angeboren</strong> – man wird damit geboren; die Gene OPN1LW und OPN1MW auf dem X-Chromosom sind betroffen</li>
-                            <li><strong>Besonders Rot und Grün</strong> werden verwechselt oder gar nicht unterschieden</li>
-                            <li><strong>Mehr Männer als Frauen</strong> sind betroffen (ca. 8–10 % der Männer, aber nur 0,4 % der Frauen)</li>
-                            <li><strong>Es gibt keine Heilung</strong>, aber Behandlung durch spezielle Brillen und Symptomlinderung durch Apps und Hilfsmittel</li>
-                            <li><strong>Der Ishihara-Test</strong> ist die häufigste Methode zur Diagnose</li>
-                            <li><strong>Mit guter Unterstützung</strong> können Menschen mit Farbenblindheit ein völlig normales, erfülltes Leben führen!</li>
-                            <li><strong>Menschen mit Farbenblindheit sind nicht weniger intelligent oder fähig</strong> – sie sehen die Welt einfach ein bisschen anders! 🌈</li>
-                        </ul>
-                    </div>
-
-                    <div class="highlight blue">
-                        <span class="icon">🌟</span><strong>Abschließend:</strong> Farbenblindheit ist keine Krankheit – es ist einfach eine andere Art zu sehen. Jeder Mensch ist einzigartig, und das ist wunderbar!
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 9: Challenge -->
-            <div class="slide">
-                <div class="slide-bg-number">09</div>
                 <div class="slide-inner">
                     <div class="challenge-content">
                         <h1>Na, alles gemerkt? 🧠</h1>
@@ -1596,17 +1563,17 @@
 
                         <div class="results-actions">
                             <button onclick="retakeQuiz()">Quiz erneut versuchen</button>
-                            <button onclick="goToSection(8)">Zur Zusammenfassung</button>
+                            <button onclick="goToSection(7)">Zu den Quellen</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 10: Quellen -->
+            <!-- Slide 9: Quellen -->
             <div class="slide">
-                <div class="slide-bg-number">10</div>
+                <div class="slide-bg-number">09</div>
                 <div class="slide-inner">
-                    <h2><span class="slide-number">9</span>Quellen</h2>
+                    <h2><span class="slide-number">8</span>Quellen</h2>
                     <div class="content-text">
                         <p>📚 Diese Seite wurde mit Hilfe folgender wissenschaftlicher und medizinischer Quellen erstellt:</p>
                     </div>
@@ -1649,9 +1616,9 @@
         </div>
 
         <div class="navigation">
-            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">← Zurück</button>
-            <div class="slide-indicator"><span id="slideNum">1</span> / 9</div>
-            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">Weiter →</button>
+            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">←</button>
+            <div class="slide-indicator"><span id="slideNum">1</span> / 8</div>
+            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">→</button>
         </div>
     </div>
 
@@ -1802,7 +1769,7 @@
 
         // ========== SLIDE MANAGEMENT ==========
         let currentSlide = 0;
-        const totalSlides = 9;
+        const totalSlides = 8;
 
         function updateSlide() {
             const slides = document.querySelectorAll('.slide');
@@ -2023,14 +1990,19 @@
 
             const overlay = document.createElement('div');
             overlay.className = 'countdown-overlay active';
-            overlay.innerHTML = '<div class="countdown-number">3</div>';
             document.body.appendChild(overlay);
 
             let count = 3;
-            const timer = setInterval(() => {
+            const displayCount = () => {
+                overlay.innerHTML = `<div class="countdown-number">${count}</div>`;
                 count--;
+            };
+
+            displayCount();
+
+            const timer = setInterval(() => {
                 if (count > 0) {
-                    overlay.querySelector('.countdown-number').textContent = count;
+                    displayCount();
                 } else {
                     clearInterval(timer);
                     overlay.remove();
