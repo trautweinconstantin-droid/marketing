@@ -817,11 +817,324 @@
             color: var(--text-secondary);
         }
 
-        /* ========== RESPONSIVE ========== */
+        /* ========== COUNTDOWN ========== */
+        .countdown-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1500;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-overlay.active {
+            display: flex;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 15vw;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0;
+            transform: scale(0.5);
+            animation: countdownPulse 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes countdownPulse {
+            0% {
+                opacity: 1;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+
+        /* ========== CHALLENGE PAGE ========== */
+        .challenge-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .challenge-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .challenge-content p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .challenge-button {
+            padding: 16px 40px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .challenge-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(79, 142, 247, 0.4);
+        }
+
+        /* ========== QUIZ PAGE ========== */
+        .quiz-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quiz-page-progress {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .quiz-page-progress-bar {
+            width: 200px;
+            height: 6px;
+            background: var(--surface);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .quiz-page-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #4f8ef7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-page-question {
+            margin-bottom: 30px;
+        }
+
+        .quiz-page-question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+        }
+
+        .quiz-page-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-page-option {
+            padding: 16px 20px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
+        .quiz-page-option:hover {
+            border-color: var(--accent);
+            background: var(--surface-light);
+        }
+
+        .quiz-page-option.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .quiz-page-nav {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .quiz-page-nav button {
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-page-nav button:hover:not(:disabled) {
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quiz-page-nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== RESULTS PAGE ========== */
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-score {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .results-message {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+
+        .results-list {
+            margin-top: 40px;
+        }
+
+        .result-item {
+            background: var(--surface);
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-item.correct {
+            border-left-color: #10b981;
+        }
+
+        .result-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .result-detail {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 8px 0;
+        }
+
+        .result-detail strong {
+            color: var(--text-primary);
+        }
+
+        .result-review-button {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .result-review-button:hover {
+            box-shadow: 0 6px 16px rgba(79, 142, 247, 0.3);
+        }
+
+        .results-error-item {
+            background: var(--surface);
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .results-error-content {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .results-actions button {
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .results-actions button:hover {
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
-            .slide {
-                padding: 60px 15px;
-                min-height: auto;
+            .challenge-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .challenge-content p {
+                font-size: 1.1rem;
+            }
+
+            .quiz-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .quiz-page-progress-bar {
+                width: 100%;
+            }
+
+            .results-score {
+                font-size: 2rem;
+            }
+
+            .results-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
             }
 
             .slide h2 {
@@ -1234,9 +1547,64 @@
                 </div>
             </div>
 
-            <!-- Slide 9: Quellen -->
+            <!-- Slide 9: Challenge -->
             <div class="slide">
                 <div class="slide-bg-number">09</div>
+                <div class="slide-inner">
+                    <div class="challenge-content">
+                        <h1>Na, alles gemerkt? 🧠</h1>
+                        <p>Teste dein Wissen in unserem Abschlussquiz! Beantworte 10 knifflige Fragen und zeige, was du über Farbenblindheit gelernt hast.</p>
+                        <button class="challenge-button" onclick="startCountdown()">Zum Abschlussquiz →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Final Quiz & Results -->
+            <div class="slide" id="quizSlide">
+                <div class="slide-inner">
+                    <!-- Quiz Container -->
+                    <div id="quizContainer" style="display: block;">
+                        <div class="quiz-page-header">
+                            <div>
+                                <span class="quiz-page-progress"><span id="quizCurrentQuestion">1</span> von 10</span>
+                                <div class="quiz-page-progress-bar">
+                                    <div class="quiz-page-progress-fill" id="quizProgressFill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-page-question">
+                            <div class="quiz-page-question-text" id="quizQuestion">Frage wird geladen...</div>
+                            <div class="quiz-page-options" id="quizOptions"></div>
+                        </div>
+
+                        <div class="quiz-page-nav">
+                            <button onclick="prevQuizQuestion()" id="quizPrevBtn">← Zurück</button>
+                            <button onclick="nextQuizQuestion()" id="quizNextBtn">Weiter →</button>
+                            <button onclick="submitQuiz()" id="quizSubmitBtn" style="display: none;">Ergebnisse anzeigen</button>
+                        </div>
+                    </div>
+
+                    <!-- Results Container -->
+                    <div id="resultsContainer" style="display: none;">
+                        <div class="results-header">
+                            <div class="results-score" id="resultScore">7 von 10</div>
+                            <div class="results-message">Glückwunsch! Du hast gut abgeschnitten! 🎉</div>
+                        </div>
+
+                        <div class="results-list" id="resultsList"></div>
+
+                        <div class="results-actions">
+                            <button onclick="retakeQuiz()">Quiz erneut versuchen</button>
+                            <button onclick="goToSection(8)">Zur Zusammenfassung</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Quellen -->
+            <div class="slide">
+                <div class="slide-bg-number">10</div>
                 <div class="slide-inner">
                     <h2><span class="slide-number">9</span>Quellen</h2>
                     <div class="content-text">
@@ -1282,7 +1650,7 @@
 
         <div class="navigation">
             <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">← Zurück</button>
-            <div class="slide-indicator"><span id="slideNum">1</span> / 9</div>
+            <div class="slide-indicator"><span id="slideNum">1</span> / 10</div>
             <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">Weiter →</button>
         </div>
     </div>
@@ -1434,7 +1802,7 @@
 
         // ========== SLIDE MANAGEMENT ==========
         let currentSlide = 0;
-        const totalSlides = 9;
+        const totalSlides = 10;
 
         function updateSlide() {
             const slides = document.querySelectorAll('.slide');
@@ -1521,6 +1889,263 @@
 
         updateSlide();
         setupCardListeners();
+
+        // ========== QUIZ AND CHALLENGE FUNCTIONS ==========
+        const quizQuestions = [
+            {
+                question: "Ein Junge und ein Mädchen sind beide Kinder von derselben Mutter, die Trägerin des Farbenblindheits-Gens auf einem X-Chromosom ist. Der Vater hat normale Farbsicht. Was stimmt?",
+                options: [
+                    "Der Junge wird mit 50% Wahrscheinlichkeit farbenblind, das Mädchen ist völlig sicher nicht farbenblind",
+                    "Beide Kinder haben die gleiche Wahrscheinlichkeit, farbenblind zu sein",
+                    "Das Mädchen wird farbenblind, weil sie das Gen von der Mutter erbt",
+                    "Der Junge wird nicht farbenblind, weil der Vater normale Sicht hat"
+                ],
+                correctIndex: 0,
+                section: 1,
+                sectionName: "Genetische Ursache"
+            },
+            {
+                question: "Ein Person kann die Zahlen im Ishihara-Test nicht erkennen, kann aber im Alltag rot und grün ganz gut unterscheiden. Was könnte der Grund sein?",
+                options: [
+                    "Die Person hat Achromatopsie (komplette Farbenblindheit)",
+                    "Der Ishihara-Test ist zu schwer gemacht und nicht zuverlässig",
+                    "Die Person hat schwache Rot-Grün-Sicht und braucht dichtere Farbmuster zum Erkennen",
+                    "Die Person ist einfach nicht konzentriert genug"
+                ],
+                correctIndex: 2,
+                section: 3,
+                sectionName: "Diagnose"
+            },
+            {
+                question: "Die Gene OPN1LW und OPN1MW sitzen auf dem X-Chromosom. Was bedeutet das für Männer und Frauen?",
+                options: [
+                    "Männer haben 2 X-Chromosomen, Frauen haben nur 1",
+                    "Männer haben nur 1 X-Chromosom, Frauen haben 2 – deshalb sind Frauen geschützter",
+                    "Beide haben die gleiche Anzahl, aber Frauen können das Gen besser kontrollieren",
+                    "Das Gen ist auf dem Y-Chromosom, nicht dem X-Chromosom"
+                ],
+                correctIndex: 1,
+                section: 1,
+                sectionName: "Genetische Ursache"
+            },
+            {
+                question: "Eine Schule will ein neues Klassenzimmer einrichten. Um es für alle Schüler zugänglich zu machen, sollten sie Folgendes vermeiden:",
+                options: [
+                    "Zu viel helles Licht",
+                    "Nur Rot und Grün um Informationen zu unterscheiden (z.B. rote und grüne Markierungen ohne weitere Hilfen)",
+                    "Zu viel Technologie",
+                    "Zu viele unterschiedliche Farben"
+                ],
+                correctIndex: 1,
+                section: 5,
+                sectionName: "Leben mit der Krankheit"
+            },
+            {
+                question: "Eine Person mit Rot-Grün-Farbenblindheit sieht rote und grüne Punkte. Welche Farbe sieht die Person wahrscheinlich am hellsten (am weitesten oben auf der Skala)?",
+                options: [
+                    "Rot und Grün sehen völlig gleich aus",
+                    "Das Rot wird dunkler oder mehr bräunlich wahrgenommen",
+                    "Das Grün wird heller wahrgenommen",
+                    "Es kommt darauf an, wie schlecht die Farbenblindheit ist"
+                ],
+                correctIndex: 1,
+                section: 2,
+                sectionName: "Symptome & Verlauf"
+            },
+            {
+                question: "Die EnChroma-Brille und spezielle Apps zur Farbsichtunterstützung: Was ist der Unterschied?",
+                options: [
+                    "Die Brille ist teurer, aber viel effektiver",
+                    "Die Brille filtert bestimmte Lichtwellenlängen, Apps wandeln Farben in andere Signale um",
+                    "Die Apps funktionieren besser als die Brille",
+                    "Es gibt keinen Unterschied – beides funktioniert gleich"
+                ],
+                correctIndex: 1,
+                section: 4,
+                sectionName: "Behandlung"
+            },
+            {
+                question: "Etwa 8-10% der Männer und 0,4% der Frauen sind farbenblind. Welche genetische Eigenschaft erklärt diesen Unterschied am besten?",
+                options: [
+                    "Männer sind genetisch anfälliger für Krankheiten",
+                    "Das Farbenblindheits-Gen ist rezessiv auf dem X-Chromosom – Männer (XY) brauchen nur ein fehlerhaftes X, Frauen (XX) brauchen zwei",
+                    "Frauen produzieren mehr Farbpigmente als Männer",
+                    "Männer in bestimmten Ländern sind anfälliger"
+                ],
+                correctIndex: 1,
+                section: 1,
+                sectionName: "Genetische Ursache"
+            },
+            {
+                question: "Ein Designer erstellt ein Plakat nur mit roten und grünen Farben zur Unterscheidung zweier Produkte. Warum ist das problematisch?",
+                options: [
+                    "Weil Rot und Grün zu ähnliche Farbtöne sind",
+                    "Weil Menschen mit Rot-Grün-Farbenblindheit die beiden Produkte nicht unterscheiden können",
+                    "Weil das Plakat zu bunt aussieht",
+                    "Weil Farben schneller verblassen"
+                ],
+                correctIndex: 1,
+                section: 5,
+                sectionName: "Leben mit der Krankheit"
+            },
+            {
+                question: "Wenn ein Gen aus 20.000 Basenpaaren besteht und nur wenige davon mutiert sind, warum kann das trotzdem zu Farbenblindheit führen?",
+                options: [
+                    "Weil selbst kleine Fehler in Genen zu großen Problemen führen können",
+                    "Weil 20.000 Basenpaare viel zu viele sind",
+                    "Weil die fehlerhaften Basenpaare am Anfang des Gens sind",
+                    "Weil Farbenblindheit eine sehr ernste Krankheit ist"
+                ],
+                correctIndex: 0,
+                section: 1,
+                sectionName: "Genetische Ursache"
+            },
+            {
+                question: "Ein Baby wird mit Rot-Grün-Farbenblindheit geboren. Wird es in den ersten Monaten bemerken, dass es anders sieht als andere?",
+                options: [
+                    "Ja, weil es sofort lernt, Farben zu unterscheiden",
+                    "Nein, weil sein Gehirn sich an die Farben gewöhnt und es sein ganzes Leben lang normal für es ist",
+                    "Ja, aber nur wenn die Eltern es den anderen Babys zeigen",
+                    "Das hängt davon ab, wie schlecht die Farbenblindheit ist"
+                ],
+                correctIndex: 1,
+                section: 2,
+                sectionName: "Symptome & Verlauf"
+            }
+        ];
+
+        let currentQuizQuestion = 0;
+        let quizAnswers = {};
+
+        function startCountdown() {
+            currentSlide = 8;
+            updateSlide();
+
+            const overlay = document.createElement('div');
+            overlay.className = 'countdown-overlay active';
+            overlay.innerHTML = '<div class="countdown-number">3</div>';
+            document.body.appendChild(overlay);
+
+            let count = 3;
+            const timer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    overlay.querySelector('.countdown-number').textContent = count;
+                } else {
+                    clearInterval(timer);
+                    overlay.remove();
+                    currentQuizQuestion = 0;
+                    quizAnswers = {};
+                    displayQuizQuestion();
+                }
+            }, 1000);
+        }
+
+        function displayQuizQuestion() {
+            if (currentQuizQuestion >= quizQuestions.length) return;
+
+            const q = quizQuestions[currentQuizQuestion];
+            document.getElementById('quizQuestion').textContent = `${currentQuizQuestion + 1}. ${q.question}`;
+
+            const optionsDiv = document.getElementById('quizOptions');
+            optionsDiv.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const label = document.createElement('label');
+                label.className = 'quiz-page-option';
+                label.innerHTML = `
+                    <input type="radio" name="quizOption" value="${idx}">
+                    <span>${opt}</span>
+                `;
+                label.addEventListener('click', () => {
+                    quizAnswers[currentQuizQuestion] = idx;
+                    document.querySelectorAll('.quiz-page-option').forEach(l => l.classList.remove('selected'));
+                    label.classList.add('selected');
+                });
+                optionsDiv.appendChild(label);
+            });
+
+            if (quizAnswers[currentQuizQuestion] !== undefined) {
+                document.querySelectorAll('.quiz-page-option')[quizAnswers[currentQuizQuestion]].classList.add('selected');
+                document.querySelectorAll('.quiz-page-option')[quizAnswers[currentQuizQuestion]].querySelector('input').checked = true;
+            }
+
+            document.getElementById('quizCurrentQuestion').textContent = currentQuizQuestion + 1;
+            const progress = ((currentQuizQuestion + 1) / quizQuestions.length) * 100;
+            document.getElementById('quizProgressFill').style.width = progress + '%';
+
+            document.getElementById('quizPrevBtn').disabled = currentQuizQuestion === 0;
+            document.getElementById('quizNextBtn').style.display = currentQuizQuestion === quizQuestions.length - 1 ? 'none' : 'block';
+            document.getElementById('quizSubmitBtn').style.display = currentQuizQuestion === quizQuestions.length - 1 ? 'block' : 'none';
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuizQuestion < quizQuestions.length - 1) {
+                currentQuizQuestion++;
+                displayQuizQuestion();
+            }
+        }
+
+        function prevQuizQuestion() {
+            if (currentQuizQuestion > 0) {
+                currentQuizQuestion--;
+                displayQuizQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            const correct = quizQuestions.filter((q, idx) => quizAnswers[idx] === q.correctIndex).length;
+            const total = quizQuestions.length;
+            const percentage = Math.round((correct / total) * 100);
+
+            let message = '';
+            if (percentage >= 80) {
+                message = '🎉 Ausgezeichnet! Du bist ein echter Farbenblindheits-Experte!';
+            } else if (percentage >= 60) {
+                message = '👏 Sehr gut gemacht! Du hast vieles richtig verstanden!';
+            } else if (percentage >= 40) {
+                message = '💪 Gute Leistung! Mit etwas mehr Üben wirst du noch besser!';
+            } else {
+                message = '📚 Du schaffst das! Lies die Abschnitte nochmal durch und versuche es erneut!';
+            }
+
+            document.getElementById('resultScore').innerHTML = `<strong>${correct} von ${total}</strong><br><span style="font-size: 0.9em; color: var(--text-secondary);">${percentage}% richtig</span>`;
+            document.getElementById('resultScore').parentElement.querySelector('.results-message').textContent = message;
+
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+
+            quizQuestions.forEach((q, idx) => {
+                if (quizAnswers[idx] !== q.correctIndex) {
+                    const item = document.createElement('div');
+                    item.className = 'results-error-item';
+                    item.innerHTML = `
+                        <div class="results-error-content">
+                            <strong>Frage ${idx + 1}:</strong> ${q.question}
+                            <br><span style="color: #ff6b6b;">Deine Antwort:</span> ${q.options[quizAnswers[idx]]}
+                            <br><span style="color: #51cf66;">Richtig:</span> ${q.options[q.correctIndex]}
+                        </div>
+                        <button onclick="goToSection(${q.section})" style="margin-top: 10px; padding: 8px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em;">Nochmal nachlesen: ${q.sectionName} →</button>
+                    `;
+                    resultsList.appendChild(item);
+                }
+            });
+
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+        }
+
+        function retakeQuiz() {
+            currentQuizQuestion = 0;
+            quizAnswers = {};
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            displayQuizQuestion();
+        }
+
+        function goToSection(slideNumber) {
+            currentSlide = slideNumber;
+            updateSlide();
+        }
 
         // ---- Ishihara Canvas Generator ----
         function hexToRgb(hex) {
