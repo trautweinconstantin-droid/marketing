@@ -1,344 +1,2045 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PokeCard Shop – Deine Pokémon-Karten Destination</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farbenblindheit - Interaktive Lernseite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #4f8ef7;
+            --dark-bg: #0a0a0a;
+            --surface: rgba(255, 255, 255, 0.05);
+            --surface-light: rgba(255, 255, 255, 0.08);
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "00";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20vw;
+            font-weight: 700;
+            color: rgba(79, 142, 247, 0.03);
+            z-index: 0;
+            pointer-events: none;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+        }
+
+        /* ========== CONTAINER & SECTIONS ========== */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+        }
+
+        .content {
+            flex: 0 1 auto;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideInPremium 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes slideInPremium {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-inner {
+            width: 100%;
+            max-width: 720px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-bg-number {
+            position: absolute;
+            top: 60px;
+            right: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(79, 142, 247, 0.04);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .slide h3 {
+            margin-top: 20px !important;
+            margin-bottom: 12px !important;
+        }
+
+        .slide-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .content-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .content-text p {
+            margin-bottom: 15px;
+        }
+
+        /* ========== CARDS & HIGHLIGHTS ========== */
+        .highlight {
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+
+        .highlight::after {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3em;
+            color: var(--accent);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .highlight:hover {
+            background: var(--surface);
+            border-color: rgba(79, 142, 247, 0.3);
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .highlight:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .highlight:hover {
+                transform: translateY(0);
+                box-shadow: none;
+            }
+            .highlight::after {
+                opacity: 0.8;
+            }
+        }
+
+        .highlight.blue  { border-left-color: #4f8ef7; }
+        .highlight.green { border-left-color: #10b981; }
+        .highlight.red   { border-left-color: #ef4444; }
+
+        .icon {
+            font-size: 1.4em;
+            display: inline-block;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        /* ========== EMOJI LIST ========== */
+        .emoji-list { margin: 15px 0; }
+
+        .emoji-list div {
+            padding: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+
+        .emoji-list div::after {
+            content: "+";
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: var(--accent);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .emoji-list div:hover {
+            background: var(--surface-light);
+            border-color: rgba(79, 142, 247, 0.2);
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .emoji-list div:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .emoji-list div:hover { transform: translateY(0); box-shadow: none; }
+            .emoji-list div::after { opacity: 0.8; }
+        }
+
+        /* ========== ISHIHARA TEST ========== */
+        .ishihara-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 25px 0;
+            justify-content: center;
+        }
+
+        .ishihara-item { text-align: center; }
+
+        .ishihara-item canvas {
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 180px !important;
+            height: 180px !important;
+        }
+
+        .ishihara-item canvas:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 32px rgba(79, 142, 247, 0.15);
+            transform: scale(1.02);
+        }
+
+        .ishihara-item p { margin-top: 12px; font-weight: 600; color: var(--text-primary); }
+
+        .ishihara-item input {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 90px;
+            text-align: center;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .ishihara-item input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(79, 142, 247, 0.2);
+        }
+
+        .ishihara-item button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: 0.95rem;
+        }
+
+        .ishihara-item button:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(79, 142, 247, 0.3); }
+        .ishihara-item button:active { transform: scale(0.98); }
+
+        .result { margin-top: 10px; font-weight: 600; min-height: 25px; font-size: 0.95rem; }
+        .result.correct   { color: #10b981; }
+        .result.incorrect { color: #f87171; }
+
+        /* ========== SIMULATOR ========== */
+        .simulator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        .simulator-view { text-align: center; }
+
+        .simulator-view h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .simulator-image {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 20px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .simulator-image:hover { border-color: var(--accent); }
+
+        /* ========== QUIZ ========== */
+        .quiz-container {
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 18px 0 0 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-question {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+
+        .quiz-option {
+            padding: 14px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .quiz-option:hover {
+            background: var(--surface-light);
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .quiz-option input { margin-right: 12px; cursor: pointer; accent-color: var(--accent); }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: block;
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            display: block;
+        }
+
+        /* ========== TREATMENT CARDS ========== */
+        .treatment-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .treatment-card {
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+
+        .treatment-card::after {
+            content: "+";
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            font-size: 1.4em;
+            color: var(--accent);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(79, 142, 247, 0.15);
+        }
+
+        .treatment-card:hover::after { opacity: 1; transform: scale(1.2); }
+
+        @media (max-width: 768px) {
+            .treatment-card:hover { transform: translateY(0); box-shadow: none; }
+            .treatment-card::after { opacity: 0.8; }
+        }
+
+        .treatment-card h4 { font-size: 1.3em; margin-bottom: 12px; color: var(--text-primary); }
+        .treatment-card p  { font-size: 0.95em; line-height: 1.6; color: var(--text-secondary); }
+
+        .treatment-card.not-possible  { border-color: rgba(239,68,68,0.3);  background: rgba(239,68,68,0.05); }
+        .treatment-card.treatment     { border-color: rgba(79,142,247,0.3); background: rgba(79,142,247,0.05); }
+        .treatment-card.symptom-relief{ border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.05); }
+
+        /* ========== SUMMARY BOX ========== */
+        .summary-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .summary-box:hover {
+            border-color: rgba(79, 142, 247, 0.3);
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.1);
+        }
+
+        .summary-box h3 { font-size: 1.3em; margin-bottom: 20px; color: var(--text-primary); }
+        .summary-box ul { list-style: none; }
+
+        .summary-box li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .summary-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* ========== SOURCES ========== */
+        .sources-list {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sources-list:hover {
+            border-color: rgba(79, 142, 247, 0.3);
+            box-shadow: 0 8px 24px rgba(79, 142, 247, 0.1);
+        }
+
+        .sources-list ol { margin-left: 20px; line-height: 1.8; }
+
+        .sources-list li { margin-bottom: 18px; color: var(--text-secondary); }
+
+        .sources-list a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sources-list a:hover { text-decoration: underline; opacity: 0.8; }
+
+        /* ========== NAVIGATION ========== */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .nav-button {
+            padding: 12px 28px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: var(--surface-light);
+            color: var(--text-primary);
+        }
+
+        .nav-button.prev:hover:not(:disabled) { border-color: var(--text-secondary); transform: translateX(-4px); }
+        .nav-button.next:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); transform: translateX(4px); box-shadow: 0 8px 24px rgba(79,142,247,0.3); }
+        .nav-button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .slide-indicator {
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+            flex-grow: 1;
+            font-size: 0.9em;
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .progress-bar {
+            height: 3px;
+            background: var(--surface);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #4f8ef7);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 20px rgba(79, 142, 247, 0.5);
+        }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--dark-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close:hover { background: var(--surface-light); border-color: var(--accent); }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .modal-text { font-size: 1em; line-height: 1.7; color: var(--text-secondary); }
+
+        /* ========== CHALLENGE SLIDE ========== */
+        .challenge-hero {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 55vh;
+            gap: 24px;
+        }
+
+        .btn-quiz-start {
+            padding: 20px 52px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 32px rgba(79, 142, 247, 0.4);
+            letter-spacing: 0.3px;
+            margin-top: 10px;
+        }
+
+        .btn-quiz-start:hover {
+            transform: scale(1.06) translateY(-4px);
+            box-shadow: 0 20px 56px rgba(79, 142, 247, 0.55);
+        }
+
+        .btn-quiz-start:active { transform: scale(0.97); }
+
+        /* ========== COUNTDOWN OVERLAY ========== */
+        .countdown-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.97);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .countdown-overlay.active { display: flex; }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(160px, 35vw, 320px);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            text-shadow: 0 0 80px rgba(79, 142, 247, 0.6);
+            animation: countPulse 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes countPulse {
+            0%   { opacity: 0; transform: scale(0.2); }
+            25%  { opacity: 1; transform: scale(1.2); }
+            65%  { opacity: 1; transform: scale(1.0); }
+            100% { opacity: 0; transform: scale(2.2); }
+        }
+
+        /* ========== FINAL QUIZ OVERLAY ========== */
+        .final-quiz-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--dark-bg);
+            z-index: 1500;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+
+        .final-quiz-overlay.active { display: flex; }
+
+        .fq-progress-bar {
+            height: 4px;
+            background: var(--surface);
+            width: 100%;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .fq-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #81b3ff);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 12px rgba(79, 142, 247, 0.5);
+        }
+
+        .fq-topbar {
+            padding: 20px 24px 0;
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .fq-counter { font-size: 0.9rem; color: var(--text-secondary); font-weight: 600; }
+
+        .fq-close-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1.1em;
+            color: var(--text-secondary);
+        }
+
+        .fq-close-btn:hover { background: var(--surface-light); border-color: var(--accent); color: var(--text-primary); }
+
+        .fq-body {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 32px 24px 80px;
+        }
+
+        .fq-inner { width: 100%; max-width: 720px; }
+
+        .fq-question {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+            line-height: 1.45;
+        }
+
+        .fq-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+
+        .fq-option {
+            padding: 16px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.97rem;
+            line-height: 1.55;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: var(--text-secondary);
+            user-select: none;
+        }
+
+        .fq-option:hover {
+            background: var(--surface-light);
+            border-color: rgba(79, 142, 247, 0.4);
+            color: var(--text-primary);
+        }
+
+        .fq-option.selected {
+            background: rgba(79, 142, 247, 0.1);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .fq-option-letter {
+            width: 28px; height: 28px; min-width: 28px;
+            border-radius: 50%;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem; font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .fq-option.selected .fq-option-letter {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .fq-nav { display: flex; justify-content: flex-end; }
+
+        .fq-next-btn {
+            padding: 13px 36px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem; font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .fq-next-btn.enabled { opacity: 1; pointer-events: all; }
+        .fq-next-btn.enabled:hover { transform: translateX(4px); box-shadow: 0 8px 24px rgba(79,142,247,0.4); }
+
+        /* ========== RESULTS SCREEN ========== */
+        .fq-results {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 48px 24px 80px;
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .fq-results.active { display: flex; }
+
+        .fq-score-circle {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            background: var(--surface-light);
+            border: 3px solid var(--accent);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 0 48px rgba(79, 142, 247, 0.25);
+        }
+
+        .fq-score-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem; font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .fq-score-denom { font-size: 0.82rem; color: var(--text-secondary); margin-top: 5px; }
+
+        .fq-score-msg { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; text-align: center; }
+        .fq-score-sub { color: var(--text-secondary); margin-bottom: 48px; text-align: center; line-height: 1.6; }
+
+        .fq-wrong-section { width: 100%; }
+
+        .fq-wrong-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .fq-wrong-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid #ef4444;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+
+        .fq-wrong-q { font-weight: 600; color: var(--text-primary); margin-bottom: 14px; line-height: 1.55; font-size: 0.97rem; }
+
+        .fq-wrong-answers { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+
+        .fq-answer-row { font-size: 0.9rem; line-height: 1.55; padding-left: 4px; }
+        .fq-answer-row.yours      { color: #f87171; }
+        .fq-answer-row.correct-ans{ color: #10b981; }
+
+        .fq-reread-btn {
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 0.85rem; font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .fq-reread-btn:hover { background: var(--surface-light); border-color: var(--accent); }
+
+        .fq-all-correct {
+            text-align: center;
+            padding: 36px 24px;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 12px;
+            color: #10b981;
+            font-size: 1.1rem; font-weight: 600;
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        .fq-restart-btn {
+            margin-top: 40px;
+            padding: 13px 36px;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.97rem; font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fq-restart-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .slide { padding: 60px 15px; min-height: auto; }
+            .slide h2 { font-size: 1.8rem; flex-wrap: wrap; }
+            .slide-bg-number { font-size: 25vw; top: 20px; right: 10px; }
+            .simulator-container { grid-template-columns: 1fr; }
+            .navigation { flex-direction: column; }
+            .nav-button { width: 100%; }
+            .treatment-categories { grid-template-columns: 1fr; }
+            .header::before { font-size: 30vw; }
+            .countdown-number { font-size: clamp(120px, 50vw, 200px); }
+            .btn-quiz-start { padding: 18px 40px; font-size: 1.1rem; }
+            .fq-topbar, .fq-body { padding-left: 16px; padding-right: 16px; }
+            .fq-question { font-size: 1.15rem; }
+            .fq-option { padding: 14px 16px; }
+            .fq-wrong-item { padding: 16px; }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- NAVIGATION -->
-  <nav class="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">⚡</span>
-        PokeCard<span class="logo-accent">Shop</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#features">Vorteile</a></li>
-        <li><a href="#products">Produkte</a></li>
-        <li><a href="#testimonials">Bewertungen</a></li>
-        <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
     </div>
-  </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge">🔥 Neue Scarlet &amp; Violet Sets eingetroffen</div>
-      <h1>Pokémon-Karten.<br /><span class="gradient-text">Leidenschaft pur.</span></h1>
-      <p class="hero-sub">
-        Von Basis-Boostern bis zu seltenen Holo-Rares – finde deine nächste Lieblingsarte in unserem kurierten Shop.
-      </p>
-      <div class="hero-actions">
-        <a href="#products" class="btn btn-primary">Jetzt shoppen</a>
-        <a href="#features" class="btn btn-secondary">Mehr erfahren</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num">50 000+</span>
-          <span class="stat-label">Karten verfügbar</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">12 000+</span>
-          <span class="stat-label">Zufriedene Sammler</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">24 h</span>
-          <span class="stat-label">Versand</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-cards">
-      <div class="card-float card-1">
-        <div class="poke-card fire">
-          <div class="card-type">Feuer</div>
-          <div class="card-pokemon">Glumanda</div>
-          <div class="card-hp">HP 60</div>
-        </div>
-      </div>
-      <div class="card-float card-2">
-        <div class="poke-card water">
-          <div class="card-type">Wasser</div>
-          <div class="card-pokemon">Schiggy</div>
-          <div class="card-hp">HP 50</div>
-        </div>
-      </div>
-      <div class="card-float card-3">
-        <div class="poke-card electric">
-          <div class="card-type">Elektro ⚡</div>
-          <div class="card-pokemon">Pikachu</div>
-          <div class="card-hp">HP 70</div>
-        </div>
-      </div>
-      <div class="card-float card-4">
-        <div class="poke-card grass">
-          <div class="card-type">Pflanze</div>
-          <div class="card-pokemon">Bisasam</div>
-          <div class="card-hp">HP 45</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features" id="features">
     <div class="container">
-      <div class="section-header">
-        <h2>Warum PokeCard<span class="logo-accent">Shop</span>?</h2>
-        <p>Wir lieben Pokémon-Karten genauso sehr wie du – und das merkt man.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <h3>Echtheitsprüfung</h3>
-          <p>Jede Karte wird von unseren Experten auf Echtheit geprüft – du kaufst immer das Original.</p>
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <h1>🎨 Farbenblindheit</h1>
+                <p>Lerne alles über diese faszinierende Sehstörung</p>
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">📦</div>
-          <h3>Sicherer Versand</h3>
-          <p>Kartenschutz, Bubble-Mailer und tracked shipping – deine Karten kommen makellos an.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💎</div>
-          <h3>Raritäten & Grails</h3>
-          <p>Seltene First Editions, PSA-Grades und Promo-Karten – wir haben, was andere nicht haben.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
-          <h3>Sammler-Community</h3>
-          <p>Tausche dich mit anderen Fans aus, zeig deine Pulls und nimm an Events teil.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h3>Faire Preise</h3>
-          <p>Marktgerechte Preise, wöchentliche Deals und ein Treueprogramm für Stammkunden.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Blitzschnelle Lieferung</h3>
-          <p>Bestellungen bis 15 Uhr werden noch am gleichen Tag verschickt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <div class="container">
-      <div class="section-header">
-        <h2>Beliebte <span class="gradient-text">Produkte</span></h2>
-        <p>Von Boostern bis zu kompletten Sets – hier ist für jeden Sammler etwas dabei.</p>
-      </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-badge">Bestseller</div>
-          <div class="product-img fire-bg">
-            <span class="product-emoji">🔥</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Scarlet &amp; Violet</span>
-            <h3>Booster-Display</h3>
-            <p>36 Boosterpacks – die beste Chance auf seltene EX &amp; Full Art Karten.</p>
-            <div class="product-price">
-              <span class="price">89,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge new">Neu</div>
-          <div class="product-img electric-bg">
-            <span class="product-emoji">⚡</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Obsidian Flames</span>
-            <h3>Elite Trainer Box</h3>
-            <p>8 Boosterpacks, Pokémon-Münze, Deckboxen und Sleeves im Bundle.</p>
-            <div class="product-price">
-              <span class="price">54,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge rare">Selten</div>
-          <div class="product-img gold-bg">
-            <span class="product-emoji">✨</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Base Set 1999</span>
-            <h3>Holo Charizard PSA 8</h3>
-            <p>Ikonische Karte aus dem Basis-Set, professionell begutachtet – ein echter Grail.</p>
-            <div class="product-price">
-              <span class="price">1 299,00 €</span>
-              <a href="#" class="btn btn-sm">Anfragen</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img water-bg">
-            <span class="product-emoji">🌊</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Paldea Evolved</span>
-            <h3>Booster Bundle (6er)</h3>
-            <p>Sechs handverlesene Packs aus dem neuesten Paldea-Set.</p>
-            <div class="product-price">
-              <span class="price">19,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img grass-bg">
-            <span class="product-emoji">🌿</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Starter-Kit</span>
-            <h3>Einsteiger-Set</h3>
-            <p>Perfekt für Neulinge: 3 Booster, Sleeves, Deckbox und Regelkarte.</p>
-            <div class="product-price">
-              <span class="price">14,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge deal">Deal</div>
-          <div class="product-img purple-bg">
-            <span class="product-emoji">💜</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Mystery</span>
-            <h3>Mystery Rare Box</h3>
-            <p>Mindestens 3 seltene Karten (Rare oder besser) – garantiert oder Geld zurück.</p>
-            <div class="product-price">
-              <span class="price-old">29,99 €</span>
-              <span class="price">19,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="content">
+            <!-- Slide 1: Willkommen & Ishihara -->
+            <div class="slide active">
+                <div class="slide-bg-number">01</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">1</span>Willkommen!</h2>
+                    <div class="content-text">
+                        <p>👋 Hallo! Auf dieser Seite lernst du alles über <strong>Farbenblindheit</strong> – eine faszinierende Sehstörung, bei der Menschen bestimmte Farben nicht so sehen wie du.</p>
+                        <p style="margin-top: 15px;">Bist du bereit? Dann lass uns starten! 🚀</p>
+                    </div>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <h2>Was Sammler sagen</h2>
-        <p>Echte Stimmen aus unserer Community.</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Habe meinen Charizard Holo hier gekauft – absolut authentisch und blitzschnell geliefert. Bester Shop!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div>
-              <strong>Markus K.</strong>
-              <span>Sammler seit 1999</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Meine Tochter wollte anfangen zu sammeln – das Einsteiger-Set war perfekt. Tolle Beratung per Chat!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">S</div>
-            <div>
-              <strong>Sandra L.</strong>
-              <span>Neukunde</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Faire Preise, schneller Versand und die Karten kommen immer in Topzustand an. Klare Empfehlung!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">T</div>
-            <div>
-              <strong>Tobias R.</strong>
-              <span>Competitive Player</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+                    <div class="highlight blue">
+                        <span class="icon">💡</span>Tipp: Bei jedem Abschnitt findest du eine kleine Quizfrage. Versuche sie zu beantworten!
+                    </div>
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter" id="newsletter">
-    <div class="container">
-      <div class="newsletter-inner">
-        <div class="newsletter-text">
-          <h2>Verpasse keine Deals! 🔔</h2>
-          <p>Melde dich an und erhalte exklusive Angebote, Restocks-Benachrichtigungen und News direkt in dein Postfach.</p>
-        </div>
-        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-          <input type="email" placeholder="deine@email.de" required />
-          <button type="submit" class="btn btn-primary">Anmelden</button>
-        </form>
-        <p id="newsletter-msg" class="newsletter-msg" hidden>🎉 Du bist dabei! Schau in dein Postfach.</p>
-      </div>
-    </div>
-  </section>
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.5em; font-family: 'Playfair Display', serif;">🧪 Teste dein Farbsehen – Ishihara Test</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-secondary);">Schau dir diese Punkte an. Welche Zahl siehst du? (Wenn du die Zahl nicht siehst, keine Sorge – das ist völlig normal!)</p>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <span class="logo-icon">⚡</span>
-            PokeCard<span class="logo-accent">Shop</span>
-          </a>
-          <p>Deine vertrauenswürdige Anlaufstelle für Pokémon-Karten aller Generationen.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="#">Boosterpacks</a></li>
-            <li><a href="#">Displays &amp; Sets</a></li>
-            <li><a href="#">Einzelkarten</a></li>
-            <li><a href="#">Zubehör</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Info</h4>
-          <ul>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">Versand &amp; Rückgabe</a></li>
-            <li><a href="#">Datenschutz</a></li>
-            <li><a href="#">Impressum</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Community</h4>
-          <ul>
-            <li><a href="#">Discord</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">YouTube</a></li>
-            <li><a href="#">Newsletter</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 PokeCardShop. Alle Rechte vorbehalten. Pokémon und alle damit verbundenen Namen sind Marken von Nintendo / Game Freak.</p>
-      </div>
-    </div>
-  </footer>
+                    <div class="ishihara-container">
+                        <div class="ishihara-item">
+                            <canvas id="ishihara1" width="220" height="220"></canvas>
+                            <p>Bild 1</p>
+                            <input type="text" id="input1" placeholder="Zahl?" maxlength="2">
+                            <button onclick="checkIshihara(1, this)">Prüfen</button>
+                            <div class="result" id="result1"></div>
+                        </div>
+                        <div class="ishihara-item">
+                            <canvas id="ishihara2" width="220" height="220"></canvas>
+                            <p>Bild 2</p>
+                            <input type="text" id="input2" placeholder="Zahl?" maxlength="2">
+                            <button onclick="checkIshihara(2, this)">Prüfen</button>
+                            <div class="result" id="result2"></div>
+                        </div>
+                    </div>
 
-  <script src="script.js"></script>
+                    <div class="highlight green">
+                        <span class="icon">📊</span>Der Ishihara-Test ist eine berühmte Methode zur Erkennung von Farbenblindheit. Er nutzt Muster aus farbigen Punkten!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Grundinformationen -->
+            <div class="slide">
+                <div class="slide-bg-number">02</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">2</span>Grundinformationen</h2>
+                    <div class="content-text">
+                        <p>🎨 <strong>Farbenblindheit</strong> ist eine Sehstörung, bei der Menschen bestimmte Farben nicht sehen oder vermischen können.</p>
+                    </div>
+
+                    <div class="emoji-list">
+                        <div>❓ <strong>Was ist Farbenblindheit?</strong><br>Das Auge kann nicht alle Farben unterscheiden. Besonders Rot und Grün werden oft verwechselt.</div>
+                        <div>👥 <strong>Wie viele Menschen sind betroffen?</strong><br>Etwa 8-10% aller Männer und 0,4% aller Frauen haben Farbenblindheit!</div>
+                        <div>🌍 <strong>Ist es eine Krankheit?</strong><br>Nein, es ist keine Krankheit, sondern eine Besonderheit beim Sehen. Menschen mit Farbenblindheit sind deswegen nicht krank!</div>
+                    </div>
+
+                    <div class="highlight blue">
+                        <span class="icon">💡</span>Farbenblindheit ist angeboren – man wird damit geboren oder bekommt sie von den Eltern.
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Welche zwei Farben werden bei Farbenblindheit am häufigsten verwechselt?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz1" value="wrong1"> Blau und Gelb</label>
+                            <label class="quiz-option"><input type="radio" name="quiz1" value="correct"> Rot und Grün</label>
+                            <label class="quiz-option"><input type="radio" name="quiz1" value="wrong2"> Grün und Lila</label>
+                        </div>
+                        <button onclick="checkQuiz(1, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Genetische Ursache -->
+            <div class="slide">
+                <div class="slide-bg-number">03</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">3</span>Genetische Ursache</h2>
+                    <div class="content-text">
+                        <p>🧬 Farbenblindheit entsteht durch eine Veränderung in den <strong>Genen</strong>. Das ist wie ein kleiner Fehler in den Bauanweisungen unseres Körpers!</p>
+                    </div>
+
+                    <div class="highlight">
+                        <span class="icon">🔬</span><strong>Das betroffene Gen:</strong> Das Gen heißt <strong>OPN1LW</strong> oder <strong>OPN1MW</strong> und sitzt auf dem <strong>X-Chromosom</strong>.
+                    </div>
+
+                    <div class="emoji-list">
+                        <div>📍 <strong>Wo sitzt das Gen?</strong><br>Das Gen befindet sich auf unserem X-Chromosom – das ist eines unserer Geschlechtschromosomen.</div>
+                        <div>👨👧 <strong>Warum sind mehr Männer betroffen?</strong><br>Männer haben 1 X-Chromosom, Frauen haben 2. Wenn Männer das fehlerhafte Gen haben, sind sie farbenblind. Frauen brauchen das fehlerhafte Gen auf beiden Chromosomen – das ist seltener!</div>
+                        <div>🧬 <strong>Art der Mutation:</strong><br>Das Gen hat einen Fehler in der DNA-Sequenz. Die Lichtsinnzellen in der Netzhaut können dadurch keine korrekten Farbstoffe herstellen.</div>
+                    </div>
+
+                    <div class="highlight green">
+                        <span class="icon">👨‍👩‍👧‍👦</span>Farbenblindheit wird vererbt: Wenn die Mutter das Gen trägt, kann sie es an ihre Söhne weitergeben!
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Auf welchem Chromosom sitzt das Gen für Farbenblindheit?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz2" value="wrong1"> Chromosom 5</label>
+                            <label class="quiz-option"><input type="radio" name="quiz2" value="correct"> X-Chromosom</label>
+                            <label class="quiz-option"><input type="radio" name="quiz2" value="wrong2"> Chromosom 21</label>
+                        </div>
+                        <button onclick="checkQuiz(2, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Symptome & Verlauf -->
+            <div class="slide">
+                <div class="slide-bg-number">04</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">4</span>Symptome & Verlauf</h2>
+                    <div class="content-text">
+                        <p>🔍 Was sind die Zeichen von Farbenblindheit? Wie verläuft sie?</p>
+                    </div>
+
+                    <div class="emoji-list">
+                        <div>👶 <strong>Wann tritt sie auf?</strong><br>Farbenblindheit ist meist angeboren – man wird damit geboren. Sie verändert sich im Leben nicht!</div>
+                        <div>🚨 <strong>Typische Symptome:</strong><br>✓ Rot und Grün werden verwechselt<br>✓ Schwierigkeiten, Farben zu unterscheiden<br>✓ Bestimmte Farben sehen dunkel oder ähnlich aus</div>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">Zwei Arten von Farbenblindheit:</h3>
+
+                    <div class="highlight red">
+                        <span class="icon">🟥</span><strong>Rot-Grün-Schwäche</strong><br>Rot und Grün können unterschieden werden, aber sie sehen sehr ähnlich aus. Das ist die mildere Form.
+                    </div>
+
+                    <div class="highlight" style="border-left-color: #f59e0b; margin-top: 15px;">
+                        <span class="icon">🟫</span><strong>Vollständige Farbenblindheit</strong><br>Rot und Grün können überhaupt nicht unterschieden werden. Das ist die schwerere Form.
+                    </div>
+
+                    <div class="highlight blue">
+                        <span class="icon">📈</span><strong>Verlauf:</strong> Farbenblindheit ändert sich nicht. Sie wird nicht besser oder schlechter. Eine Person sieht ihr ganzes Leben lang so!
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Wann bekommt man normalerweise Farbenblindheit?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz3" value="correct"> Man wird damit geboren (angeboren)</label>
+                            <label class="quiz-option"><input type="radio" name="quiz3" value="wrong1"> Mit 20 Jahren</label>
+                            <label class="quiz-option"><input type="radio" name="quiz3" value="wrong2"> Durch Computerspiele</label>
+                        </div>
+                        <button onclick="checkQuiz(3, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Diagnose -->
+            <div class="slide">
+                <div class="slide-bg-number">05</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">5</span>Diagnose</h2>
+                    <div class="content-text">
+                        <p>🔍 Wie erkennt man Farbenblindheit? Es gibt verschiedene Methoden!</p>
+                    </div>
+
+                    <div class="emoji-list">
+                        <div>🧪 <strong>Ishihara-Test</strong><br>Der Test mit den farbigen Punktmustern (den hast du oben schon gesehen!) ist die häufigste Methode.</div>
+                        <div>🧬 <strong>Genetische Tests</strong><br>Ein Bluttest kann zeigen, ob das fehlerhafte Gen vorhanden ist.</div>
+                        <div>👨‍👩‍👧 <strong>Familiengeschichte</strong><br>Der Arzt fragt: Haben Verwandte (Eltern, Großeltern) auch Farbenblindheit? Das hilft bei der Diagnose!</div>
+                        <div>🤰 <strong>Pränatal-Tests</strong><br>Vor der Geburt kann der Arzt überprüfen, ob das Baby das Gen haben wird.</div>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 8px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">👁️ Siehst du den Unterschied?</h3>
+                    <p style="margin-bottom: 15px; color: var(--text-secondary);">Hier kannst du sehen, wie Menschen mit Farbenblindheit die Welt sehen:</p>
+
+                    <div class="simulator-container">
+                        <div class="simulator-view">
+                            <h3>Normale Farbwahrnehmung 👁️</h3>
+                            <svg class="simulator-image" viewBox="0 0 200 200" style="background: transparent;">
+                                <circle cx="50"  cy="50"  r="30" fill="#FF0000"/>
+                                <circle cx="150" cy="50"  r="30" fill="#00AA00"/>
+                                <circle cx="100" cy="120" r="30" fill="#0000FF"/>
+                            </svg>
+                        </div>
+                        <div class="simulator-view">
+                            <h3>Rot-Grün-Farbblindheit 👓</h3>
+                            <svg class="simulator-image deuteranopia" viewBox="0 0 200 200" style="background: transparent; filter: saturate(0.5) hue-rotate(40deg);">
+                                <circle cx="50"  cy="50"  r="30" fill="#FF0000"/>
+                                <circle cx="150" cy="50"  r="30" fill="#00AA00"/>
+                                <circle cx="100" cy="120" r="30" fill="#0000FF"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="highlight blue">
+                        <span class="icon">💡</span>Beachte: Rot und Grün sehen fast gleich aus! Aber Blau ist immer noch sichtbar.
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Welcher Test wird am häufigsten zur Diagnose von Farbenblindheit verwendet?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz4" value="wrong1"> Blutdruck-Test</label>
+                            <label class="quiz-option"><input type="radio" name="quiz4" value="correct"> Ishihara-Test</label>
+                            <label class="quiz-option"><input type="radio" name="quiz4" value="wrong2"> Hörtest</label>
+                        </div>
+                        <button onclick="checkQuiz(4, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Behandlung -->
+            <div class="slide">
+                <div class="slide-bg-number">06</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">6</span>Behandlung</h2>
+                    <div class="content-text">
+                        <p>🏥 Gibt es eine Heilung? Und was kann man tun, um besser zu leben?</p>
+                    </div>
+
+                    <div class="treatment-categories">
+                        <div class="treatment-card not-possible">
+                            <h4>❌ Heilung</h4>
+                            <p>Farbenblindheit kann nicht geheilt werden. Das genetische Problem kann man nicht einfach reparieren.</p>
+                        </div>
+                        <div class="treatment-card treatment">
+                            <h4>👓 Behandlung</h4>
+                            <p>Spezielle <strong>Farbsehhilfen-Brillen</strong> und <strong>Kontaktlinsen</strong> können helfen, Farben besser zu unterscheiden!</p>
+                        </div>
+                        <div class="treatment-card symptom-relief">
+                            <h4>🛠️ Symptomlinderung</h4>
+                            <p><strong>Apps, spezielle Software</strong> und <strong>Anpassungen</strong> im Alltag helfen, besser mit Farbenblindheit zu leben.</p>
+                        </div>
+                    </div>
+
+                    <div class="emoji-list">
+                        <div>💡 <strong>Praktische Hilfen:</strong><br>✓ Spezielle Farbsehhilfen-Brillen (z.B. EnChroma)<br>✓ Farb-Erkennungs-Apps für das Handy<br>✓ Bessere Beleuchtung nutzen<br>✓ Andere Hinweise statt Farbe verwenden (z.B. Muster, Symbole)</div>
+                    </div>
+
+                    <div class="highlight green">
+                        <span class="icon">🌟</span>Mit modernen Technologien können Menschen mit Farbenblindheit heute viel besser ihre Herausforderungen meistern!
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Welche Aussage ist richtig?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz5" value="wrong1"> Farbenblindheit kann mit Medikamenten geheilt werden</label>
+                            <label class="quiz-option"><input type="radio" name="quiz5" value="correct"> Mit speziellen Brillen und Apps können Menschen mit Farbenblindheit besser leben</label>
+                            <label class="quiz-option"><input type="radio" name="quiz5" value="wrong2"> Es gibt noch keine Hilfen für Menschen mit Farbenblindheit</label>
+                        </div>
+                        <button onclick="checkQuiz(5, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Leben mit der Krankheit -->
+            <div class="slide">
+                <div class="slide-bg-number">07</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">7</span>Leben mit Farbenblindheit</h2>
+                    <div class="content-text">
+                        <p>🌍 Wie sieht der Alltag für Menschen mit Farbenblindheit aus? Was sind die Herausforderungen?</p>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">🚧 Alltägliche Herausforderungen:</h3>
+
+                    <div class="emoji-list">
+                        <div>🚦 <strong>Verkehr</strong><br>Ampeln können schwierig sein – aber: Rot ist oben, Grün ist unten. Das hilft!</div>
+                        <div>📱 <strong>Digitale Anzeigen</strong><br>Manche Websites und Apps nutzen nur Farben zur Unterscheidung – das ist problematisch!</div>
+                        <div>🎮 <strong>Spiele und Hobbys</strong><br>Videospiele, Malen und Kunstunterricht können schwieriger sein.</div>
+                        <div>🎓 <strong>Schule & Beruf</strong><br>Einige Berufe (Pilot, Zugführer, Elektrikertechniker) erfordern perfektes Farbsehen.</div>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">😞 Soziale Probleme & Vorurteile:</h3>
+
+                    <div class="emoji-list">
+                        <div>🤔 <strong>Falsche Vorstellungen</strong><br>Viele Menschen denken, dass Farbenblinde alles in Graustufen sehen – das stimmt nicht!</div>
+                        <div>💔 <strong>Mobbing & Unverständnis</strong><br>Andere Kinder verstehen manchmal nicht, dass das eine echte Sehstörung ist.</div>
+                        <div>👨‍👩‍👧 <strong>Familie</strong><br>Eltern müssen bei der Berufswahl helfen. Der Kontakt zu genetischen Beratern ist wichtig für weitere Kinder.</div>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">💪 Unterstützungssysteme:</h3>
+
+                    <div class="emoji-list">
+                        <div>👨‍⚕️ <strong>Ärzte & Fachleute</strong><br>Augenärzte und genetische Berater helfen und geben Rat.</div>
+                        <div>🏫 <strong>Schule</strong><br>Lehrer können Aufgaben anpassen (z.B. nicht nur Farben zur Unterscheidung nutzen).</div>
+                        <div>💻 <strong>Technologie</strong><br>Apps und spezielle Software machen viel möglich!</div>
+                        <div>👥 <strong>Selbsthilfegruppen</strong><br>Es gibt Gruppen für Menschen mit Farbenblindheit – sie unterstützen sich gegenseitig!</div>
+                    </div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-question">❓ Quizfrage: Luca ist farbenblind. In der Schule bekommt er ein Arbeitsblatt, auf dem Informationen <em>nur</em> durch verschiedene Farben unterschieden werden – er kann es kaum lesen. Was wäre die <strong>sinnvollste</strong> Lösung für dieses Problem?</div>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="quiz6" value="wrong1"> 🏠 Luca soll zu Hause bleiben, da er in der Schule sowieso nicht mitkommt</label>
+                            <label class="quiz-option"><input type="radio" name="quiz6" value="wrong2"> 👓 Luca kauft sich eine teure EnChroma-Brille, damit das Problem ein für alle Mal gelöst ist</label>
+                            <label class="quiz-option"><input type="radio" name="quiz6" value="correct"> 📋 Die Lehrerin gestaltet das Arbeitsblatt um: Sie ergänzt Muster, Symbole und Beschriftungen, sodass Farbe nicht mehr das einzige Unterscheidungsmerkmal ist</label>
+                        </div>
+                        <button onclick="checkQuiz(6, 'correct')" style="margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Antwort prüfen</button>
+                        <div class="quiz-feedback" id="feedback6"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Zusammenfassung -->
+            <div class="slide">
+                <div class="slide-bg-number">08</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">8</span>Zusammenfassung</h2>
+                    <div class="content-text">
+                        <p>🎯 Hier sind die wichtigsten Dinge, die du gelernt hast!</p>
+                    </div>
+
+                    <div class="summary-box">
+                        <h3>Das solltest du dir merken:</h3>
+                        <ul>
+                            <li><strong>Farbenblindheit ist angeboren</strong> – man wird damit geboren; die Gene OPN1LW und OPN1MW auf dem X-Chromosom sind betroffen</li>
+                            <li><strong>Besonders Rot und Grün</strong> werden verwechselt oder gar nicht unterschieden</li>
+                            <li><strong>Mehr Männer als Frauen</strong> sind betroffen (ca. 8–10 % der Männer, aber nur 0,4 % der Frauen)</li>
+                            <li><strong>Es gibt keine Heilung</strong>, aber Behandlung durch spezielle Brillen und Symptomlinderung durch Apps und Hilfsmittel</li>
+                            <li><strong>Der Ishihara-Test</strong> ist die häufigste Methode zur Diagnose</li>
+                            <li><strong>Mit guter Unterstützung</strong> können Menschen mit Farbenblindheit ein völlig normales, erfülltes Leben führen!</li>
+                            <li><strong>Menschen mit Farbenblindheit sind nicht weniger intelligent oder fähig</strong> – sie sehen die Welt einfach ein bisschen anders! 🌈</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight blue">
+                        <span class="icon">🌟</span><strong>Abschließend:</strong> Farbenblindheit ist keine Krankheit – es ist einfach eine andere Art zu sehen. Jeder Mensch ist einzigartig, und das ist wunderbar!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Abschluss-Challenge -->
+            <div class="slide" id="challengeSlide">
+                <div class="slide-bg-number">09</div>
+                <div class="slide-inner">
+                    <div class="challenge-hero">
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); justify-content: center; text-align: center; line-height: 1.15; display: block;">Na, alles gemerkt?</h2>
+                        <p style="font-size: 1.2rem; color: var(--text-secondary); text-align: center; max-width: 540px; line-height: 1.75;">Du hast alle Abschnitte durchgearbeitet. Jetzt kommt der echte Test – 10 Fragen, die Wissen aus verschiedenen Kapiteln kombinieren.</p>
+                        <button class="btn-quiz-start" onclick="startCountdown()">Zum Abschlussquiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Quellen -->
+            <div class="slide">
+                <div class="slide-bg-number">10</div>
+                <div class="slide-inner">
+                    <h2><span class="slide-number">10</span>Quellen</h2>
+                    <div class="content-text">
+                        <p>📚 Diese Seite wurde mit Hilfe folgender wissenschaftlicher und medizinischer Quellen erstellt:</p>
+                    </div>
+
+                    <div class="sources-list">
+                        <ol>
+                            <li>
+                                <strong>National Eye Institute (NEI), USA</strong><br>
+                                <em>„Color Blindness"</em> – Medizinische Übersicht zu Ursachen, Diagnose und Behandlung.<br>
+                                <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness" target="_blank">www.nei.nih.gov</a>
+                            </li>
+                            <li>
+                                <strong>MedlinePlus / U.S. National Library of Medicine</strong><br>
+                                <em>„Color vision deficiency"</em> – Genetische Hintergründe, betroffene Gene (OPN1LW, OPN1MW) und X-chromosomale Vererbung.<br>
+                                <a href="https://medlineplus.gov/genetics/condition/color-vision-deficiency/" target="_blank">medlineplus.gov</a>
+                            </li>
+                            <li>
+                                <strong>Deutsche Ophthalmologische Gesellschaft (DOG)</strong><br>
+                                <em>Leitlinien zur Diagnostik von Farbsinnstörungen</em> – Klinische Richtlinien für den Ishihara-Test und weitere Diagnosemethoden.<br>
+                                <a href="https://www.dog.org" target="_blank">www.dog.org</a>
+                            </li>
+                            <li>
+                                <strong>Orphanet – Das Portal für seltene Krankheiten</strong><br>
+                                <em>„Achromatopsia"</em> und <em>„Colour vision deficiency"</em> – Informationen zu vollständiger Farbenblindheit und milden Formen.<br>
+                                <a href="https://www.orpha.net" target="_blank">www.orpha.net</a>
+                            </li>
+                            <li>
+                                <strong>Colour Blind Awareness (UK)</strong><br>
+                                <em>„About Colour Blindness"</em> – Alltag, Berufseinschränkungen und Hilfsmittel für Betroffene.<br>
+                                <a href="https://www.colourblindawareness.org" target="_blank">www.colourblindawareness.org</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight green">
+                        <span class="icon">✅</span>Alle Quellen sind seriös, wissenschaftlich geprüft und frei zugänglich. Für schulische Zwecke können die Links direkt aufgerufen werden.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">← Zurück</button>
+            <div class="slide-indicator"><span id="slideNum">1</span> / 10</div>
+            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">Weiter →</button>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-title" id="modalTitle">Fun Fact</div>
+            <div class="modal-text" id="modalText">Placeholder text</div>
+        </div>
+    </div>
+
+    <!-- Countdown Overlay -->
+    <div class="countdown-overlay" id="countdownOverlay">
+        <div class="countdown-number" id="countdownNumber">3</div>
+    </div>
+
+    <!-- Final Quiz Overlay -->
+    <div class="final-quiz-overlay" id="finalQuizOverlay">
+        <div class="fq-progress-bar">
+            <div class="fq-progress-fill" id="fqProgressFill"></div>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="fqQuestionScreen">
+            <div class="fq-topbar">
+                <div class="fq-counter" id="fqCounter">Frage 1 von 10</div>
+                <button class="fq-close-btn" onclick="closeFinalQuiz()" title="Quiz schließen">×</button>
+            </div>
+            <div class="fq-body">
+                <div class="fq-inner" id="fqInner">
+                    <div class="fq-question" id="fqQuestion"></div>
+                    <div class="fq-options" id="fqOptions"></div>
+                    <div class="fq-nav">
+                        <button class="fq-next-btn" id="fqNextBtn" onclick="fqNext()">Weiter →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="fq-results" id="fqResults">
+            <div class="fq-score-circle">
+                <div class="fq-score-num" id="fqScoreNum">0</div>
+                <div class="fq-score-denom" id="fqScoreDenom">von 10 richtig</div>
+            </div>
+            <div class="fq-score-msg" id="fqScoreMsg"></div>
+            <div class="fq-score-sub" id="fqScoreSub"></div>
+
+            <div id="fqAllCorrect" class="fq-all-correct" style="display:none; width:100%;">
+                🎉 Keine Fehler – du hast alle 10 Fragen richtig beantwortet!
+            </div>
+
+            <div id="fqWrongSection" class="fq-wrong-section">
+                <div class="fq-wrong-title">Falsch beantwortet:</div>
+                <div id="fqWrongList"></div>
+            </div>
+
+            <button class="fq-restart-btn" onclick="restartFinalQuiz()">Quiz wiederholen</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== MODAL FUNCTIONS ==========
+        const funFacts = {
+            emoji_what: {
+                title: "🎨 Wusstest du?",
+                text: "Menschen mit Farbenblindheit sehen nicht in Schwarz-Weiß! Sie sehen trotzdem viele Farben – nur manche Rot- und Grüntöne sehen ähnlich aus. Das ist wie wenn zwei Farben für sie die gleiche sind."
+            },
+            emoji_how_many: {
+                title: "👥 Interessante Statistik",
+                text: "Wenn in einer Schulklasse mit 25 Kindern 12 Jungen und 13 Mädchen sind, werden statistisch etwa 1 Junge farbenblind sein, aber kein Mädchen! Die Gene sind auf dem X-Chromosom codiert."
+            },
+            emoji_is_disease: {
+                title: "🌍 Eine wichtige Erkenntnis",
+                text: "Viele berühmte Menschen waren farbenblind – darunter Künstler, Wissenschaftler und Athleten! Sie haben trotzdem großartige Dinge geleistet. Farbenblindheit ist einfach eine andere Art zu sehen."
+            },
+            emoji_where: {
+                title: "📍 Cool zu wissen",
+                text: "Das X-Chromosom trägt etwa 1.100 Gene! Das Gen für Farbenblindheit ist nur eines davon. Es besteht aus etwa 20.000 Basenpaaren – die sind die 'Buchstaben' der DNA."
+            },
+            emoji_why_more: {
+                title: "👨👧 Die genetische Geschichte",
+                text: "Eine Mutter, die Trägerin des Gens ist, hat bei jedem Sohn eine 50%-Chance, dass er farbenblind wird. Bei Töchtern ist es viel seltener, weil sie zwei X-Chromosomen haben – ein farbenblindheit-freies reicht zum Schutz!"
+            },
+            emoji_mutation: {
+                title: "🧬 Ein faszinierender Fehler",
+                text: "Der Fehler im Gen ist oft ganz klein – manchmal nur wenige Basenpaare aus den 20.000. Trotzdem reicht es aus, damit die Lichtsinnzellen die richtigen Farbstoffe nicht herstellen können!"
+            },
+            emoji_when: {
+                title: "👶 Von Anfang an",
+                text: "Babys mit Farbenblindheit sehen schon bei der Geburt so – ihr Gehirn gewöhnt sich daran und sie merken oft gar nicht, dass sie anders sehen. Für sie ist es völlig normal!"
+            },
+            emoji_symptoms: {
+                title: "🚨 Der Alltag",
+                text: "Viele Menschen mit Farbenblindheit bemerken es selbst kaum im Alltag. Rot und Grün zu verwechseln ist oft kein großes Problem – es wird erst wichtig bei speziellen Aufgaben wie dem Lesen von Farbcodes oder Grafiken."
+            },
+            emoji_schwache: {
+                title: "🟥 Das Spektrum",
+                text: "Es gibt verschiedene Grade von Farbenblindheit. Manche sehen Rot und Grün noch ein bisschen unterschiedlich – andere überhaupt nicht. Es ist kein alles-oder-nichts, sondern ein Spektrum!"
+            },
+            emoji_complete: {
+                title: "🟫 Vollständig",
+                text: "Vollständige Rot-Grün-Farbenblindheit ist seltener als die Rot-Grün-Schwäche. Nur etwa 1 von 30.000 Menschen hat wirklich große Probleme, alle Rot- und Grüntöne zu unterscheiden."
+            },
+            highlight_healing: {
+                title: "❌ Die Zukunft",
+                text: "Wissenschaftler arbeiten an neuen Behandlungen – z.B. mit Genen-Therapie! Vielleicht werden zukünftige Generationen neue Optionen haben. Aber heute ist Heilung noch nicht möglich."
+            },
+            highlight_therapy: {
+                title: "👓 Die Magie der Technologie",
+                text: "Manche Menschen berichten, dass sie mit Farbsehhilfen-Brillen zum ersten Mal bestimmte Farbtöne unterscheiden können – ein faszinierendes Erlebnis! Es ist, als würde sich die Welt plötzlich anders anfühlen."
+            },
+            highlight_apps: {
+                title: "🛠️ Digitale Helfer",
+                text: "Es gibt Apps, die Farben in andere Formen umwandeln – z.B. in Muster oder Symbole. So können Menschen mit Farbenblindheit Farbinformationen genauso nutzen wie alle anderen!"
+            },
+            highlight_tip: {
+                title: "💡 Ein praktischer Tipp",
+                text: "Wenn du jemandem mit Farbenblindheit helfen willst: Beschreib Farben mit anderen Worten! Statt 'rotes Auto' sag 'dunkles Auto' oder 'flammenfarbenes Auto'. Das hilft oft mehr als nur die Farbe zu nennen."
+            },
+            treatment_not_possible: {
+                title: "❌ Die genetische Realität",
+                text: "Farbenblindheit sitzt in den Genen – in jeder einzelnen Zelle. Deshalb kann man sie nicht wie eine Erkältung 'heilen'. Aber man kann lernen, damit umzugehen!"
+            },
+            treatment_glasses: {
+                title: "👓 Technologische Innovationen",
+                text: "EnChroma-Brillen funktionieren, indem sie bestimmte Wellenlängen des Lichts filtern. Das ermöglicht dem Gehirn, subtile Unterschiede zwischen Rot und Grün besser zu erkennen!"
+            },
+            treatment_relief: {
+                title: "🛠️ Clevere Lösungen",
+                text: "Anpassungen sind oft einfacher als hochtechnologische Lösungen: Eine Lehrerin beschriftet eine Grafik statt nur Farben zu nutzen – und schon können alle sie lesen!"
+            }
+        };
+
+        function openModal(title, text) {
+            const modal = document.getElementById('modalOverlay');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ========== CARD CLICK HANDLERS ==========
+        function setupCardListeners() {
+            document.querySelectorAll('.emoji-list div').forEach((card, idx) => {
+                card.addEventListener('click', function() {
+                    const facts = Object.values(funFacts).filter(f => f.title.includes(''));
+                    if (facts[idx]) {
+                        openModal(facts[idx].title, facts[idx].text);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.highlight').forEach((card) => {
+                card.addEventListener('click', function() {
+                    const text = this.textContent;
+                    let key = '';
+                    if (text.includes('Heilung')) key = 'highlight_healing';
+                    else if (text.includes('Behandlung')) key = 'highlight_therapy';
+                    else if (text.includes('App')) key = 'highlight_apps';
+                    else key = 'highlight_tip';
+                    if (funFacts[key]) openModal(funFacts[key].title, funFacts[key].text);
+                });
+            });
+
+            document.querySelectorAll('.treatment-card').forEach((card) => {
+                card.addEventListener('click', function() {
+                    const text = this.textContent;
+                    let key = '';
+                    if (text.includes('Heilung')) key = 'treatment_not_possible';
+                    else if (text.includes('Brille')) key = 'treatment_glasses';
+                    else key = 'treatment_relief';
+                    if (funFacts[key]) openModal(funFacts[key].title, funFacts[key].text);
+                });
+            });
+        }
+
+        // ========== SLIDE MANAGEMENT ==========
+        let currentSlide = 0;
+        const totalSlides = 10;
+
+        function updateSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) slide.classList.add('active');
+            });
+
+            document.getElementById('slideNum').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                currentSlide = newSlide;
+                updateSlide();
+            }
+        }
+
+        function checkIshihara(imageNum, button) {
+            const inputId = 'input' + imageNum;
+            const resultId = 'result' + imageNum;
+            const userAnswer = document.getElementById(inputId).value.trim();
+            const resultDiv = document.getElementById(resultId);
+            const correctAnswers = {1: '12', 2: '8'};
+            const correct = correctAnswers[imageNum];
+
+            if (userAnswer === '') {
+                resultDiv.textContent = 'Bitte gib eine Zahl ein!';
+                resultDiv.className = 'result';
+            } else if (userAnswer === correct) {
+                resultDiv.textContent = '✓ Richtig! Du siehst die Farben normal!';
+                resultDiv.className = 'result correct';
+                button.disabled = true;
+            } else {
+                resultDiv.textContent = `Das ist nicht ganz richtig. Die richtige Antwort ist ${correct}. Das ist völlig normal!`;
+                resultDiv.className = 'result incorrect';
+            }
+        }
+
+        function checkQuiz(quizNum, correctAnswer) {
+            const selected = document.querySelector(`input[name="quiz${quizNum}"]:checked`);
+            const feedbackDiv = document.getElementById('feedback' + quizNum);
+
+            if (!selected) { alert('Bitte wähle eine Antwort aus!'); return; }
+
+            const correctMessages = [
+                '✓ <strong>Richtig!</strong> Super gemacht – du hast gut aufgepasst! 🎉',
+                '✓ <strong>Richtig!</strong> Ausgezeichnet! Du verstehst das Thema sehr gut! 🌟',
+                '✓ <strong>Korrekt!</strong> Toll, weiter so! Du lernst das super schnell! 👏',
+                '✓ <strong>Genau richtig!</strong> Klasse – du hast das perfekt verstanden! 🏆',
+                '✓ <strong>Richtig!</strong> Sehr gut! Du bist ein echter Farbenblindheits-Experte! 🔬',
+                '✓ <strong>Perfekt!</strong> Wunderbar – du hast wirklich aufgepasst! ⭐'
+            ];
+            const incorrectMessages = [
+                '✗ <strong>Leider falsch.</strong> Lies den Abschnitt noch einmal durch – du schaffst das!',
+                '✗ <strong>Nicht ganz richtig.</strong> Schau dir den Text nochmal an und probier es erneut!',
+                '✗ <strong>Das war knapp!</strong> Geh noch einmal zurück und lies den Abschnitt – dann klappt es bestimmt!'
+            ];
+
+            if (selected.value === correctAnswer) {
+                feedbackDiv.innerHTML = correctMessages[quizNum % correctMessages.length];
+                feedbackDiv.className = 'quiz-feedback correct';
+            } else {
+                feedbackDiv.innerHTML = incorrectMessages[quizNum % incorrectMessages.length];
+                feedbackDiv.className = 'quiz-feedback incorrect';
+            }
+        }
+
+        updateSlide();
+        setupCardListeners();
+
+        // ---- Ishihara Canvas Generator ----
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+            return [r,g,b];
+        }
+
+        function shiftColor(hex, amount) {
+            const [r,g,b] = hexToRgb(hex);
+            const nr = Math.min(255, Math.max(0, Math.round(r + amount)));
+            const ng = Math.min(255, Math.max(0, Math.round(g + amount)));
+            const nb = Math.min(255, Math.max(0, Math.round(b + amount)));
+            return `rgb(${nr},${ng},${nb})`;
+        }
+
+        function generateIshiharaPlate(canvasId, number, figureColors, bgColors) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const CX = W / 2, CY = H / 2, R = W / 2 - 2;
+
+            const mask = document.createElement('canvas');
+            mask.width = W; mask.height = H;
+            const mCtx = mask.getContext('2d');
+            mCtx.fillStyle = 'white';
+            mCtx.fillRect(0, 0, W, H);
+            const fontSize = number.length > 1 ? 96 : 124;
+            mCtx.font = `bold ${fontSize}px Arial, sans-serif`;
+            mCtx.textAlign = 'center';
+            mCtx.textBaseline = 'middle';
+            mCtx.fillStyle = 'black';
+            mCtx.fillText(number, CX, CY);
+            const maskPx = mCtx.getImageData(0, 0, W, H).data;
+
+            function isFigure(x, y) {
+                const ix = Math.round(x), iy = Math.round(y);
+                if (ix < 0 || ix >= W || iy < 0 || iy >= H) return false;
+                return maskPx[(iy * W + ix) * 4] < 128;
+            }
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(CX, CY, R, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.fillStyle = '#A08848';
+            ctx.fillRect(0, 0, W, H);
+
+            let seed = 1337 + canvasId.charCodeAt(canvasId.length - 1) * 31;
+            function rnd() {
+                seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+                return (seed >>> 0) / 0xffffffff;
+            }
+
+            const spacing = 6;
+            for (let gx = spacing / 2; gx < W; gx += spacing) {
+                for (let gy = spacing / 2; gy < H; gy += spacing) {
+                    const jx = gx + (rnd() - 0.5) * spacing * 0.7;
+                    const jy = gy + (rnd() - 0.5) * spacing * 0.7;
+                    const dx = jx - CX, dy = jy - CY;
+                    if (dx*dx + dy*dy > (R-2)*(R-2)) continue;
+
+                    const dotR = 1.5 + rnd() * 1.5;
+                    const fig  = isFigure(jx, jy);
+                    const pal  = fig ? figureColors : bgColors;
+                    const base = pal[Math.floor(rnd() * pal.length)];
+
+                    const grad = ctx.createRadialGradient(
+                        jx - dotR*0.35, jy - dotR*0.35, dotR*0.05,
+                        jx, jy, dotR
+                    );
+                    grad.addColorStop(0, shiftColor(base,  42));
+                    grad.addColorStop(0.6, base);
+                    grad.addColorStop(1, shiftColor(base, -30));
+
+                    ctx.beginPath();
+                    ctx.arc(jx, jy, dotR, 0, Math.PI * 2);
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                }
+            }
+            ctx.restore();
+        }
+
+        generateIshiharaPlate('ishihara1', '12',
+            ['#BF3000','#D04010','#E05520','#C03808','#B82C00','#CB4418'],
+            ['#4E7018','#3E600A','#607828','#527020','#6A8232','#445810']
+        );
+        generateIshiharaPlate('ishihara2', '8',
+            ['#BF3000','#D04010','#E05520','#C03808','#B82C00','#CB4418'],
+            ['#4E7018','#3E600A','#607828','#527020','#6A8232','#445810']
+        );
+
+        // ========== FINAL QUIZ DATA ==========
+        const finalQuizData = [
+            {
+                question: "Warum sind deutlich mehr Männer als Frauen von Rot-Grün-Farbenblindheit betroffen?",
+                options: [
+                    "Männer verbringen mehr Zeit vor dem Computer und ermüden dadurch ihre Zapfen.",
+                    "Das verantwortliche Gen sitzt auf dem X-Chromosom – Männer haben nur ein X, sodass ein einziges fehlerhaftes Gen reicht.",
+                    "Das Gen liegt auf dem Y-Chromosom und wird daher ausschließlich von Vätern an Söhne weitergegeben.",
+                    "Männer haben von Natur aus weniger Farbzapfen in der Netzhaut."
+                ],
+                correct: 1,
+                slide: 2
+            },
+            {
+                question: "Was genau zeigt ein Ishihara-Test, und welche Strukturen im Auge sind bei einem positiven Befund direkt betroffen?",
+                options: [
+                    "Er prüft die Sehschärfe – betroffen ist der Sehnerv.",
+                    "Er zeigt, ob die Hornhaut trüb ist – betroffen sind die Stäbchen in der Netzhaut.",
+                    "Er zeigt, ob bestimmte Farbpigmente (Opsine) fehlen oder verändert sind – betroffen sind die Zapfen in der Netzhaut.",
+                    "Er misst den Augeninnendruck – betroffen ist die Iris."
+                ],
+                correct: 2,
+                slide: 4
+            },
+            {
+                question: "Emres Mutter ist heterozygote Trägerin des Gens für Farbenblindheit (selbst nicht betroffen), sein Vater sieht normal. Wie hat Emre das Gen geerbt, und warum ist seine Schwester wahrscheinlich nicht betroffen?",
+                options: [
+                    "Emre hat das Gen vom Vater – bei Söhnen wird das väterliche X bevorzugt weitergegeben.",
+                    "Emre hat das Gen von der Mutter (X-chromosomal). Seine Schwester hat zwei X-Chromosomen – das zweite, intakte X schützt sie vor der Erkrankung.",
+                    "Emre entwickelte eine Spontanmutation; Schwestern sind genetisch anders aufgebaut und können nicht betroffen sein.",
+                    "Das Gen wurde direkt von den Großeltern väterlicherseits weitergegeben, da das Y-Chromosom die Trägerfunktion übernimmt."
+                ],
+                correct: 1,
+                slide: 2
+            },
+            {
+                question: "Farbenblindheit gilt als stabiler Zustand, der sich lebenslang nicht verändert. Was bedeutet das gleichzeitig für die Möglichkeit einer Heilung?",
+                options: [
+                    "Weil der Zustand stabil ist, verbessern sich die Zapfen langfristig von selbst – eine Heilung ist daher in höherem Alter möglich.",
+                    "Die Stabilität bedeutet, dass tägliche Medikamente ausreichen, um die Farbwahrnehmung zu normalisieren.",
+                    "Da die Ursache genetisch ist und alle Körperzellen das fehlerhafte Gen tragen, ist heute keine Heilung möglich – aber es gibt auch keine Verschlechterung.",
+                    "Die Stabilität erlaubt Laseroperationen an der Netzhaut, die das Problem dauerhaft beheben."
+                ],
+                correct: 2,
+                slide: 3
+            },
+            {
+                question: "Welche Kombination hilft einem Schüler mit Rot-Grün-Farbenblindheit am wirksamsten im Schulalltag, ohne auf teure Technologie angewiesen zu sein?",
+                options: [
+                    "Eine Heilungsoperation der Netzhaut – dauerhaft wirksam und ohne weitere Hilfsmittel.",
+                    "Ausschließlich EnChroma-Brillen; alle anderen Maßnahmen sind keine nachhaltigen Lösungen.",
+                    "Unterrichtsmaterialien, die statt reiner Farbe auch Muster, Symbole und Beschriftungen nutzen, ergänzt durch kostenlose Farb-Erkennungs-Apps.",
+                    "Regelmäßige Augenübungen und eine vitamin-A-reiche Ernährung zur Stärkung der Netzhaut."
+                ],
+                correct: 2,
+                slide: 5
+            },
+            {
+                question: "Eine heterozygote Mutter (Trägerin, selbst nicht farbenblind) bekommt einen Sohn. Wie hoch ist die Wahrscheinlichkeit, dass er farbenblind ist?",
+                options: [
+                    "25 % – da vier Kombinationen möglich sind (wie in einem klassischen Punnett-Quadrat).",
+                    "100 % – weil Söhne das X-Chromosom immer von der Mutter erben.",
+                    "0 % – weil Söhne zusätzlich das Y-Chromosom des Vaters bekommen, das das fehlerhafte X ausgleicht.",
+                    "50 % – der Sohn erbt zufällig entweder das fehlerhafte oder das intakte X-Chromosom der Mutter."
+                ],
+                correct: 3,
+                slide: 2
+            },
+            {
+                question: "Worin liegt der entscheidende Unterschied zwischen Ishihara-Test und Gentest bei der Diagnose von Farbenblindheit?",
+                options: [
+                    "Der Ishihara-Test ist teurer und nur im Krankenhaus verfügbar; Gentests können zuhause durchgeführt werden.",
+                    "Der Gentest kann bereits pränatal eingesetzt werden und identifiziert das fehlerhafte Gen direkt; der Ishihara-Test prüft die funktionale Farbwahrnehmung.",
+                    "Gentests liefern stets zuverlässigere Ergebnisse als Ishihara-Tests, da sie objektiver sind.",
+                    "Der Ishihara-Test kann auch erworbene Farbenblindheit durch Erkrankungen vollständig und zuverlässig diagnostizieren."
+                ],
+                correct: 1,
+                slide: 4
+            },
+            {
+                question: "Die Gene OPN1LW und OPN1MW sind bei Farbenblindheit betroffen. Was kodieren sie, und wo befinden sie sich im Genom?",
+                options: [
+                    "Auf Chromosom 21; sie kodieren für Stäbchen – die für das Schwarz-Weiß-Sehen zuständigen Sinneszellen.",
+                    "Auf dem Y-Chromosom; sie steuern die Iris-Farbe, weshalb nur Männer von einer Mutation betroffen sein können.",
+                    "Auf dem X-Chromosom; sie kodieren für Opsin-Farbpigmente in den Zapfen der Netzhaut, die für das Farbsehen notwendig sind.",
+                    "Auf Chromosom 7; sie regulieren die Pupillengröße bei unterschiedlichen Lichtverhältnissen."
+                ],
+                correct: 2,
+                slide: 2
+            },
+            {
+                question: "Was unterscheidet 'Heilung' von 'Symptomlinderung' bei Farbenblindheit – und welche davon ist heute medizinisch möglich?",
+                options: [
+                    "Heilung ist durch Netzhaut-Laseroperationen bereits möglich; Brillen als Symptomlinderung sind eine veraltete Methode.",
+                    "Heilung bedeutet dauerhafte Korrektur des betroffenen Gens – heute noch nicht möglich; Symptomlinderung verbessert den Alltag mit Hilfsmitteln, ohne das Gen zu verändern.",
+                    "Symptomlinderung betrifft nur Kinder; für Erwachsene gibt es bereits eine Heilungs-Injektion.",
+                    "Es gibt keinen Unterschied – Brillen und Apps gelten medizinisch als vollständige Heilmethoden."
+                ],
+                correct: 1,
+                slide: 5
+            },
+            {
+                question: "Anna glaubt, ihr farbenblinder Bruder sehe alles in Graustufen und dürfe nie Auto fahren. Welche Aussage korrigiert beide Missverständnisse gleichzeitig?",
+                options: [
+                    "Er sieht tatsächlich in Graustufen, darf aber mit einer EnChroma-Spezialbrille Auto fahren.",
+                    "Er nimmt die meisten Farben normal wahr – nur bestimmte Rot- und Grüntöne ähneln sich; Autofahren ist erlaubt, weil Ampelpositionen (oben = rot, unten = grün) auch ohne Farbunterscheidung eindeutig sind.",
+                    "Er sieht alles in Graustufen; Autofahren ist ihm aus Sicherheitsgründen generell verboten.",
+                    "Er sieht die Welt wie alle anderen – Farbenblindheit wirkt sich ausschließlich auf das Lesen von Text aus."
+                ],
+                correct: 1,
+                slide: 6
+            }
+        ];
+
+        // ========== COUNTDOWN ==========
+        function startCountdown() {
+            const overlay = document.getElementById('countdownOverlay');
+            const numEl = document.getElementById('countdownNumber');
+            overlay.classList.add('active');
+            let count = 3;
+
+            function tick() {
+                numEl.style.animation = 'none';
+                numEl.textContent = count;
+                void numEl.offsetWidth;
+                numEl.style.animation = 'countPulse 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+                count--;
+                if (count >= 1) {
+                    setTimeout(tick, 900);
+                } else {
+                    setTimeout(() => {
+                        overlay.classList.remove('active');
+                        openFinalQuiz();
+                    }, 900);
+                }
+            }
+
+            tick();
+        }
+
+        // ========== FINAL QUIZ ==========
+        let fqCurrentQ = 0;
+        let fqAnswers = [];
+
+        function openFinalQuiz() {
+            fqCurrentQ = 0;
+            fqAnswers = new Array(finalQuizData.length).fill(null);
+            document.getElementById('fqResults').classList.remove('active');
+            document.getElementById('fqQuestionScreen').style.display = '';
+            document.getElementById('fqProgressFill').style.width = '0%';
+            document.getElementById('finalQuizOverlay').classList.add('active');
+            renderFinalQuestion();
+        }
+
+        function closeFinalQuiz() {
+            document.getElementById('finalQuizOverlay').classList.remove('active');
+        }
+
+        function renderFinalQuestion() {
+            const q = finalQuizData[fqCurrentQ];
+            const total = finalQuizData.length;
+            const letters = ['A', 'B', 'C', 'D'];
+
+            document.getElementById('fqCounter').textContent = `Frage ${fqCurrentQ + 1} von ${total}`;
+            document.getElementById('fqProgressFill').style.width = `${(fqCurrentQ / total) * 100}%`;
+            document.getElementById('fqQuestion').textContent = q.question;
+
+            document.getElementById('fqOptions').innerHTML = q.options.map((opt, i) => `
+                <div class="fq-option${fqAnswers[fqCurrentQ] === i ? ' selected' : ''}" onclick="selectFQOption(${i})">
+                    <span class="fq-option-letter">${letters[i]}</span>
+                    <span>${opt}</span>
+                </div>
+            `).join('');
+
+            const nextBtn = document.getElementById('fqNextBtn');
+            nextBtn.textContent = fqCurrentQ < total - 1 ? 'Weiter →' : 'Auswertung';
+            nextBtn.classList.toggle('enabled', fqAnswers[fqCurrentQ] !== null);
+
+            const inner = document.getElementById('fqInner');
+            inner.style.animation = 'none';
+            void inner.offsetWidth;
+            inner.style.animation = 'slideInPremium 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+        }
+
+        function selectFQOption(index) {
+            document.querySelectorAll('.fq-option').forEach(o => o.classList.remove('selected'));
+            document.querySelectorAll('.fq-option')[index].classList.add('selected');
+            fqAnswers[fqCurrentQ] = index;
+            document.getElementById('fqNextBtn').classList.add('enabled');
+        }
+
+        function fqNext() {
+            if (fqAnswers[fqCurrentQ] === null) return;
+            if (fqCurrentQ < finalQuizData.length - 1) {
+                fqCurrentQ++;
+                renderFinalQuestion();
+            } else {
+                showFinalResults();
+            }
+        }
+
+        function showFinalResults() {
+            document.getElementById('fqQuestionScreen').style.display = 'none';
+            document.getElementById('fqProgressFill').style.width = '100%';
+
+            const total = finalQuizData.length;
+            const correct = fqAnswers.filter((ans, i) => ans === finalQuizData[i].correct).length;
+
+            document.getElementById('fqScoreNum').textContent = correct;
+            document.getElementById('fqScoreDenom').textContent = `von ${total} richtig`;
+
+            const pct = correct / total;
+            let msg, sub;
+            if      (pct >= 1.0) { msg = '🏆 Perfekt!';       sub = 'Alle Fragen richtig – du bist ein echter Experte!'; }
+            else if (pct >= 0.8) { msg = '🌟 Ausgezeichnet!';  sub = 'Fast alles richtig – sehr beeindruckend!'; }
+            else if (pct >= 0.6) { msg = '👍 Gut gemacht!';    sub = 'Du hast schon viel gelernt – noch ein paar Lücken schließen!'; }
+            else if (pct >= 0.4) { msg = '📚 Weiter so!';      sub = 'Ein guter Anfang – lies die markierten Abschnitte nochmal!'; }
+            else                 { msg = '💪 Nicht aufgeben!'; sub = 'Das Thema hat Tiefe – schau dir die Abschnitte genau an!'; }
+
+            document.getElementById('fqScoreMsg').textContent = msg;
+            document.getElementById('fqScoreSub').textContent = sub;
+
+            const wrongItems = finalQuizData
+                .map((q, i) => ({ q, i, userAns: fqAnswers[i] }))
+                .filter(({ q, i }) => fqAnswers[i] !== q.correct);
+
+            const allCorrectEl  = document.getElementById('fqAllCorrect');
+            const wrongSection  = document.getElementById('fqWrongSection');
+            const wrongList     = document.getElementById('fqWrongList');
+
+            if (wrongItems.length === 0) {
+                allCorrectEl.style.display = 'block';
+                wrongSection.style.display = 'none';
+            } else {
+                allCorrectEl.style.display = 'none';
+                wrongSection.style.display = 'block';
+                const letters = ['A', 'B', 'C', 'D'];
+                wrongList.innerHTML = wrongItems.map(({ q, i, userAns }) => `
+                    <div class="fq-wrong-item">
+                        <div class="fq-wrong-q">Frage ${i + 1}: ${q.question}</div>
+                        <div class="fq-wrong-answers">
+                            <div class="fq-answer-row yours">✗ Deine Antwort: ${letters[userAns]}. ${q.options[userAns]}</div>
+                            <div class="fq-answer-row correct-ans">✓ Richtige Antwort: ${letters[q.correct]}. ${q.options[q.correct]}</div>
+                        </div>
+                        <button class="fq-reread-btn" onclick="goToSlide(${q.slide})">Nochmal nachlesen →</button>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('fqResults').classList.add('active');
+        }
+
+        function goToSlide(slideIndex) {
+            document.getElementById('finalQuizOverlay').classList.remove('active');
+            currentSlide = slideIndex;
+            updateSlide();
+        }
+
+        function restartFinalQuiz() {
+            document.getElementById('fqResults').classList.remove('active');
+            document.getElementById('fqQuestionScreen').style.display = '';
+            fqCurrentQ = 0;
+            fqAnswers = new Array(finalQuizData.length).fill(null);
+            renderFinalQuestion();
+        }
+    </script>
 </body>
 </html>
