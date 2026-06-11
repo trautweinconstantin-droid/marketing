@@ -719,6 +719,63 @@
             font-size: 0.9em;
         }
 
+        /* ========== FIXED SIDE NAVIGATION ========== */
+        .nav-side-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 2em;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-prev {
+            left: 20px;
+        }
+
+        .nav-next {
+            right: 20px;
+        }
+
+        .nav-side-btn:hover:not(:disabled) {
+            background: rgba(79, 142, 247, 0.5);
+            color: var(--accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-side-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .nav-side-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.6em;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-prev {
+                left: 10px;
+            }
+
+            .nav-next {
+                right: 10px;
+            }
+        }
+
         /* ========== PROGRESS BAR ========== */
         .progress-bar {
             height: 3px;
@@ -1176,13 +1233,6 @@
 
     <div class="container">
         <!-- Header -->
-        <div class="header">
-            <div class="header-content">
-                <h1>🎨 Farbenblindheit</h1>
-                <p>Lerne alles über diese faszinierende Sehstörung</p>
-            </div>
-        </div>
-
         <div class="content">
             <!-- Slide 1: Willkommen & Ishihara -->
             <div class="slide active">
@@ -1618,12 +1668,11 @@
             </div>
         </div>
 
-        <div class="navigation">
-            <button class="nav-button prev" id="prevBtn" onclick="changeSlide(-1)">←</button>
-            <div class="slide-indicator"><span id="slideNum">1</span> / 8</div>
-            <button class="nav-button next" id="nextBtn" onclick="changeSlide(1)">→</button>
-        </div>
     </div>
+
+    <!-- Fixed Side Navigation -->
+    <button class="nav-side-btn nav-prev" id="prevBtn" onclick="changeSlide(-1)">‹</button>
+    <button class="nav-side-btn nav-next" id="nextBtn" onclick="changeSlide(1)">›</button>
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modalOverlay">
@@ -1834,7 +1883,12 @@
                 }
             });
 
-            document.getElementById('slideNum').textContent = currentSlide + 1;
+            // Don't show slide counter for the quiz (slide 8)
+            const slideNumEl = document.getElementById('slideNum');
+            if (slideNumEl && currentSlide < totalSlides) {
+                slideNumEl.textContent = currentSlide + 1;
+            }
+
             document.getElementById('prevBtn').disabled = currentSlide === 0;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
 
@@ -1845,8 +1899,9 @@
         }
 
         function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
             const newSlide = currentSlide + direction;
-            if (newSlide >= 0 && newSlide < totalSlides) {
+            if (newSlide >= 0 && newSlide < slides.length) {
                 currentSlide = newSlide;
                 updateSlide();
             }
