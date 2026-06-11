@@ -38,13 +38,12 @@
 
         /* ========== HEADER ========== */
         .header {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 60px 20px;
+            padding: 48px 20px 32px;
             position: relative;
             overflow: hidden;
         }
@@ -308,6 +307,10 @@
                 opacity: 0.8;
             }
         }
+
+        .no-tip::after { display: none !important; }
+        .no-tip { cursor: default !important; }
+        .no-tip:hover { transform: none !important; box-shadow: none !important; border-color: var(--border) !important; background: var(--surface-light) !important; }
 
         /* ========== ISHIHARA TEST ========== */
         .ishihara-container {
@@ -1191,7 +1194,7 @@
                         <p style="margin-top: 15px;">Bist du bereit? Dann lass uns starten! 🚀</p>
                     </div>
 
-                    <div class="highlight blue">
+                    <div class="highlight blue no-tip">
                         <span class="icon">💡</span>Tipp: Bei jedem Abschnitt findest du eine kleine Quizfrage. Versuche sie zu beantworten!
                     </div>
 
@@ -1216,7 +1219,7 @@
                         </div>
                     </div>
 
-                    <div class="highlight green">
+                    <div class="highlight green" data-tip-key="tip_ishihara_method">
                         <span class="icon">📊</span>Der Ishihara-Test ist eine berühmte Methode zur Erkennung von Farbenblindheit. Er nutzt Muster aus farbigen Punkten!
                     </div>
                 </div>
@@ -1232,12 +1235,12 @@
                     </div>
 
                     <div class="emoji-list">
-                        <div>❓ <strong>Was ist Farbenblindheit?</strong><br>Das Auge kann nicht alle Farben unterscheiden. Besonders Rot und Grün werden oft verwechselt.</div>
-                        <div>👥 <strong>Wie viele Menschen sind betroffen?</strong><br>Etwa 8-10% aller Männer und 0,4% aller Frauen haben Farbenblindheit!</div>
-                        <div>🌍 <strong>Ist es eine Krankheit?</strong><br>Nein, es ist keine Krankheit, sondern eine Besonderheit beim Sehen. Menschen mit Farbenblindheit sind deswegen nicht krank!</div>
+                        <div data-tip-key="ei_was">❓ <strong>Was ist Farbenblindheit?</strong><br>Das Auge kann nicht alle Farben unterscheiden. Besonders Rot und Grün werden oft verwechselt.</div>
+                        <div data-tip-key="ei_viele">👥 <strong>Wie viele Menschen sind betroffen?</strong><br>Etwa 8-10% aller Männer und 0,4% aller Frauen haben Farbenblindheit!</div>
+                        <div data-tip-key="ei_krankheit">🌍 <strong>Ist es eine Krankheit?</strong><br>Nein, es ist keine Krankheit, sondern eine Besonderheit beim Sehen. Menschen mit Farbenblindheit sind deswegen nicht krank!</div>
                     </div>
 
-                    <div class="highlight blue">
+                    <div class="highlight blue" data-tip-key="tip_angeboren">
                         <span class="icon">💡</span>Farbenblindheit ist angeboren – man wird damit geboren oder bekommt sie von den Eltern.
                     </div>
 
@@ -1269,17 +1272,17 @@
                         <p>🧬 Farbenblindheit entsteht durch eine Veränderung in den <strong>Genen</strong>. Das ist wie ein kleiner Fehler in den Bauanweisungen unseres Körpers!</p>
                     </div>
 
-                    <div class="highlight">
+                    <div class="highlight" data-tip-key="tip_gen_name">
                         <span class="icon">🔬</span><strong>Das betroffene Gen:</strong> Das Gen heißt <strong>OPN1LW</strong> oder <strong>OPN1MW</strong> und sitzt auf dem <strong>X-Chromosom</strong>.
                     </div>
 
                     <div class="emoji-list">
-                        <div>📍 <strong>Wo sitzt das Gen?</strong><br>Das Gen befindet sich auf unserem X-Chromosom – das ist eines unserer Geschlechtschromosomen.</div>
-                        <div>👨👧 <strong>Warum sind mehr Männer betroffen?</strong><br>Männer haben 1 X-Chromosom, Frauen haben 2. Wenn Männer das fehlerhafte Gen haben, sind sie farbenblind. Frauen brauchen das fehlerhafte Gen auf beiden Chromosomen – das ist seltener!</div>
-                        <div>🧬 <strong>Art der Mutation:</strong><br>Das Gen hat einen Fehler in der DNA-Sequenz. Die Lichtsinnzellen in der Netzhaut können dadurch keine korrekten Farbstoffe herstellen.</div>
+                        <div data-tip-key="ei_wo_gen">📍 <strong>Wo sitzt das Gen?</strong><br>Das Gen befindet sich auf unserem X-Chromosom – das ist eines unserer Geschlechtschromosomen.</div>
+                        <div data-tip-key="ei_maenner">👨👧 <strong>Warum sind mehr Männer betroffen?</strong><br>Männer haben 1 X-Chromosom, Frauen haben 2. Wenn Männer das fehlerhafte Gen haben, sind sie farbenblind. Frauen brauchen das fehlerhafte Gen auf beiden Chromosomen – das ist seltener!</div>
+                        <div data-tip-key="ei_mutation">🧬 <strong>Art der Mutation:</strong><br>Das Gen hat einen Fehler in der DNA-Sequenz. Die Lichtsinnzellen in der Netzhaut können dadurch keine korrekten Farbstoffe herstellen.</div>
                     </div>
 
-                    <div class="highlight green">
+                    <div class="highlight green" data-tip-key="tip_vererbt">
                         <span class="icon">👨‍👩‍👧‍👦</span>Farbenblindheit wird vererbt: Wenn die Mutter das Gen trägt, kann sie es an ihre Söhne weitergeben!
                     </div>
 
@@ -1312,21 +1315,21 @@
                     </div>
 
                     <div class="emoji-list">
-                        <div>👶 <strong>Wann tritt sie auf?</strong><br>Farbenblindheit ist meist angeboren – man wird damit geboren. Sie verändert sich im Leben nicht!</div>
-                        <div>🚨 <strong>Typische Symptome:</strong><br>✓ Rot und Grün werden verwechselt<br>✓ Schwierigkeiten, Farben zu unterscheiden<br>✓ Bestimmte Farben sehen dunkel oder ähnlich aus</div>
+                        <div data-tip-key="ei_wann">👶 <strong>Wann tritt sie auf?</strong><br>Farbenblindheit ist meist angeboren – man wird damit geboren. Sie verändert sich im Leben nicht!</div>
+                        <div data-tip-key="ei_symptome">🚨 <strong>Typische Symptome:</strong><br>✓ Rot und Grün werden verwechselt<br>✓ Schwierigkeiten, Farben zu unterscheiden<br>✓ Bestimmte Farben sehen dunkel oder ähnlich aus</div>
                     </div>
 
                     <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">Zwei Arten von Farbenblindheit:</h3>
 
-                    <div class="highlight red">
+                    <div class="highlight red" data-tip-key="tip_schwache">
                         <span class="icon">🟥</span><strong>Rot-Grün-Schwäche</strong><br>Rot und Grün können unterschieden werden, aber sie sehen sehr ähnlich aus. Das ist die mildere Form.
                     </div>
 
-                    <div class="highlight" style="border-left-color: #f59e0b; margin-top: 15px;">
+                    <div class="highlight" style="border-left-color: #f59e0b; margin-top: 15px;" data-tip-key="tip_komplett">
                         <span class="icon">🟫</span><strong>Vollständige Farbenblindheit</strong><br>Rot und Grün können überhaupt nicht unterschieden werden. Das ist die schwerere Form.
                     </div>
 
-                    <div class="highlight blue">
+                    <div class="highlight blue" data-tip-key="tip_verlauf">
                         <span class="icon">📈</span><strong>Verlauf:</strong> Farbenblindheit ändert sich nicht. Sie wird nicht besser oder schlechter. Eine Person sieht ihr ganzes Leben lang so!
                     </div>
 
@@ -1359,10 +1362,10 @@
                     </div>
 
                     <div class="emoji-list">
-                        <div>🧪 <strong>Ishihara-Test</strong><br>Der Test mit den farbigen Punktmustern (den hast du oben schon gesehen!) ist die häufigste Methode.</div>
-                        <div>🧬 <strong>Genetische Tests</strong><br>Ein Bluttest kann zeigen, ob das fehlerhafte Gen vorhanden ist.</div>
-                        <div>👨‍👩‍👧 <strong>Familiengeschichte</strong><br>Der Arzt fragt: Haben Verwandte (Eltern, Großeltern) auch Farbenblindheit? Das hilft bei der Diagnose!</div>
-                        <div>🤰 <strong>Pränatal-Tests</strong><br>Vor der Geburt kann der Arzt überprüfen, ob das Baby das Gen haben wird.</div>
+                        <div data-tip-key="ei_ishihara">🧪 <strong>Ishihara-Test</strong><br>Der Test mit den farbigen Punktmustern (den hast du oben schon gesehen!) ist die häufigste Methode.</div>
+                        <div data-tip-key="ei_genetest">🧬 <strong>Genetische Tests</strong><br>Ein Bluttest kann zeigen, ob das fehlerhafte Gen vorhanden ist.</div>
+                        <div data-tip-key="ei_familien">👨‍👩‍👧 <strong>Familiengeschichte</strong><br>Der Arzt fragt: Haben Verwandte (Eltern, Großeltern) auch Farbenblindheit? Das hilft bei der Diagnose!</div>
+                        <div data-tip-key="ei_praenatal">🤰 <strong>Pränatal-Tests</strong><br>Vor der Geburt kann der Arzt überprüfen, ob das Baby das Gen haben wird.</div>
                     </div>
 
                     <h3 style="margin-top: 0px; margin-bottom: 8px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">👁️ Siehst du den Unterschied?</h3>
@@ -1387,7 +1390,7 @@
                         </div>
                     </div>
 
-                    <div class="highlight blue">
+                    <div class="highlight blue" data-tip-key="tip_simulation">
                         <span class="icon">💡</span>Beachte: Rot und Grün sehen fast gleich aus! Aber Blau ist immer noch sichtbar.
                     </div>
 
@@ -1420,15 +1423,15 @@
                     </div>
 
                     <div class="treatment-categories">
-                        <div class="treatment-card not-possible">
+                        <div class="treatment-card not-possible" data-tip-key="tc_heilung">
                             <h4>❌ Heilung</h4>
                             <p>Farbenblindheit kann nicht geheilt werden. Das genetische Problem kann man nicht einfach reparieren.</p>
                         </div>
-                        <div class="treatment-card treatment">
+                        <div class="treatment-card treatment" data-tip-key="tc_brille">
                             <h4>👓 Behandlung</h4>
                             <p>Spezielle <strong>Farbsehhilfen-Brillen</strong> und <strong>Kontaktlinsen</strong> können helfen, Farben besser zu unterscheiden!</p>
                         </div>
-                        <div class="treatment-card symptom-relief">
+                        <div class="treatment-card symptom-relief" data-tip-key="tc_symptom">
                             <h4>🛠️ Symptomlinderung</h4>
                             <p><strong>Apps, spezielle Software</strong> und <strong>Anpassungen</strong> im Alltag helfen, besser mit Farbenblindheit zu leben.</p>
                         </div>
@@ -1437,7 +1440,7 @@
                     <div class="emoji-list">
                     </div>
 
-                    <div class="highlight green">
+                    <div class="highlight green" data-tip-key="tip_tech">
                         <span class="icon">🌟</span>Mit modernen Technologien können Menschen mit Farbenblindheit heute viel besser ihre Herausforderungen meistern!
                     </div>
 
@@ -1472,27 +1475,27 @@
                     <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">🚧 Alltägliche Herausforderungen:</h3>
 
                     <div class="emoji-list">
-                        <div>🚦 <strong>Verkehr</strong><br>Ampeln können schwierig sein – aber: Rot ist oben, Grün ist unten. Das hilft!</div>
-                        <div>📱 <strong>Digitale Anzeigen</strong><br>Manche Websites und Apps nutzen nur Farben zur Unterscheidung – das ist problematisch!</div>
-                        <div>🎮 <strong>Spiele und Hobbys</strong><br>Videospiele, Malen und Kunstunterricht können schwieriger sein.</div>
-                        <div>🎓 <strong>Schule & Beruf</strong><br>Einige Berufe (Pilot, Zugführer, Elektrikertechniker) erfordern perfektes Farbsehen.</div>
+                        <div data-tip-key="ei_verkehr">🚦 <strong>Verkehr</strong><br>Ampeln können schwierig sein – aber: Rot ist oben, Grün ist unten. Das hilft!</div>
+                        <div data-tip-key="ei_digital">📱 <strong>Digitale Anzeigen</strong><br>Manche Websites und Apps nutzen nur Farben zur Unterscheidung – das ist problematisch!</div>
+                        <div data-tip-key="ei_spiele">🎮 <strong>Spiele und Hobbys</strong><br>Videospiele, Malen und Kunstunterricht können schwieriger sein.</div>
+                        <div data-tip-key="ei_beruf">🎓 <strong>Schule & Beruf</strong><br>Einige Berufe (Pilot, Zugführer, Elektrikertechniker) erfordern perfektes Farbsehen.</div>
                     </div>
 
                     <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">😞 Soziale Probleme & Vorurteile:</h3>
 
                     <div class="emoji-list">
-                        <div>🤔 <strong>Falsche Vorstellungen</strong><br>Viele Menschen denken, dass Farbenblinde alles in Graustufen sehen – das stimmt nicht!</div>
-                        <div>💔 <strong>Mobbing & Unverständnis</strong><br>Andere Kinder verstehen manchmal nicht, dass das eine echte Sehstörung ist.</div>
-                        <div>👨‍👩‍👧 <strong>Familie</strong><br>Eltern müssen bei der Berufswahl helfen. Der Kontakt zu genetischen Beratern ist wichtig für weitere Kinder.</div>
+                        <div data-tip-key="ei_vorstell">🤔 <strong>Falsche Vorstellungen</strong><br>Viele Menschen denken, dass Farbenblinde alles in Graustufen sehen – das stimmt nicht!</div>
+                        <div data-tip-key="ei_mobbing">💔 <strong>Mobbing & Unverständnis</strong><br>Andere Kinder verstehen manchmal nicht, dass das eine echte Sehstörung ist.</div>
+                        <div data-tip-key="ei_familie2">👨‍👩‍👧 <strong>Familie</strong><br>Eltern müssen bei der Berufswahl helfen. Der Kontakt zu genetischen Beratern ist wichtig für weitere Kinder.</div>
                     </div>
 
                     <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">💪 Unterstützungssysteme:</h3>
 
                     <div class="emoji-list">
-                        <div>👨‍⚕️ <strong>Ärzte & Fachleute</strong><br>Augenärzte und genetische Berater helfen und geben Rat.</div>
-                        <div>🏫 <strong>Schule</strong><br>Lehrer können Aufgaben anpassen (z.B. nicht nur Farben zur Unterscheidung nutzen).</div>
-                        <div>💻 <strong>Technologie</strong><br>Apps und spezielle Software machen viel möglich!</div>
-                        <div>👥 <strong>Selbsthilfegruppen</strong><br>Es gibt Gruppen für Menschen mit Farbenblindheit – sie unterstützen sich gegenseitig!</div>
+                        <div data-tip-key="ei_aerzte">👨‍⚕️ <strong>Ärzte & Fachleute</strong><br>Augenärzte und genetische Berater helfen und geben Rat.</div>
+                        <div data-tip-key="ei_schule">🏫 <strong>Schule</strong><br>Lehrer können Aufgaben anpassen (z.B. nicht nur Farben zur Unterscheidung nutzen).</div>
+                        <div data-tip-key="ei_tech2">💻 <strong>Technologie</strong><br>Apps und spezielle Software machen viel möglich!</div>
+                        <div data-tip-key="ei_gruppen">👥 <strong>Selbsthilfegruppen</strong><br>Es gibt Gruppen für Menschen mit Farbenblindheit – sie unterstützen sich gegenseitig!</div>
                     </div>
 
                     <div class="quiz-container">
@@ -1634,73 +1637,154 @@
     <script>
         // ========== MODAL FUNCTIONS ==========
         const funFacts = {
-            emoji_what: {
-                title: "🎨 Wusstest du?",
-                text: "Menschen mit Farbenblindheit sehen nicht in Schwarz-Weiß! Sie sehen trotzdem viele Farben – nur manche Rot- und Grüntöne sehen ähnlich aus. Das ist wie wenn zwei Farben für sie die gleiche sind."
+            // --- Highlights ---
+            tip_ishihara_method: {
+                title: "👁️ Wer erfand den Ishihara-Test?",
+                text: "Shinobu Ishihara (1879–1963) war ein japanischer Militärarzt. Er erfand den Test 1917, um Soldaten auf Farbenblindheit zu prüfen. Das Original-Set hatte 38 Tafeln – heute nutzt man je nach Untersuchung 14 bis 38 davon. Nach über 100 Jahren ist er immer noch der Goldstandard!"
             },
-            emoji_how_many: {
-                title: "👥 Interessante Statistik",
-                text: "Wenn in einer Schulklasse mit 25 Kindern 12 Jungen und 13 Mädchen sind, werden statistisch etwa 1 Junge farbenblind sein, aber kein Mädchen! Die Gene sind auf dem X-Chromosom codiert."
+            tip_angeboren: {
+                title: "⚠️ Gibt es auch erworbene Farbenblindheit?",
+                text: "Ja! Neben der genetischen Form gibt es auch erworbene Farbenblindheit – verursacht durch Augenkrankheiten, Medikamente oder Verletzungen. Diese Form kann sich sogar nur auf einem Auge zeigen und ist manchmal behandelbar. Sie ist aber deutlich seltener als die angeborene Form."
             },
-            emoji_is_disease: {
-                title: "🌍 Eine wichtige Erkenntnis",
-                text: "Viele berühmte Menschen waren farbenblind – darunter Künstler, Wissenschaftler und Athleten! Sie haben trotzdem großartige Dinge geleistet. Farbenblindheit ist einfach eine andere Art zu sehen."
+            tip_gen_name: {
+                title: "🔤 Was bedeuten OPN1LW und OPN1MW?",
+                text: "Die Namen klingen kompliziert, sind aber logisch: OPN1LW = Opsin 1, Long Wave (Langwellen-Licht → Rot). OPN1MW = Medium Wave (Mittelwellen → Grün). Opsin ist ein lichtempfindliches Protein in den Zapfenzellen des Auges – wie ein miniaturisierter Farbfilter."
             },
-            emoji_where: {
-                title: "📍 Cool zu wissen",
-                text: "Das X-Chromosom trägt etwa 1.100 Gene! Das Gen für Farbenblindheit ist nur eines davon. Es besteht aus etwa 20.000 Basenpaaren – die sind die 'Buchstaben' der DNA."
+            tip_vererbt: {
+                title: "🧬 Trägerin – was bedeutet das?",
+                text: "Eine Frau ist 'Trägerin', wenn sie das Farbenblindheits-Gen auf einem ihrer zwei X-Chromosomen hat, aber selbst normal sieht. Ihr zweites, gesundes X-Chromosom gleicht den Fehler aus. Jeder ihrer Söhne hat aber 50% Chance, farbenblind zu werden – und jede Tochter 50% Chance, selbst Trägerin zu sein."
             },
-            emoji_why_more: {
-                title: "👨👧 Die genetische Geschichte",
-                text: "Eine Mutter, die Träger des Gens ist, hat bei jedem Sohn eine 50%-Chance, dass er farbenblind wird. Bei Töchtern ist es viel seltener, weil sie zwei X-Chromosomen haben – ein farbenblindheit-freies reicht zum Schutz!"
+            tip_schwache: {
+                title: "🔴 Protanopie vs. Deuteranopie – was ist der Unterschied?",
+                text: "Beide sind Rot-Grün-Störungen, aber nicht gleich: Protanopie = fehlendes Rot-Pigment (Rottöne wirken sehr dunkel). Deuteranopie = fehlendes Grün-Pigment (häufiger, Grüntöne verschwimmen mit Rot). Mehr als 75% aller Farbenblinden haben eine der milderen Schwächeformen – totaler Ausfall ist selten."
             },
-            emoji_mutation: {
-                title: "🧬 Ein faszinierender Fehler",
-                text: "Der Fehler im Gen ist oft ganz klein – manchmal nur wenige Basenpaare aus den 20.000. Trotzdem reicht es aus, damit die Lichtsinnzellen die richtigen Farbstoffe nicht herstellen können!"
+            tip_komplett: {
+                title: "🟤 Wie selten ist vollständige Farbenblindheit?",
+                text: "Vollständige Rot-Grün-Farbenblindheit (Anopie) betrifft weniger als 1% aller Farbenblinden. Für Alltagsberufe spielt das eine Rolle: Ein Elektriker muss Kabelfarben unterscheiden; ein Gärtner muss reife von unreifen Früchten erkennen. Bei der milderen Schwäche sind solche Einschränkungen oft gering."
             },
-            emoji_when: {
-                title: "👶 Von Anfang an",
-                text: "Babys mit Farbenblindheit sehen schon bei der Geburt so – ihr Gehirn gewöhnt sich daran und sie merken oft gar nicht, dass sie anders sehen. Für sie ist es völlig normal!"
+            tip_verlauf: {
+                title: "📊 Kann sich das Farbsehen im Alter verändern?",
+                text: "Genetische Farbenblindheit bleibt stabil – ein Leben lang. Aber: Augenkrankheiten wie Makuladegeneration oder Glaukom können das Farbsehen im Alter unabhängig davon verschlechtern. Das ist dann eine zusätzliche, eigenständige Erkrankung – nicht dieselbe genetische Störung."
             },
-            emoji_symptoms: {
-                title: "🚨 Der Alltag",
-                text: "Viele Menschen mit Farbenblindheit bemerken es selbst kaum im Alltag. Rot und Grün zu verwechseln ist oft kein großes Problem – es wird erst wichtig bei speziellen Aufgaben wie dem Lesen von Farbcodes oder Grafiken."
+            tip_simulation: {
+                title: "🎨 Die Simulation ist eine Vereinfachung",
+                text: "In Wirklichkeit unterscheiden sich Protanopie (fehlendes Rot-Pigment) und Deuteranopie (fehlendes Grün-Pigment) leicht: Beim Protanopen erscheint Rot sehr dunkel, fast schwarz. Beim Deuteranopen ist Rot sichtbar, aber kaum von Grün zu trennen. Die CSS-Filter hier zeigen nur eine Annäherung."
             },
-            emoji_schwache: {
-                title: "🟥 Das Spektrum",
-                text: "Es gibt verschiedene Grade von Farbenblindheit. Manche sehen Rot und Grün noch ein bisschen unterschiedlich – andere überhaupt nicht. Es ist kein alles-oder-nichts, sondern ein Spektrum!"
+            tip_tech: {
+                title: "🔬 Gentherapie für Farbenblindheit – wo steht die Forschung?",
+                text: "2009 wurden Eichhörnchenaffen, die seit Geburt farbenblind waren, durch Injektion eines fehlenden Gen-Vektors in die Netzhaut geheilt – ein Durchbruch! Für Menschen gibt es noch keine zugelassene Behandlung, aber klinische Studien laufen. Vielleicht wird es in 10–15 Jahren eine Option geben."
             },
-            emoji_complete: {
-                title: "🟫 Vollständig",
-                text: "Vollständige Rot-Grün-Farbenblindheit ist seltener als die Rot-Grün-Schwäche. Nur etwa 1 von 30.000 Menschen hat wirklich große Probleme, alle Rot- und Grüntöne zu unterscheiden."
+            // --- Emoji-list: Slide 2 ---
+            ei_was: {
+                title: "🎨 Wie viele Arten von Farbenblindheit gibt es?",
+                text: "Rot-Grün ist die häufigste Form – aber es gibt auch Blau-Gelb-Sehstörungen (Tritanopie, sehr selten) und vollständige Farbenblindheit (Achromatopsie – alles nur in Graustufen, extrem selten: 1 von 30.000 Menschen). Das Spektrum reicht von kaum merklich bis stark einschränkend."
             },
-            highlight_healing: {
-                title: "❌ Die Zukunft",
-                text: "Wissenschaftler arbeiten an neuen Behandlungen – z.B. mit Genen-Therapie! Vielleicht werden zukünftige Generationen neue Optionen haben. Aber heute ist Heilung noch nicht möglich."
+            ei_viele: {
+                title: "🌍 Wie viele Menschen weltweit sind betroffen?",
+                text: "Weltweit sind etwa 300 Millionen Menschen farbenblind – das entspricht der Einwohnerzahl der USA! In einer Schulklasse mit 30 Kindern ist statistisch mindestens ein Kind betroffen. In Deutschland sind das rund 3 Millionen Menschen, überwiegend Männer."
             },
-            highlight_therapy: {
-                title: "👓 Die Magie der Technologie",
-                text: "Manche Menschen berichten, dass sie mit Farbsehhilfen-Brillen zum ersten Mal bestimmte Farbtöne unterscheiden können – ein faszinierendes Erlebnis! Es ist, als würde sich die Welt plötzlich anders anfühlen."
+            ei_krankheit: {
+                title: "🎭 Berühmte Menschen mit Farbenblindheit",
+                text: "Mark Zuckerberg (Facebook-Gründer) ist farbenblind – weshalb Facebook hauptsächlich blau ist, denn Blau kann er am besten sehen! Auch der Physiker John Dalton, Präsident Bill Clinton und viele Nobelpreisträger waren betroffen. Farbenblindheit hat sie nicht aufgehalten."
             },
-            highlight_apps: {
-                title: "🛠️ Digitale Helfer",
-                text: "Es gibt Apps, die Farben in andere Formen umwandeln – z.B. in Muster oder Symbole. So können Menschen mit Farbenblindheit Farbinformationen genauso nutzen wie alle anderen!"
+            // --- Emoji-list: Slide 3 ---
+            ei_wo_gen: {
+                title: "🧬 Das X-Chromosom – ein riesiger Träger",
+                text: "Das X-Chromosom ist eines der größten menschlichen Chromosomen und trägt rund 1.100 Gene! Das Farbenblindheits-Gen nimmt dabei nur einen winzigen Teil ein – etwa 0,002% der Gesamt-DNA. Trotzdem hat dieser eine Mini-Fehler große Auswirkungen auf die Wahrnehmung."
             },
-            highlight_tip: {
-                title: "💡 Ein praktischer Tipp",
-                text: "Wenn du jemandem mit Farbenblindheit helfen willst: Beschreib Farben mit anderen Worten! Statt 'rotes Auto' sag 'dunkles Auto' oder 'flammenfarbenes Auto'. Das hilft oft mehr als nur die Farbe zu nennen."
+            ei_maenner: {
+                title: "👩‍👧 Die Trägerinnen-Wahrscheinlichkeit erklärt",
+                text: "Wenn die Mutter auf einem X-Chromosom das fehlerhafte Gen trägt: Jeder Sohn hat 50% Chance, farbenblind zu sein (er erbt entweder das gesunde oder das fehlerhafte X). Jede Tochter hat 50% Chance, selbst Trägerin zu werden. Der Vater ist dabei egal – er gibt sein Y an Söhne weiter."
             },
-            treatment_not_possible: {
-                title: "❌ Die genetische Realität",
-                text: "Farbenblindheit sitzt in den Genen – in jeder einzelnen Zelle. Deshalb kann man sie nicht wie eine Erkältung 'heilen'. Aber man kann lernen, damit umzugehen!"
+            ei_mutation: {
+                title: "🔬 Wie klein ist ein Gen-Fehler wirklich?",
+                text: "Die OPN1LW/OPN1MW-Gene bestehen aus je rund 20.000 Basenpaaren – den 'Buchstaben' der DNA. Manchmal reichen nur 3–5 falsche Buchstaben aus, um die Farbenblindheit auszulösen. Das zeigt, wie präzise Gensequenzen sein müssen. Selbst winzige Fehler können die Funktion eines Proteins vollständig verändern."
             },
-            treatment_glasses: {
-                title: "👓 Technologische Innovationen",
-                text: "EnChroma-Brillen funktionieren, indem sie bestimmte Wellenlängen des Lichts filtern. Das ermöglicht dem Gehirn, subtile Unterschiede zwischen Rot und Grün besser zu erkennen!"
+            // --- Emoji-list: Slide 4 ---
+            ei_wann: {
+                title: "👶 Das Gehirn lernt seine eigene Normalität",
+                text: "Babys mit Farbenblindheit wachsen mit ihrer eingeschränkten Farbwahrnehmung auf – ihr Gehirn definiert das als 'normal'. Sie bemerken die Einschränkung oft erst in der Schule, wenn sie beim Malen oder in Naturwissenschaften Schwierigkeiten haben, Farben zu unterscheiden, die für andere offensichtlich verschieden sind."
             },
-            treatment_relief: {
-                title: "🛠️ Clevere Lösungen",
-                text: "Anpassungen sind oft einfacher als hochtechnologische Lösungen: Eine Lehrerin beschriftet eine Grafik statt nur Farben zu nutzen – und schon können alle sie lesen!"
+            ei_symptome: {
+                title: "🚦 Wann wird Farbenblindheit im Alltag zum Problem?",
+                text: "Im Alltag fällt es oft kaum auf – bis es plötzlich wichtig wird: Farbcodes in Diagrammen und Karten, rote Fehlermeldungen auf grünem Hintergrund, unreife Tomaten auf grünem Salat, oder Kleidung korrekt kombinieren. Auch das Ablesen von Batteriestand-Balken oder Ampeln kann tricky sein."
+            },
+            // --- Emoji-list: Slide 5 ---
+            ei_ishihara: {
+                title: "👁️ Der Ishihara-Test – über 100 Jahre alt",
+                text: "Shinobu Ishihara entwickelte den Test 1917 für das japanische Militär. Er erkannte, dass Farbenblinde Zahlen in farbigen Punktmustern nicht erkennen, weil sie auf Helligkeitsunterschiede statt auf Farbe angewiesen sind. Heute gibt es digitale Versionen des Tests, aber die Papierversion gilt immer noch als am zuverlässigsten."
+            },
+            ei_genetest: {
+                title: "🧬 Was sucht ein Gentest genau?",
+                text: "Ein Gentest für Farbenblindheit analysiert gezielt die Sequenz der OPN1LW- und OPN1MW-Gene auf dem X-Chromosom. Er sucht nach bekannten Mutationen, die die Funktion des Opsin-Proteins stören. Das ist besonders nützlich für Paare, die vor der Schwangerschaft ihr Risiko einschätzen wollen."
+            },
+            ei_familien: {
+                title: "👴 Familiengeschichte als Diagnosewerkzeug",
+                text: "Manchmal wissen Familien seit Generationen: 'Die Männer in unserer Familie verwechseln Rot und Grün.' Dieses Wissen ist medizinisch wertvoll! Ärzte nennen das 'Stammbaumanalyse' – sie zeichnen auf, wer betroffen ist und wer Träger sein könnte, um das Vererbungsmuster zu verstehen."
+            },
+            ei_praenatal: {
+                title: "🤰 Wie funktioniert ein Pränataltest?",
+                text: "Pränataldiagnostik erfolgt entweder per Fruchtwasseruntersuchung (Amniozentese) oder Chorionzottenbiopsie – dabei wird winziges Gewebe der Plazenta analysiert. Für Farbenblindheit allein ist das extrem selten sinnvoll, da sie das Leben kaum einschränkt. Es wird meist nur gemacht, wenn gleichzeitig andere genetische Fragen bestehen."
+            },
+            // --- Emoji-list: Slide 7 Herausforderungen ---
+            ei_verkehr: {
+                title: "🚦 Die Geschichte der normierten Ampel",
+                text: "Die Position Rot-Oben und Grün-Unten wurde nach schweren Unfällen in den 1920er-Jahren international genormt – ein frühes Beispiel für inklusives Design! Dennoch: Bei schlechtem Wetter oder beschädigten Ampeln hilft die Position allein nicht. Deshalb haben manche Länder auch unterschiedliche Ampelformen eingeführt."
+            },
+            ei_digital: {
+                title: "💻 WCAG – die Regeln für barrierefreies Webdesign",
+                text: "Die Web Content Accessibility Guidelines (WCAG) schreiben vor: Informationen dürfen NICHT allein durch Farbe unterschieden werden. Google, Apple, Microsoft und die EU-Institutionen müssen diese Standards einhalten. Webentwickler nutzen Werkzeuge wie 'Colour Contrast Analyser', um ihre Designs zu prüfen."
+            },
+            ei_spiele: {
+                title: "🎮 Spiele mit Farbenblindheits-Modus",
+                text: "Immer mehr Spiele bieten spezielle Farbmodi an: Call of Duty, FIFA, Minecraft, Pokémon und Fortnite haben Einstellungen für Farbenblinde. Die Initiative 'Game Accessibility Guidelines' berät Entwickler weltweit. Auf der Webseite 'Can I Play That?' bewerten farbenblinde Spieler die Zugänglichkeit von Spielen."
+            },
+            ei_beruf: {
+                title: "✈️ Welche Berufe sind wirklich eingeschränkt?",
+                text: "Echte Einschränkungen gelten für: Berufspiloten (internationale Regelung ICAO), Lokführer, Schiffführer, Feuerwehr (Einsatzdienst) und manche Elektroberufe. ABER: Informatiker, Lehrer, Ärzte, Anwälte, Unternehmer und Hunderte anderer Berufe haben keine Farbsehvoraussetzungen. Farbenblindheit ist kein Karriere-Ende."
+            },
+            // --- Emoji-list: Slide 7 Soziale Probleme ---
+            ei_vorstell: {
+                title: "🌈 Was Farbenblinde wirklich sehen",
+                text: "Farbenblinde sehen fast das gesamte Spektrum – nur Rot und Grün (oder selten Blau und Gelb) sehen ähnlich aus. Himmel ist blau, Bananen sind gelb, Schnee ist weiß. Das Gehirn kompensiert viel. Das bekannteste Missverständnis: 'Du siehst alles grau' – komplett falsch für 99% der Betroffenen."
+            },
+            ei_mobbing: {
+                title: "💬 Wie du farbenblinden Menschen helfen kannst",
+                text: "Einfache Sprachänderungen helfen enorm: Statt 'das rote Heft' → 'das Heft ganz links' oder 'das dunklere Heft'. Statt 'grüner Knopf drücken' → 'oberer Knopf drücken'. Im Design: Farbe + Form + Beschriftung kombinieren. Kleine Anpassungen, große Wirkung – Inklusion fängt im Alltag an."
+            },
+            ei_familie2: {
+                title: "🧬 Kostenlose genetische Beratung in Deutschland",
+                text: "In Deutschland haben gesetzlich Versicherte Anspruch auf genetische Beratung, wenn eine Erbkrankheit in der Familie bekannt ist. Humangenetiker erklären das Vererbungsmuster, berechnen das Risiko für zukünftige Kinder und besprechen Optionen. Das ist komplett kostenlos und ohne Vorwurf – nur Information."
+            },
+            // --- Emoji-list: Slide 7 Unterstützungssysteme ---
+            ei_aerzte: {
+                title: "👨‍⚕️ Welche Fachleute helfen bei Farbenblindheit?",
+                text: "Augenärzte (Ophthalmologen) diagnostizieren und beschreiben Hilfsmittel. Optometristen empfehlen speziell getönte Brillen. Humangenetiker klären Vererbungsfragen. Ergotherapeuten helfen, den Alltag anzupassen. Bei Kindern arbeiten oft alle zusammen – ein kleines Team für eine bessere Lebensqualität."
+            },
+            ei_schule: {
+                title: "📚 Universal Design for Learning (UDL)",
+                text: "UDL ist ein Bildungskonzept: Materialien so gestalten, dass sie von Anfang an für alle zugänglich sind – also Farbe + Form + Text kombinieren, mehrere Darstellungsformen anbieten. Das hilft nicht nur Farbenblinden, sondern auch Legasthenikern, Hörgeschädigten und Lernenden mit Konzentrationsdefiziten."
+            },
+            ei_tech2: {
+                title: "📱 Die besten Apps für Farbenblinde",
+                text: "Top-Apps: 'Color Blind Pal' (iOS/Android) – zeigt Farbnamen in Echtzeit über die Kamera. 'Seeing AI' (Microsoft) – beschreibt Bilder und Farben per Sprachausgabe. 'EnChroma Test' – misst den Grad der Farbenblindheit. iPhone und Android haben zudem eingebaute Farbfilter direkt in den Systemeinstellungen."
+            },
+            ei_gruppen: {
+                title: "🤝 Wo finden Betroffene Unterstützung?",
+                text: "In Deutschland hilft der Blinden- und Sehbehindertenverband (DBSV). Online ist die Reddit-Community r/colorblind mit fast 100.000 Mitgliedern weltweit eine aktive Anlaufstelle – mit Erfahrungsberichten, App-Empfehlungen und gegenseitiger Unterstützung. Austausch mit Gleichbetroffenen kann das Selbstbewusstsein enorm stärken."
+            },
+            // --- Treatment cards ---
+            tc_heilung: {
+                title: "❌ Warum kann man Gene nicht einfach 'reparieren'?",
+                text: "Das fehlerhafte Gen steckt in jeder einzelnen Zelle des Körpers – bei Farbenblinden in Milliarden von Zellen. Konventionelle Medizin kann nicht jede Zelle umprogrammieren. Gentherapie ist ein möglicher Ansatz, aber sie richtet sich bisher nur auf die Netzhautzellen – und ist noch in der Forschungsphase."
+            },
+            tc_brille: {
+                title: "👓 Wie funktioniert eine EnChroma-Brille wirklich?",
+                text: "EnChroma-Brillen nutzen spezielle optische Filter, die bestimmte Wellenlängen aus dem Lichtspektrum herausfiltern – genau an der Stelle, wo Rot und Grün sich beim Farbenblinden überlappen. Das Gehirn bekommt dadurch deutlichere Unterschiede zu verarbeiten. Viele Benutzer berichten emotionale erste Erlebnisse, wenn sie Farben 'neu' sehen."
+            },
+            tc_symptom: {
+                title: "🛠️ Warum sind kleine Anpassungen so mächtig?",
+                text: "Statt teurer Hilfsmittel: Eine Lehrerin ergänzt Symbole zu Farbcodes → das Arbeitsblatt ist für alle lesbar. Eine Webseite fügt zu Farbbalken auch Prozentzahlen hinzu → jeder versteht sie. Diese 'einfachen' Maßnahmen folgen dem Prinzip des Universellen Designs: Was für Farbenblinde hilft, hilft auch allen anderen."
             }
         };
 
@@ -1728,41 +1812,11 @@
 
         // ========== CARD CLICK HANDLERS ==========
         function setupCardListeners() {
-            document.querySelectorAll('.emoji-list div').forEach((card, idx) => {
+            document.querySelectorAll('[data-tip-key]').forEach((card) => {
                 card.addEventListener('click', function() {
-                    const facts = Object.values(funFacts).filter(f => f.title.includes(''));
-                    if (facts[idx]) {
-                        openModal(facts[idx].title, facts[idx].text);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.highlight').forEach((card) => {
-                card.addEventListener('click', function() {
-                    const text = this.textContent;
-                    let key = '';
-                    if (text.includes('Heilung')) key = 'highlight_healing';
-                    else if (text.includes('Behandlung')) key = 'highlight_therapy';
-                    else if (text.includes('App')) key = 'highlight_apps';
-                    else key = 'highlight_tip';
-
-                    if (funFacts[key]) {
-                        openModal(funFacts[key].title, funFacts[key].text);
-                    }
-                });
-            });
-
-            document.querySelectorAll('.treatment-card').forEach((card) => {
-                card.addEventListener('click', function() {
-                    const text = this.textContent;
-                    let key = '';
-                    if (text.includes('Heilung')) key = 'treatment_not_possible';
-                    else if (text.includes('Brille')) key = 'treatment_glasses';
-                    else key = 'treatment_relief';
-
-                    if (funFacts[key]) {
-                        openModal(funFacts[key].title, funFacts[key].text);
-                    }
+                    const key = this.dataset.tipKey;
+                    const fact = funFacts[key];
+                    if (fact) openModal(fact.title, fact.text);
                 });
             });
         }
