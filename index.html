@@ -1080,10 +1080,11 @@
         <a class="top-nav-link" href="#sec-willkommen">Willkommen</a>
         <a class="top-nav-link" href="#sec-grundinfo">Grundinfo</a>
         <a class="top-nav-link" href="#sec-typen">Typen</a>
-        <a class="top-nav-link" href="#sec-simulator">Simulator</a>
         <a class="top-nav-link" href="#sec-ursachen">Ursachen</a>
-        <a class="top-nav-link" href="#sec-alltag">Alltag</a>
+        <a class="top-nav-link" href="#sec-symptome">Symptome</a>
+        <a class="top-nav-link" href="#sec-diagnose">Diagnose</a>
         <a class="top-nav-link" href="#sec-behandlung">Behandlung</a>
+        <a class="top-nav-link" href="#sec-alltag">Alltag</a>
         <a class="top-nav-link" href="#sec-challenge">Challenge</a>
         <a class="top-nav-link" href="#sec-quellen">Quellen</a>
     </div>
@@ -1095,10 +1096,11 @@
     <a href="#sec-willkommen" onclick="closeMobileNav()">Willkommen</a>
     <a href="#sec-grundinfo" onclick="closeMobileNav()">Grundinfo</a>
     <a href="#sec-typen" onclick="closeMobileNav()">Typen</a>
-    <a href="#sec-simulator" onclick="closeMobileNav()">Simulator</a>
     <a href="#sec-ursachen" onclick="closeMobileNav()">Ursachen</a>
-    <a href="#sec-alltag" onclick="closeMobileNav()">Alltag</a>
+    <a href="#sec-symptome" onclick="closeMobileNav()">Symptome</a>
+    <a href="#sec-diagnose" onclick="closeMobileNav()">Diagnose</a>
     <a href="#sec-behandlung" onclick="closeMobileNav()">Behandlung</a>
+    <a href="#sec-alltag" onclick="closeMobileNav()">Alltag</a>
     <a href="#sec-challenge" onclick="closeMobileNav()">Challenge</a>
     <a href="#sec-quellen" onclick="closeMobileNav()">Quellen</a>
 </div>
@@ -1108,7 +1110,6 @@
             <!-- Section 1: Willkommen & Ishihara -->
             <section class="section" id="sec-willkommen" style="background: #0a0a0a">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 1</div>
                     <h2 class="section-title">Willkommen!</h2>
                     <div class="content-text">
                         <p>👋 Hallo! Auf dieser Seite lernst du alles über <strong>Farbenblindheit</strong> – eine faszinierende Sehstörung, bei der Menschen bestimmte Farben nicht so sehen wie du.</p>
@@ -1150,7 +1151,6 @@
             <!-- Section 2: Grundinformationen -->
             <section class="section" id="sec-grundinfo" style="background: #0f0f0f">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 2</div>
                     <h2 class="section-title">Grundinformationen</h2>
                     <div class="content-text">
                         <p>🎨 <strong>Farbenblindheit</strong> ist eine Sehstörung, bei der Menschen bestimmte Farben nicht sehen oder vermischen können.</p>
@@ -1186,10 +1186,31 @@
             </section>
             <div class="section-divider"></div>
 
-            <!-- Section 3: Genetische Ursache -->
+            <!-- Section 3: Typen -->
             <section class="section" id="sec-typen" style="background: #111111">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 3</div>
+                    <h2 class="section-title">Typen</h2>
+                    <div class="content-text">
+                        <p>🔍 Es gibt verschiedene Arten und Ausprägungen von Farbenblindheit. Hier lernst du die wichtigsten Unterschiede kennen!</p>
+                    </div>
+
+                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">Zwei Arten von Farbenblindheit:</h3>
+
+                    <div class="highlight red" data-tip-key="tip_schwache">
+                        <span class="icon">🟥</span><strong>Rot-Grün-Schwäche</strong><br>Rot und Grün können unterschieden werden, aber sie sehen sehr ähnlich aus. Das ist die mildere Form.
+                    </div>
+
+                    <div class="highlight" style="border-left-color: #f59e0b; margin-top: 15px;" data-tip-key="tip_komplett">
+                        <span class="icon">🟫</span><strong>Vollständige Farbenblindheit</strong><br>Rot und Grün können überhaupt nicht unterschieden werden. Das ist die schwerere Form.
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 4: Genetische Ursache -->
+            <section class="section" id="sec-ursachen" style="background: #0d0d15">
+                <div class="section-inner">
                     <h2 class="section-title">Genetische Ursache</h2>
                     <div class="content-text">
                         <p>🧬 Farbenblindheit entsteht durch eine Veränderung in den <strong>Genen</strong>. Das ist wie ein kleiner Fehler in den Bauanweisungen unseres Körpers!</p>
@@ -1230,9 +1251,8 @@
             <div class="section-divider"></div>
 
             <!-- Section 4: Symptome & Verlauf -->
-            <section class="section" id="sec-simulator" style="background: #0d0d15">
+            <section class="section" id="sec-symptome" style="background: #0d0d15">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 4</div>
                     <h2 class="section-title">Symptome &amp; Verlauf</h2>
                     <div class="content-text">
                         <p>🔍 Was sind die Zeichen von Farbenblindheit? Wie verläuft sie?</p>
@@ -1241,16 +1261,6 @@
                     <div class="emoji-list">
                         <div data-tip-key="ei_wann">👶 <strong>Wann tritt sie auf?</strong><br>Farbenblindheit ist meist angeboren – man wird damit geboren. Sie verändert sich im Leben nicht!</div>
                         <div data-tip-key="ei_symptome">🚨 <strong>Typische Symptome:</strong><br>✓ Rot und Grün werden verwechselt<br>✓ Schwierigkeiten, Farben zu unterscheiden<br>✓ Bestimmte Farben sehen dunkel oder ähnlich aus</div>
-                    </div>
-
-                    <h3 style="margin-top: 0px; margin-bottom: 12px; color: var(--text-primary); font-size: 1.3em; font-family: 'Playfair Display', serif;">Zwei Arten von Farbenblindheit:</h3>
-
-                    <div class="highlight red" data-tip-key="tip_schwache">
-                        <span class="icon">🟥</span><strong>Rot-Grün-Schwäche</strong><br>Rot und Grün können unterschieden werden, aber sie sehen sehr ähnlich aus. Das ist die mildere Form.
-                    </div>
-
-                    <div class="highlight" style="border-left-color: #f59e0b; margin-top: 15px;" data-tip-key="tip_komplett">
-                        <span class="icon">🟫</span><strong>Vollständige Farbenblindheit</strong><br>Rot und Grün können überhaupt nicht unterschieden werden. Das ist die schwerere Form.
                     </div>
 
                     <div class="highlight blue" data-tip-key="tip_verlauf">
@@ -1277,10 +1287,9 @@
             </section>
             <div class="section-divider"></div>
 
-            <!-- Section 5: Diagnose -->
-            <section class="section" id="sec-ursachen" style="background: #0a0a0a">
+            <!-- Section 6: Diagnose -->
+            <section class="section" id="sec-diagnose" style="background: #0a0a0a">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 5</div>
                     <h2 class="section-title">Diagnose</h2>
                     <div class="content-text">
                         <p>🔍 Wie erkennt man Farbenblindheit? Es gibt verschiedene Methoden!</p>
@@ -1342,7 +1351,6 @@
             <!-- Section 6: Behandlung -->
             <section class="section" id="sec-behandlung" style="background: #111111">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 6</div>
                     <h2 class="section-title">Behandlung</h2>
                     <div class="content-text">
                         <p>🏥 Gibt es eine Heilung? Und was kann man tun, um besser zu leben?</p>
@@ -1393,7 +1401,6 @@
             <!-- Section 7: Leben mit Farbenblindheit -->
             <section class="section" id="sec-alltag" style="background: #0f0f0f">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 7</div>
                     <h2 class="section-title">Leben mit Farbenblindheit</h2>
                     <div class="content-text">
                         <p>🌍 Wie sieht der Alltag für Menschen mit Farbenblindheit aus? Was sind die Herausforderungen?</p>
@@ -1460,7 +1467,6 @@
             <!-- Section 9: Quellen -->
             <section class="section" id="sec-quellen" style="background: #0a0a0a">
                 <div class="section-inner">
-                    <div class="section-label">Abschnitt 9</div>
                     <h2 class="section-title">Quellen</h2>
                     <div class="content-text">
                         <p>📚 Diese Seite wurde mit Hilfe folgender wissenschaftlicher und medizinischer Quellen erstellt:</p>
@@ -1542,7 +1548,7 @@
 
                 <div class="results-actions">
                     <button onclick="retakeQuiz()">Quiz erneut versuchen</button>
-                    <button onclick="goToSection(7)">Zu den Quellen</button>
+                    <button onclick="goToSection('Quellen')">Zu den Quellen</button>
                     <button onclick="closeQuizOverlay()">Quiz schließen</button>
                 </div>
             </div>
@@ -1554,7 +1560,7 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">×</button>
             <div class="modal-title" id="modalTitle">Fun Fact</div>
-            <div class="modal-text" id="modalText">Placeholder text</div>
+            <div class="modal-text" id="modalText">Wusstest du? Der berühmte Maler Vincent van Gogh hatte wahrscheinlich eine Form von Farbenblindheit – das könnte seinen einzigartigen Malstil mit leuchtenden, ungewöhnlichen Farbkombinationen beeinflusst haben. Viele seiner Werke wirken auf Menschen mit normaler Farbsicht völlig anders als das, was Van Gogh wahrgenommen hat!</div>
         </div>
     </div>
 
@@ -2041,7 +2047,7 @@
                             <br><span style="color: #ff6b6b;">Deine Antwort:</span> ${q.options[quizAnswers[idx]]}
                             <br><span style="color: #51cf66;">Richtig:</span> ${q.options[q.correctIndex]}
                         </div>
-                        <button onclick="goToSection(${q.section})" style="margin-top: 10px; padding: 8px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em;">Nochmal nachlesen: ${q.sectionName} →</button>
+                        <button onclick="goToSection('${q.sectionName}')" style="margin-top: 10px; padding: 8px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9em;">Nochmal nachlesen: ${q.sectionName} →</button>
                     `;
                     resultsList.appendChild(item);
                 }
@@ -2062,8 +2068,25 @@
 
         function goToSection(slideNumber) {
             closeQuizOverlay();
-            const sectionMap = {2: 'sec-typen', 3: 'sec-simulator', 4: 'sec-ursachen', 5: 'sec-behandlung', 6: 'sec-alltag'};
-            const id = sectionMap[slideNumber];
+            const sectionMap = {
+                "Grundinformationen": "sec-grundinfo",
+                "Typen": "sec-typen",
+                "Genetische Ursache": "sec-ursachen",
+                "Symptome & Verlauf": "sec-symptome",
+                "Diagnose": "sec-diagnose",
+                "Behandlung": "sec-behandlung",
+                "Leben mit Farbenblindheit": "sec-alltag",
+                "Quellen": "sec-quellen"
+            };
+            // Support both old numeric format and new sectionName format
+            let id;
+            if (typeof slideNumber === 'string') {
+                id = sectionMap[slideNumber];
+            } else {
+                // Old numeric format for backwards compatibility
+                const numericMap = {2: 'sec-grundinfo', 3: 'sec-typen', 4: 'sec-ursachen', 5: 'sec-symptome', 6: 'sec-diagnose', 7: 'sec-behandlung', 8: 'sec-alltag', 9: 'sec-quellen'};
+                id = numericMap[slideNumber];
+            }
             if (id) {
                 setTimeout(() => {
                     const el = document.getElementById(id);
