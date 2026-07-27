@@ -19,7 +19,11 @@
     </div>
     <nav class="tabs" id="tabs">
       <button class="tab active" data-view="speak">🎙️ Sprechen</button>
+      <button class="tab" data-view="dialogue">💬 Dialoge</button>
+      <button class="tab" data-view="grammar">📚 Grammatik</button>
+      <button class="tab" data-view="quiz">🎧 Quiz</button>
       <button class="tab" data-view="alphabet">أ Alphabet</button>
+      <button class="tab" data-view="progress">📈 Fortschritt</button>
     </nav>
   </header>
 
@@ -29,27 +33,37 @@
     <section class="view active" id="view-speak">
       <div class="view-head">
         <h1>Sprechen üben</h1>
-        <p class="lead">Hör dir das Wort an, sprich es nach – und lass es überprüfen.</p>
-        <div class="cat-filter" id="cat-filter"></div>
+        <p class="lead">Anhören, nachsprechen, überprüfen lassen. Dein Fortschritt wird pro Wort gespeichert.</p>
+      </div>
+
+      <div class="filters">
+        <div class="filter-row"><span class="filter-label">Niveau</span><div class="cat-filter" id="lvl-filter"></div></div>
+        <div class="filter-row"><span class="filter-label">Thema</span><div class="cat-filter" id="cat-filter"></div></div>
+        <div class="filter-row mode-row">
+          <button class="chip mode active" id="mode-all">Alle</button>
+          <button class="chip mode" id="mode-review">🔁 Schwache wiederholen</button>
+          <button class="chip mode" id="reveal-toggle">👁 Übersetzung: an</button>
+        </div>
       </div>
 
       <div class="flashcard" id="flashcard">
-        <div class="fc-progress"><span id="fc-pos">1</span> / <span id="fc-total">0</span></div>
+        <div class="fc-top">
+          <span class="fc-cat" id="fc-cat"></span>
+          <span class="fc-boxes" id="fc-boxes" title="Beherrschung"></span>
+          <span class="fc-progress"><span id="fc-pos">1</span> / <span id="fc-total">0</span></span>
+        </div>
 
-        <div class="fc-arabic" id="fc-arabic" dir="rtl">مرحبا</div>
-        <div class="fc-translit" id="fc-translit">marḥaban</div>
-        <div class="fc-de" id="fc-de">Hallo</div>
+        <div class="fc-arabic" id="fc-arabic" dir="rtl">مرحباً</div>
+        <div class="fc-hide">
+          <div class="fc-translit" id="fc-translit">marḥaban</div>
+          <div class="fc-de" id="fc-de">Hallo</div>
+        </div>
+        <button class="fc-reveal-btn" id="fc-reveal-btn">👁 Aufdecken</button>
 
         <div class="fc-controls">
-          <button class="ctrl-btn listen" id="btn-listen" title="Anhören">
-            <span class="ic">🔊</span><span>Anhören</span>
-          </button>
-          <button class="ctrl-btn slow" id="btn-slow" title="Langsam anhören">
-            <span class="ic">🐢</span><span>Langsam</span>
-          </button>
-          <button class="ctrl-btn mic" id="btn-mic" title="Nachsprechen">
-            <span class="ic">🎙️</span><span>Nachsprechen</span>
-          </button>
+          <button class="ctrl-btn listen" id="btn-listen"><span class="ic">🔊</span><span class="lbl">Anhören</span></button>
+          <button class="ctrl-btn slow" id="btn-slow"><span class="ic">🐢</span><span class="lbl">Langsam</span></button>
+          <button class="ctrl-btn mic" id="btn-mic"><span class="ic">🎙️</span><span class="lbl">Nachsprechen</span></button>
         </div>
 
         <div class="fc-feedback" id="fc-feedback" hidden></div>
@@ -63,21 +77,99 @@
       <p class="mic-note" id="mic-note"></p>
     </section>
 
+    <!-- ============ DIALOGE ============ -->
+    <section class="view" id="view-dialogue">
+      <div class="view-head">
+        <h1>Alltags-Dialoge</h1>
+        <p class="lead">Echte Situationen. Hör zu – oder übernimm eine Rolle und sprich selbst.</p>
+      </div>
+
+      <div class="dlg-list" id="dlg-list"></div>
+
+      <div class="dlg-player" id="dlg-player" hidden>
+        <button class="dlg-back" id="dlg-back">‹ Alle Dialoge</button>
+        <div class="dlg-head">
+          <h2 id="dlg-title"></h2>
+          <p class="dlg-context" id="dlg-context"></p>
+        </div>
+        <div class="dlg-toolbar">
+          <button class="tbtn" id="dlg-playall">▶️ Vorlesen</button>
+          <label class="dlg-rolewrap">Deine Rolle:
+            <select id="dlg-role" class="dlg-role"></select>
+          </label>
+          <button class="tbtn primary" id="dlg-practice">🎤 Rolle üben</button>
+        </div>
+        <div class="dlg-status" id="dlg-status"></div>
+        <div class="dlg-turnbar" id="dlg-turnbar"></div>
+        <div class="dlg-chat" id="dlg-chat"></div>
+      </div>
+    </section>
+
+    <!-- ============ GRAMMATIK ============ -->
+    <section class="view" id="view-grammar">
+      <div class="view-head">
+        <h1>Grammatik kompakt</h1>
+        <p class="lead">Die wichtigsten Bausteine – mit hörbaren Beispielen. Tippe eine Lektion an.</p>
+      </div>
+      <div class="grammar-list" id="grammar-list"></div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="view" id="view-quiz">
+      <div class="view-head">
+        <h1>Hörverstehen</h1>
+        <p class="lead">Höre das arabische Wort und wähle die richtige Bedeutung.</p>
+      </div>
+
+      <div class="quiz-intro" id="quiz-intro">
+        <div class="quiz-card">
+          <p class="quiz-lead">10 Fragen. Audio läuft automatisch – du kannst es beliebig oft wiederholen.</p>
+          <p class="quiz-stats">Bestwert: <strong id="quiz-best">0</strong> · Runden: <strong id="quiz-played">0</strong></p>
+          <button class="btn-cta" id="quiz-start">Runde starten</button>
+        </div>
+      </div>
+
+      <div class="quiz-play" id="quiz-play" hidden>
+        <div class="quiz-bar">
+          <span id="quiz-progress">Frage 1 / 10</span>
+          <span id="quiz-score">Punkte: 0</span>
+        </div>
+        <div class="quiz-audio">
+          <button class="quiz-audio-btn" id="quiz-replay">🔊 Nochmal hören</button>
+          <button class="quiz-audio-btn small" id="quiz-replay-slow">🐢 Langsam</button>
+        </div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+      </div>
+
+      <div class="quiz-result" id="quiz-result" hidden></div>
+    </section>
+
     <!-- ============ ALPHABET ============ -->
     <section class="view" id="view-alphabet">
       <div class="view-head">
         <h1>Das arabische Alphabet</h1>
-        <p class="lead">28 Buchstaben – tippe auf einen Buchstaben, um seine Aussprache zu hören.</p>
+        <p class="lead">28 Buchstaben mit Aussprache und den drei Positionsformen (Anfang · Mitte · Ende). Tippen zum Hören.</p>
       </div>
       <div class="alpha-grid" id="alpha-grid"></div>
+    </section>
+
+    <!-- ============ FORTSCHRITT ============ -->
+    <section class="view" id="view-progress">
+      <div class="view-head">
+        <h1>Dein Fortschritt</h1>
+        <p class="lead">Jedes Wort wandert mit richtiger Aussprache eine Stufe höher (Leitner-System).</p>
+      </div>
+      <div class="progress-body" id="progress-body"></div>
     </section>
 
   </main>
 
   <footer class="app-footer">
-    <p>Gebaut mit der Web Speech API deines Browsers. Am besten in Chrome. Kein Konto, keine Daten – alles läuft lokal.</p>
+    <p>Inhalte in modernem Hocharabisch (Fuṣḥā). Sprachausgabe &amp; Erkennung laufen über die Web Speech API deines Browsers – am besten in Chrome. Kein Konto, keine Server, dein Fortschritt bleibt nur auf diesem Gerät.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
