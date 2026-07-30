@@ -3,338 +3,567 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PokeCard Shop – Deine Pokémon-Karten Destination</title>
+  <title>Ray Peat . Bioenergetik: Thesen, Belege, Messwerte</title>
+  <meta name="description" content="Strukturierte Einordnung der bioenergetischen Thesen von Ray Peat: Grundthesen, Belege und Mechanismen, Ernaehrung, was man messen kann, Risiken und wissenschaftliche Kritik." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">⚡</span>
-        PokeCard<span class="logo-accent">Shop</span>
+  <div id="progress"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <span class="spark"></span>
+        Peat<small>/ bioenergetik</small>
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Vorteile</a></li>
-        <li><a href="#products">Produkte</a></li>
-        <li><a href="#testimonials">Bewertungen</a></li>
-        <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+        <li><a href="#person">Person</a></li>
+        <li><a href="#thesen">Grundthesen</a></li>
+        <li><a href="#modell">Energiemodell</a></li>
+        <li><a href="#belege">Belege</a></li>
+        <li><a href="#ernaehrung">Ernährung</a></li>
+        <li><a href="#messen">Messen</a></li>
+        <li><a href="#vorsicht">Vorsicht</a></li>
+        <li><a href="#kritik">Kritik</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-tools">
+        <button class="icon-btn" id="theme-toggle" aria-label="Hell / Dunkel umschalten">◐</button>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="Menü öffnen">☰</button>
+      </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge">🔥 Neue Scarlet &amp; Violet Sets eingetroffen</div>
-      <h1>Pokémon-Karten.<br /><span class="gradient-text">Leidenschaft pur.</span></h1>
-      <p class="hero-sub">
-        Von Basis-Boostern bis zu seltenen Holo-Rares – finde deine nächste Lieblingsarte in unserem kurierten Shop.
-      </p>
-      <div class="hero-actions">
-        <a href="#products" class="btn btn-primary">Jetzt shoppen</a>
-        <a href="#features" class="btn btn-secondary">Mehr erfahren</a>
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-field"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="hero-badge"><span class="dot"></span> Ray Peat . 1936 bis 2022 . Biologe &amp; Physiologe</span>
+        <h1>Energie ist<br /><span class="glow">Gesundheit.</span></h1>
+        <p class="hero-sub">
+          Ray Peats bioenergetische Sicht stellt eine Frage in den Mittelpunkt:
+          Wie gut produziert eine Zelle Energie? Diese Seite ordnet seine Thesen,
+          Belege und Messwerte strukturiert ein, mit klarer Trennung von Beobachtung und Beleg.
+        </p>
+        <div class="hero-cta">
+          <a href="#thesen" class="btn btn-primary">Zu den Grundthesen →</a>
+          <a href="#messen" class="btn btn-ghost">Was man messen kann</a>
+        </div>
+        <div class="hero-stats">
+          <div class="st"><b>37 °C</b><span>Zielrichtung Stoffwechsel</span></div>
+          <div class="st"><b>~85</b><span>Puls nach Peat (bpm)</span></div>
+          <div class="st"><b>CO₂</b><span>schützend, nicht Abfall</span></div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num">50 000+</span>
-          <span class="stat-label">Karten verfügbar</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">12 000+</span>
-          <span class="stat-label">Zufriedene Sammler</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">24 h</span>
-          <span class="stat-label">Versand</span>
-        </div>
+      <div class="hero-cell" aria-hidden="true">
+        <div class="orbit"></div>
+        <div class="orbit o2"></div>
+        <div class="orbit o3"></div>
+        <div class="orbit spin"><span class="orbit-dot" style="top:0;left:50%"></span></div>
+        <div class="orbit o2 spin rev"><span class="orbit-dot" style="top:50%;left:0"></span></div>
+        <div class="core"><span>ATP<br />CO₂</span></div>
+        <div class="node n1">T3</div>
+        <div class="node n2">O₂</div>
+        <div class="node n3">CO₂</div>
+        <div class="node n4">🍊</div>
       </div>
     </div>
-    <div class="hero-cards">
-      <div class="card-float card-1">
-        <div class="poke-card fire">
-          <div class="card-type">Feuer</div>
-          <div class="card-pokemon">Glumanda</div>
-          <div class="card-hp">HP 60</div>
+  </header>
+
+  <main>
+
+  <!-- ============ PERSON ============ -->
+  <section id="person">
+    <div class="wrap">
+      <div class="intro-grid">
+        <div class="reveal">
+          <span class="eyebrow">Wer war Ray Peat</span>
+          <p class="lead">
+            Raymond Peat war ein US-amerikanischer Biologe mit einer Promotion in Biologie
+            (Schwerpunkt Physiologie, University of Oregon, 1972). Seine Dissertation
+            beschäftigte sich mit dem Alter, Östrogen und der Energieproduktion.
+          </p>
+          <p>
+            Aus dieser Arbeit entwickelte er über Jahrzehnte eine zusammenhängende Sicht,
+            die er selbst „bioenergetisch" nannte: Struktur und Funktion eines Organismus
+            hängen davon ab, wie effizient seine Zellen Energie aus Sauerstoff und Glukose
+            gewinnen. Peat schrieb populärwissenschaftliche Newsletter und Bücher, gab
+            Interviews und wurde vor allem online zu einer einflussreichen, zugleich
+            kontrovers diskutierten Figur der alternativen Ernährungs- und Hormonszene.
+          </p>
+          <p>
+            Wichtig für die Einordnung: Peat war kein Kliniker, der randomisierte Studien
+            durchführte. Er las und zitierte sehr viel Grundlagenphysiologie und leitete
+            daraus Hypothesen ab. Ein Teil davon deckt sich mit etablierter Physiologie,
+            ein anderer Teil widerspricht dem heutigen Ernährungs- und Kardiologie-Konsens.
+            Beides wird hier getrennt ausgewiesen.
+          </p>
         </div>
-      </div>
-      <div class="card-float card-2">
-        <div class="poke-card water">
-          <div class="card-type">Wasser</div>
-          <div class="card-pokemon">Schiggy</div>
-          <div class="card-hp">HP 50</div>
-        </div>
-      </div>
-      <div class="card-float card-3">
-        <div class="poke-card electric">
-          <div class="card-type">Elektro ⚡</div>
-          <div class="card-pokemon">Pikachu</div>
-          <div class="card-hp">HP 70</div>
-        </div>
-      </div>
-      <div class="card-float card-4">
-        <div class="poke-card grass">
-          <div class="card-type">Pflanze</div>
-          <div class="card-pokemon">Bisasam</div>
-          <div class="card-hp">HP 45</div>
+        <div class="reveal" data-d="2">
+          <dl class="bio-facts">
+            <div class="row"><dt>Geboren</dt><dd>1936, USA</dd></div>
+            <div class="row"><dt>Gestorben</dt><dd>2022</dd></div>
+            <div class="row"><dt>Promotion</dt><dd>Biologie / Physiologie, University of Oregon (1972)</dd></div>
+            <div class="row"><dt>Kernbegriff</dt><dd>Bioenergetik: Energieproduktion als Basis von Gesundheit</dd></div>
+            <div class="row"><dt>Einflüsse</dt><dd>Otto Warburg, Hans Selye, Broda Barnes, Albert Szent-Györgyi, Gilbert Ling</dd></div>
+            <div class="row"><dt>Formate</dt><dd>Newsletter, Bücher, Interviews, Essays (raypeat.com)</dd></div>
+            <div class="row"><dt>Status</dt><dd>Einflussreich, aber wissenschaftlich umstritten</dd></div>
+          </dl>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Warum PokeCard<span class="logo-accent">Shop</span>?</h2>
-        <p>Wir lieben Pokémon-Karten genauso sehr wie du – und das merkt man.</p>
+  <!-- ============ GRUNDTHESEN ============ -->
+  <section id="thesen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Grundthesen</span>
+        <h2>Neun Kernideen der Bioenergetik</h2>
+        <p>Peats Denken lässt sich auf wenige, immer wiederkehrende Grundthesen verdichten. Grün markiert bedeutet „schützend / pro-metabolisch" in seinem Modell, rot „stress-fördernd".</p>
       </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <h3>Echtheitsprüfung</h3>
-          <p>Jede Karte wird von unseren Experten auf Echtheit geprüft – du kaufst immer das Original.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📦</div>
-          <h3>Sicherer Versand</h3>
-          <p>Kartenschutz, Bubble-Mailer und tracked shipping – deine Karten kommen makellos an.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💎</div>
-          <h3>Raritäten & Grails</h3>
-          <p>Seltene First Editions, PSA-Grades und Promo-Karten – wir haben, was andere nicht haben.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
-          <h3>Sammler-Community</h3>
-          <p>Tausche dich mit anderen Fans aus, zeig deine Pulls und nimm an Events teil.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h3>Faire Preise</h3>
-          <p>Marktgerechte Preise, wöchentliche Deals und ein Treueprogramm für Stammkunden.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Blitzschnelle Lieferung</h3>
-          <p>Bestellungen bis 15 Uhr werden noch am gleichen Tag verschickt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <div class="container">
-      <div class="section-header">
-        <h2>Beliebte <span class="gradient-text">Produkte</span></h2>
-        <p>Von Boostern bis zu kompletten Sets – hier ist für jeden Sammler etwas dabei.</p>
-      </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-badge">Bestseller</div>
-          <div class="product-img fire-bg">
-            <span class="product-emoji">🔥</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Scarlet &amp; Violet</span>
-            <h3>Booster-Display</h3>
-            <p>36 Boosterpacks – die beste Chance auf seltene EX &amp; Full Art Karten.</p>
-            <div class="product-price">
-              <span class="price">89,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge new">Neu</div>
-          <div class="product-img electric-bg">
-            <span class="product-emoji">⚡</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Obsidian Flames</span>
-            <h3>Elite Trainer Box</h3>
-            <p>8 Boosterpacks, Pokémon-Münze, Deckboxen und Sleeves im Bundle.</p>
-            <div class="product-price">
-              <span class="price">54,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge rare">Selten</div>
-          <div class="product-img gold-bg">
-            <span class="product-emoji">✨</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Base Set 1999</span>
-            <h3>Holo Charizard PSA 8</h3>
-            <p>Ikonische Karte aus dem Basis-Set, professionell begutachtet – ein echter Grail.</p>
-            <div class="product-price">
-              <span class="price">1 299,00 €</span>
-              <a href="#" class="btn btn-sm">Anfragen</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img water-bg">
-            <span class="product-emoji">🌊</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Paldea Evolved</span>
-            <h3>Booster Bundle (6er)</h3>
-            <p>Sechs handverlesene Packs aus dem neuesten Paldea-Set.</p>
-            <div class="product-price">
-              <span class="price">19,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img grass-bg">
-            <span class="product-emoji">🌿</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Starter-Kit</span>
-            <h3>Einsteiger-Set</h3>
-            <p>Perfekt für Neulinge: 3 Booster, Sleeves, Deckbox und Regelkarte.</p>
-            <div class="product-price">
-              <span class="price">14,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-badge deal">Deal</div>
-          <div class="product-img purple-bg">
-            <span class="product-emoji">💜</span>
-          </div>
-          <div class="product-info">
-            <span class="product-set">Mystery</span>
-            <h3>Mystery Rare Box</h3>
-            <p>Mindestens 3 seltene Karten (Rare oder besser) – garantiert oder Geld zurück.</p>
-            <div class="product-price">
-              <span class="price-old">29,99 €</span>
-              <span class="price">19,99 €</span>
-              <a href="#" class="btn btn-sm">In den Warenkorb</a>
-            </div>
-          </div>
-        </div>
+      <div class="theses">
+        <article class="tcard feature reveal">
+          <span class="idx">These 01</span>
+          <div class="big-emoji">🔥</div>
+          <h3>Der Stoffwechsel steht im Zentrum</h3>
+          <p>Gesundheit ist für Peat vor allem die Fähigkeit, zuverlässig zelluläre Energie (ATP) über die vollständige Oxidation von Glukose zu CO₂ und Wasser zu erzeugen. Fällt die Energieproduktion, leiden Struktur, Reparatur und Regulation gleich mit.</p>
+        </article>
+        <article class="tcard span-3 reveal" data-d="1">
+          <span class="tag pro">pro</span>
+          <span class="idx">These 02</span>
+          <h3>Schilddrüse als Taktgeber</h3>
+          <p>Das Schilddrüsenhormon T3 bestimmt die Stoffwechselrate. Peat hielt (in der Tradition von Broda Barnes) eine funktionelle Unterfunktion für weit verbreitet und unterdiagnostiziert.</p>
+        </article>
+        <article class="tcard span-2 reveal">
+          <span class="tag pro">pro</span>
+          <span class="idx">These 03</span>
+          <h3>CO₂ ist schützend</h3>
+          <p>Kohlendioxid sieht Peat nicht als Abfall, sondern als Signal eines guten Stoffwechsels (Bohr-Effekt, Gefäßweite, Gewebeschutz).</p>
+        </article>
+        <article class="tcard span-2 reveal" data-d="1">
+          <span class="tag pro">pro</span>
+          <span class="idx">These 04</span>
+          <h3>Zucker vor Stresshormonen</h3>
+          <p>Ausreichend Glukose (reife Früchte, Saccharose, Milch) senkt laut Peat Adrenalin und Cortisol. „Stressstoffwechsel" statt Zuckermangel als eigentliches Problem.</p>
+        </article>
+        <article class="tcard span-2 reveal" data-d="2">
+          <span class="tag contra">contra</span>
+          <span class="idx">These 05</span>
+          <h3>PUFA meiden</h3>
+          <p>Mehrfach ungesättigte Fette (Linolsäure, viel Fischöl) fördern nach Peat Lipidperoxidation, hemmen die Schilddrüse und wirken entzündlich. Er bevorzugte gesättigte Fette.</p>
+        </article>
+        <article class="tcard span-2 reveal">
+          <span class="tag contra">contra</span>
+          <span class="idx">These 06</span>
+          <h3>Östrogen bändigen</h3>
+          <p>Überschüssiges Östrogen gilt ihm als proliferativ und stressartig, Progesteron und Pregnenolon als beruhigend und schützend.</p>
+        </article>
+        <article class="tcard span-2 reveal" data-d="1">
+          <span class="tag contra">contra</span>
+          <span class="idx">These 07</span>
+          <h3>Darm &amp; Endotoxin</h3>
+          <p>Bakterielles Endotoxin (LPS) und Serotonin aus dem Darm belasten den Stoffwechsel. Daher gut gekochte Speisen, wenig gärfähige Ballaststoffe, die „Karottensalat"-Idee.</p>
+        </article>
+        <article class="tcard span-2 reveal" data-d="2">
+          <span class="tag pro">pro</span>
+          <span class="idx">These 08</span>
+          <h3>Licht &amp; Wärme</h3>
+          <p>Rotes und warmes Licht sowie Körperwärme unterstützen die Mitochondrien (Cytochrom-c-Oxidase). Peat war skeptisch gegenüber viel blauem Licht.</p>
+        </article>
+        <article class="tcard span-2 reveal">
+          <span class="tag pro">pro</span>
+          <span class="idx">These 09</span>
+          <h3>Schutzstoffe gezielt</h3>
+          <p>Aspirin, Koffein, Vitamin E, Niacinamid, Glycin und Kohlendioxid setzte er als „anti-stress"-Werkzeuge ein, immer im Dienst der Energieproduktion.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <h2>Was Sammler sagen</h2>
-        <p>Echte Stimmen aus unserer Community.</p>
+  <!-- ============ ENERGIEMODELL ============ -->
+  <section id="modell">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Das Energiemodell</span>
+        <h2>Schutz gegen Stress</h2>
+        <p>Fast alle Einzelthesen lassen sich in Peats zentralem Gegensatzpaar unterbringen: eine schützende, pro-metabolische Seite und eine stressfördernde, katabole Seite.</p>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Habe meinen Charizard Holo hier gekauft – absolut authentisch und blitzschnell geliefert. Bester Shop!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div>
-              <strong>Markus K.</strong>
-              <span>Sammler seit 1999</span>
-            </div>
+      <div class="duo">
+        <div class="duo-col protect reveal">
+          <h3>🟢 Schützend / pro-metabolisch</h3>
+          <p>Fördert vollständige Glukose-Oxidation, Wärme, CO₂ und Ruhe im Gewebe.</p>
+          <div class="chip-list">
+            <span class="chip">Schilddrüse T3</span>
+            <span class="chip">Glukose / Fruktose</span>
+            <span class="chip">CO₂</span>
+            <span class="chip">Progesteron</span>
+            <span class="chip">Pregnenolon</span>
+            <span class="chip">DHEA</span>
+            <span class="chip">gesättigte Fette</span>
+            <span class="chip">Koffein</span>
+            <span class="chip">Aspirin</span>
+            <span class="chip">Salz</span>
+            <span class="chip">Kalzium</span>
+            <span class="chip">Licht / Wärme</span>
+          </div>
+          <div class="flow">
+            <span class="step">Glukose</span><span class="arrow">→</span>
+            <span class="step">Mitochondrium</span><span class="arrow">→</span>
+            <span class="step">CO₂ + ATP</span><span class="arrow">→</span>
+            <span class="step">Wärme</span>
           </div>
         </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Meine Tochter wollte anfangen zu sammeln – das Einsteiger-Set war perfekt. Tolle Beratung per Chat!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">S</div>
-            <div>
-              <strong>Sandra L.</strong>
-              <span>Neukunde</span>
-            </div>
+        <div class="duo-col stress reveal" data-d="1">
+          <h3>🔴 Stressfördernd / katabol</h3>
+          <p>Verschiebt den Stoffwechsel zu Fettverbrennung, Laktat und entzündlicher Belastung.</p>
+          <div class="chip-list">
+            <span class="chip">PUFA (Linolsäure)</span>
+            <span class="chip">Östrogen</span>
+            <span class="chip">Cortisol</span>
+            <span class="chip">Adrenalin</span>
+            <span class="chip">Serotonin</span>
+            <span class="chip">Laktat</span>
+            <span class="chip">Endotoxin (LPS)</span>
+            <span class="chip">freie Fettsäuren</span>
+            <span class="chip">Eisen-Überschuss</span>
+            <span class="chip">Stickstoffmonoxid ↑</span>
           </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Faire Preise, schneller Versand und die Karten kommen immer in Topzustand an. Klare Empfehlung!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">T</div>
-            <div>
-              <strong>Tobias R.</strong>
-              <span>Competitive Player</span>
-            </div>
+          <div class="flow">
+            <span class="step">Stress</span><span class="arrow">→</span>
+            <span class="step">freie Fettsäuren</span><span class="arrow">→</span>
+            <span class="step">Randle-Zyklus</span><span class="arrow">→</span>
+            <span class="step">Laktat</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter" id="newsletter">
-    <div class="container">
-      <div class="newsletter-inner">
-        <div class="newsletter-text">
-          <h2>Verpasse keine Deals! 🔔</h2>
-          <p>Melde dich an und erhalte exklusive Angebote, Restocks-Benachrichtigungen und News direkt in dein Postfach.</p>
+  <!-- ============ BELEGE ============ -->
+  <section id="belege">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Belege &amp; Mechanismen</span>
+        <h2>Worauf sich die Thesen stützen</h2>
+        <p>Peat berief sich auf reale, teils klassische Physiologie. Die folgenden Mechanismen sind wissenschaftlich anerkannt. Ob Peats weitreichende Schlussfolgerungen daraus tragen, ist eine getrennte Frage (siehe Abschnitt Kritik).</p>
+      </div>
+      <div class="evidence">
+        <div class="ev reveal">
+          <h4>Randle-Zyklus (Glukose gegen Fett)</h4>
+          <p>Glukose- und Fettverbrennung hemmen sich gegenseitig. Viele freie Fettsäuren drosseln die Glukose-Oxidation. Peat baute darauf seine Zucker-vor-Fett-Logik.</p>
+          <p class="cite"><b>Grundlage:</b> Randle et al., Lancet 1963 . „glucose fatty-acid cycle"</p>
         </div>
-        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-          <input type="email" placeholder="deine@email.de" required />
-          <button type="submit" class="btn btn-primary">Anmelden</button>
-        </form>
-        <p id="newsletter-msg" class="newsletter-msg" hidden>🎉 Du bist dabei! Schau in dein Postfach.</p>
+        <div class="ev reveal" data-d="1">
+          <h4>Bohr-Effekt (CO₂ liefert O₂)</h4>
+          <p>CO₂ verschiebt die Sauerstoffbindung des Hämoglobins so, dass mehr O₂ ins Gewebe abgegeben wird. Grundlage für Peats Sicht auf CO₂ als schützend.</p>
+          <p class="cite"><b>Grundlage:</b> Christian Bohr et al., 1904 . anerkannte Atemphysiologie</p>
+        </div>
+        <div class="ev reveal">
+          <h4>Warburg-Effekt (Atmung gegen Gärung)</h4>
+          <p>Beschädigte Zellen verschieben sich von Atmung zu Milchsäuregärung. Peat deutete gute oxidative Atmung als Zeichen von Gesundheit.</p>
+          <p class="cite"><b>Grundlage:</b> Otto Warburg, 1920er / 1956 . Zellstoffwechsel</p>
+        </div>
+        <div class="ev reveal" data-d="1">
+          <h4>Basaltemperatur als Schilddrüsenmaß</h4>
+          <p>Broda Barnes propagierte die morgendliche Körpertemperatur als Hinweis auf die Schilddrüsenfunktion. Peat kombinierte sie mit dem Puls.</p>
+          <p class="cite"><b>Grundlage:</b> Broda Barnes, „Hypothyroidism: The Unsuspected Illness", 1976</p>
+        </div>
+        <div class="ev reveal">
+          <h4>Stresshormone senken den Stoffwechsel</h4>
+          <p>Chronischer Stress (Cortisol, Adrenalin) mobilisiert Fettsäuren und kann die Umwandlung von T4 zu aktivem T3 stören. Kontext für Peats Anti-Stress-Fokus.</p>
+          <p class="cite"><b>Grundlage:</b> Hans Selye, Stressforschung . Deiodinase-Physiologie</p>
+        </div>
+        <div class="ev reveal" data-d="1">
+          <h4>Endotoxin (LPS) belastet den Organismus</h4>
+          <p>Bakterielles Lipopolysaccharid aus dem Darm löst Entzündung aus. Moderne Forschung zu „metabolischer Endotoxämie" stützt, dass der Darm systemisch wirkt.</p>
+          <p class="cite"><b>Grundlage:</b> LPS- / Endotoxin-Literatur, u. a. Cani et al., 2007</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <span class="logo-icon">⚡</span>
-            PokeCard<span class="logo-accent">Shop</span>
-          </a>
-          <p>Deine vertrauenswürdige Anlaufstelle für Pokémon-Karten aller Generationen.</p>
+  <!-- ============ ERNAEHRUNG ============ -->
+  <section id="ernaehrung">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ernährung nach Peat</span>
+        <h2>Was er bevorzugte, was er mied</h2>
+        <p>Peat gab keine starre Diät vor, sondern Prinzipien. Kernidee: gut verfügbare Energie, hohe Nährstoffdichte, wenig entzündliche Fette und wenig Darmbelastung.</p>
+      </div>
+      <div class="foods">
+        <div class="food-col reveal">
+          <h3>🟢 Bevorzugt</h3>
+          <p class="sub">energiereich, nährstoffdicht, darmschonend</p>
+          <div class="food-item"><span class="ico">🥛</span><div><b>Milch &amp; Käse</b><span>Kalzium, Protein, gutes Kalzium-Phosphat-Verhältnis</span></div></div>
+          <div class="food-item"><span class="ico">🍊</span><div><b>Reife Früchte &amp; Saft</b><span>Orangensaft als leicht verfügbare Glukose und Fruktose, Kalium</span></div></div>
+          <div class="food-item"><span class="ico">🍯</span><div><b>Zucker &amp; Honig</b><span>Saccharose gezielt gegen Stresshormone, nicht als leere Kalorie gemieden</span></div></div>
+          <div class="food-item"><span class="ico">🦪</span><div><b>Leber &amp; Austern</b><span>ein- bis zweimal pro Woche: Vitamin A, Kupfer, Zink, B-Vitamine</span></div></div>
+          <div class="food-item"><span class="ico">🥥</span><div><b>Kokosöl &amp; Butter</b><span>gesättigte Fette statt mehrfach ungesättigter Öle</span></div></div>
+          <div class="food-item"><span class="ico">🍮</span><div><b>Gelatine &amp; Knochenbrühe</b><span>Glycin zum Ausgleich des Tryptophans aus Muskelfleisch</span></div></div>
+          <div class="food-item"><span class="ico">🥕</span><div><b>Roher Karottensalat</b><span>unlösliche Faser gegen Endotoxin und rezirkulierendes Östrogen</span></div></div>
         </div>
-        <div class="footer-links">
-          <h4>Shop</h4>
+        <div class="food-col reveal" data-d="1">
+          <h3>🔴 Gemieden</h3>
+          <p class="sub">entzündungsfördernd oder darmbelastend</p>
+          <div class="food-item"><span class="ico">🌻</span><div><b>Pflanzensamenöle</b><span>Sonnenblumen-, Soja-, Raps-, Distelöl: hohe Linolsäure</span></div></div>
+          <div class="food-item"><span class="ico">🐟</span><div><b>Viel Fischöl</b><span>leicht oxidierende, sehr ungesättigte Fettsäuren in großer Menge</span></div></div>
+          <div class="food-item"><span class="ico">🥜</span><div><b>Nüsse in Mengen</b><span>hoher PUFA-Anteil, daher nur sparsam</span></div></div>
+          <div class="food-item"><span class="ico">🌾</span><div><b>Viele gärfähige Ballaststoffe</b><span>Hülsenfrüchte und rohes Getreide als Endotoxin-Quelle</span></div></div>
+          <div class="food-item"><span class="ico">🥩</span><div><b>Muskelfleisch pur</b><span>nur mit Gelatine / Kollagen zum Aminosäure-Ausgleich</span></div></div>
+          <div class="food-item"><span class="ico">🍺</span><div><b>Stärke &amp; Weizen im Übermaß</b><span>bei empfindlichem Darm bevorzugte er Frucht- statt Stärkezucker</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MESSEN ============ -->
+  <section id="messen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Messen &amp; Beobachten</span>
+        <h2>Wie man den Stoffwechsel abschätzt</h2>
+        <p>Ein praktischer Kern von Peats Ansatz: einfache, tägliche Selbstmessungen statt einmaliger Laborwerte. Temperatur und Puls zusammen, über den Tag und nach Mahlzeiten.</p>
+      </div>
+
+      <div class="measure-grid">
+        <div class="mcard reveal">
+          <div class="mhead"><span class="n">01</span><h3>🌡️ Körpertemperatur</h3></div>
+          <p>Direkt nach dem Aufwachen und erneut vormittags nach dem Frühstück messen. Nach Peat sollte die Temperatur nach dem Essen steigen, nicht fallen. Ein Abfall deutet auf eine Stressreaktion hin.</p>
+          <div class="range">
+            <span class="r">Aufwachen: <b>~36,5 °C</b></span>
+            <span class="r">Mittags: <b>~37,0 °C</b></span>
+            <span class="r">nach Essen: <b>steigend</b></span>
+          </div>
+        </div>
+        <div class="mcard reveal" data-d="1">
+          <div class="mhead"><span class="n">02</span><h3>💓 Ruhepuls</h3></div>
+          <p>Peat hielt einen Ruhepuls um 85 Schläge pro Minute für ein Zeichen eines lebhaften Stoffwechsels. Einen sehr niedrigen Puls deutete er nicht automatisch als Fitness, sondern manchmal als Anpassung an eine Unterfunktion.</p>
+          <div class="range">
+            <span class="r">Peat-Richtwert: <b>~85 bpm</b></span>
+            <span class="r">Temperatur <b>immer mitmessen</b></span>
+          </div>
+        </div>
+        <div class="mcard reveal">
+          <div class="mhead"><span class="n">03</span><h3>🦵 Achillessehnen-Reflex</h3></div>
+          <p>Ein langsam „zurückfedernder" Achillessehnenreflex gilt klassisch als Hinweis auf eine langsame Schilddrüsenfunktion. Ein einfacher, alter klinischer Test, den Peat oft erwähnte.</p>
+          <div class="range">
+            <span class="r">verzögert = <b>Hinweis auf Unterfunktion</b></span>
+          </div>
+        </div>
+        <div class="mcard reveal" data-d="1">
+          <div class="mhead"><span class="n">04</span><h3>🧾 Reaktion auf Mahlzeiten</h3></div>
+          <p>Puls und Temperatur vor und rund 30 bis 60 Minuten nach einer Mahlzeit vergleichen. Wärme, ruhiger Puls und gute Laune sprechen für eine gute Energieantwort, Kältegefühl und Herzrasen dagegen.</p>
+          <div class="range">
+            <span class="r">warm &amp; ruhig = <b>gut</b></span>
+            <span class="r">kalt &amp; hektisch = <b>Stress</b></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive tracker -->
+      <div class="tracker reveal" style="margin-top:30px" data-d="1">
+        <div class="tracker-form">
+          <span class="eyebrow" style="margin-bottom:16px">Interaktiv . Selbst-Einordnung</span>
+          <div class="field">
+            <label for="t-wake">Temperatur beim Aufwachen (°C)</label>
+            <input id="t-wake" type="number" step="0.1" min="34" max="40" placeholder="z. B. 36.4" inputmode="decimal" />
+            <div class="hint">oral oder axillär, direkt nach dem Wachwerden</div>
+          </div>
+          <div class="field">
+            <label for="t-noon">Temperatur vormittags nach dem Frühstück (°C)</label>
+            <input id="t-noon" type="number" step="0.1" min="34" max="40" placeholder="z. B. 36.9" inputmode="decimal" />
+          </div>
+          <div class="field">
+            <label for="pulse">Ruhepuls (Schläge / Minute)</label>
+            <input id="pulse" type="number" step="1" min="30" max="160" placeholder="z. B. 78" inputmode="numeric" />
+          </div>
+          <button class="btn btn-primary" id="calc-btn">Einordnen →</button>
+        </div>
+        <div class="tracker-out" id="tracker-out" aria-live="polite">
+          <p class="placeholder">Trage deine Werte ein und du bekommst eine bioenergetische Lesart im Sinne von Peats Kriterien. Dies ist eine Bildungs-Demonstration und ersetzt keine ärztliche Diagnose.</p>
+        </div>
+      </div>
+
+      <h3 style="margin:56px 0 6px;font-size:24px" class="reveal">Laborwerte, die Peat betonte</h3>
+      <p style="color:var(--text-2);max-width:60ch;margin-bottom:26px" class="reveal">Peat interpretierte einige Standardwerte anders als Leitlinien. Die „Peat-Richtung" unten gibt seine bevorzugte Tendenz wieder, nicht offizielle Referenzbereiche.</p>
+      <div class="labs">
+        <div class="lab reveal"><div class="name">TSH</div><div class="peat">eher niedrig (&lt; 2)</div><div class="why">Hoher TSH galt ihm als frühes Zeichen einer Belastung der Schilddrüse.</div></div>
+        <div class="lab reveal" data-d="1"><div class="name">T3 (frei)</div><div class="peat">im oberen Normbereich</div><div class="why">Das aktive Hormon, für ihn wichtiger als T4.</div></div>
+        <div class="lab reveal" data-d="2"><div class="name">Reverse T3</div><div class="peat">niedrig</div><div class="why">Hohes rT3 als Marker für Stress und blockiertes T3.</div></div>
+        <div class="lab reveal"><div class="name">Cholesterin</div><div class="peat">nicht zu hoch</div><div class="why">Sehr hohe Werte deutete er als Hinweis auf zu wenig Schilddrüsenhormon.</div></div>
+        <div class="lab reveal" data-d="1"><div class="name">Prolaktin</div><div class="peat">niedrig</div><div class="why">Marker für Dopaminmangel und Östrogen- / Stresslast.</div></div>
+        <div class="lab reveal" data-d="2"><div class="name">Ferritin</div><div class="peat">nicht erhöht</div><div class="why">Eisenüberschuss als pro-oxidative Belastung.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VORSICHT ============ -->
+  <section id="vorsicht">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Was man beachten muss</span>
+        <h2>Grenzen, Risiken, Missverständnisse</h2>
+        <p>Peats Ideen lassen sich leicht falsch und gefährlich vereinfachen. Diese Punkte sind für eine verantwortungsvolle Beschäftigung entscheidend.</p>
+      </div>
+      <div class="caution-grid">
+        <div class="warn reveal"><div class="ico">💊</div><h4>Schilddrüsenhormone</h4><p>Getrocknete Schilddrüse oder T3 ohne Diagnose und Kontrolle einzunehmen kann Herzrhythmusstörungen, Knochenabbau und eine Überfunktion auslösen. Nur ärztlich begleitet.</p></div>
+        <div class="warn reveal" data-d="1"><div class="ico">🍬</div><h4>Viel Zucker</h4><p>Bei Diabetes, Insulinresistenz oder Fettleber ist die pauschale Zucker-Empfehlung riskant. Auch Zahngesundheit und individuelle Verträglichkeit sind zu bedenken.</p></div>
+        <div class="warn reveal" data-d="2"><div class="ico">🧪</div><h4>Hormone als Supplement</h4><p>Progesteron, Pregnenolon und DHEA sind wirksame Hormone, keine harmlosen Nahrungsergänzungen. Selbstdosierung kann das eigene Gleichgewicht stören.</p></div>
+        <div class="warn reveal"><div class="ico">🩸</div><h4>Aspirin</h4><p>Regelmäßiges Aspirin kann Magen-Darm-Blutungen verursachen, ist bei Kindern (Reye-Syndrom) tabu und hat viele Wechselwirkungen. Nicht ohne Rücksprache dauerhaft.</p></div>
+        <div class="warn reveal" data-d="1"><div class="ico">💨</div><h4>„Bag breathing" / CO₂</h4><p>Bewusst in eine Tüte zu atmen, um CO₂ zu erhöhen, kann zu gefährlicher Sauerstoffunterversorgung führen. Ein Beispiel für eine Idee, die man nicht naiv nachahmen sollte.</p></div>
+        <div class="warn reveal" data-d="2"><div class="ico">🅰️</div><h4>Fettlösliche Vitamine</h4><p>Hohe Dosen Vitamin A und D sowie viel Kalzium können toxisch wirken. „Viel hilft viel" gilt hier gerade nicht.</p></div>
+      </div>
+
+      <div class="disclaimer reveal">
+        <span class="ico">⚠️</span>
+        <p><b>Kein medizinischer Rat.</b> Diese Seite ist eine strukturierte, bildende Darstellung der Positionen von Ray Peat und ihrer wissenschaftlichen Grundlagen. Sie ist keine Diagnose, keine Therapieempfehlung und kein Ersatz für ärztliche oder ernährungsmedizinische Beratung. Viele der hier beschriebenen Thesen widersprechen dem aktuellen medizinischen Konsens. Vor Ernährungs-, Supplement- oder Hormonänderungen bitte qualifizierte Fachpersonen einbeziehen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KRITIK ============ -->
+  <section id="kritik">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Wissenschaftliche Einordnung</span>
+        <h2>Was trägt, was umstritten ist</h2>
+        <p>Eine faire Beschäftigung trennt die Teile mit physiologischem Rückhalt von den Teilen, die dem Forschungsstand widersprechen oder nie sauber geprüft wurden.</p>
+      </div>
+      <div class="balance">
+        <div class="bcol reveal">
+          <h3>🟢 Anschlussfähig an Physiologie</h3>
           <ul>
-            <li><a href="#">Boosterpacks</a></li>
-            <li><a href="#">Displays &amp; Sets</a></li>
-            <li><a href="#">Einzelkarten</a></li>
-            <li><a href="#">Zubehör</a></li>
+            <li><span class="m">+</span><div>Die zentrale Rolle der Schilddrüse und der mitochondrialen Energieproduktion ist unbestritten.</div></li>
+            <li><span class="m">+</span><div>Randle-Zyklus, Bohr-Effekt und Warburg-Effekt sind reale, gut belegte Mechanismen.</div></li>
+            <li><span class="m">+</span><div>Der Zusammenhang zwischen Darm-Endotoxin (LPS) und systemischer Entzündung wird aktiv erforscht.</div></li>
+            <li><span class="m">+</span><div>Chronischer Stress und Cortisol beeinflussen den Schilddrüsen- und Energiestoffwechsel messbar.</div></li>
+            <li><span class="m">+</span><div>Übermäßige Lipidperoxidation ist ein realer Schadmechanismus.</div></li>
           </ul>
         </div>
-        <div class="footer-links">
-          <h4>Info</h4>
+        <div class="bcol reveal" data-d="1">
+          <h3>🔴 Umstritten oder ungeprüft</h3>
           <ul>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">Versand &amp; Rückgabe</a></li>
-            <li><a href="#">Datenschutz</a></li>
-            <li><a href="#">Impressum</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Community</h4>
-          <ul>
-            <li><a href="#">Discord</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">YouTube</a></li>
-            <li><a href="#">Newsletter</a></li>
+            <li><span class="m">-</span><div>Die pauschale Ablehnung aller mehrfach ungesättigten Fette, inklusive Omega-3, steht gegen viel Evidenz zu deren Nutzen.</div></li>
+            <li><span class="m">-</span><div>Die generelle Zucker-Empfehlung widerspricht dem Konsens zu zugesetztem Zucker und Stoffwechselerkrankungen.</div></li>
+            <li><span class="m">-</span><div>Ein Ruhepuls von 85 als Gesundheitsziel steht im Gegensatz zur Kardiologie, die einen höheren Ruhepuls eher als Risiko sieht.</div></li>
+            <li><span class="m">-</span><div>Vieles stammt aus Essays und Einzelbeobachtungen, nicht aus kontrollierten klinischen Studien.</div></li>
+            <li><span class="m">-</span><div>Mechanistische Plausibilität ist kein Beweis für klinischen Nutzen beim Menschen.</div></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 PokeCardShop. Alle Rechte vorbehalten. Pokémon und alle damit verbundenen Namen sind Marken von Nintendo / Game Freak.</p>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow" style="justify-content:center">Häufige Fragen</span>
+        <h2>Kurz beantwortet</h2>
+      </div>
+      <div class="faq">
+        <div class="qa reveal">
+          <button>Ist die „Peat-Diät" wissenschaftlich anerkannt? <span class="plus">+</span></button>
+          <div class="ans"><p>Nein. Einzelne Bausteine stützen sich auf anerkannte Physiologie, doch das Gesamtkonzept ist nicht durch kontrollierte Studien belegt und widerspricht in mehreren Punkten dem aktuellen Ernährungs- und Kardiologie-Konsens. Es ist am besten als kohärente Hypothese zu verstehen, nicht als bewiesene Leitlinie.</p></div>
+        </div>
+        <div class="qa reveal">
+          <button>Warum empfahl Peat Zucker, obwohl Zucker als ungesund gilt? <span class="plus">+</span></button>
+          <div class="ans"><p>Peat sah nicht den Zucker als Problem, sondern die Stressreaktion bei Energiemangel. Ausreichend Glukose senkt in seinem Modell Adrenalin und Cortisol. Der Konsens sieht das differenzierter und verknüpft zugesetzten Zucker im Übermaß mit Stoffwechselerkrankungen. Individuelle Verträglichkeit ist entscheidend.</p></div>
+        </div>
+        <div class="qa reveal">
+          <button>Kann ich Temperatur und Puls einfach selbst tracken? <span class="plus">+</span></button>
+          <div class="ans"><p>Ja, das Beobachten von Temperatur und Puls ist harmlos und lehrreich. Problematisch wird es erst, wenn man daraus eigenmächtig Hormone oder hohe Supplement-Dosen ableitet. Nutze die Werte als Beobachtung, nicht als Diagnose.</p></div>
+        </div>
+        <div class="qa reveal">
+          <button>Was ist mit dem Puls von 85? Ist ein niedriger Puls nicht besser? <span class="plus">+</span></button>
+          <div class="ans"><p>Hier weicht Peat klar vom Mainstream ab. Die Kardiologie sieht einen niedrigeren Ruhepuls meist positiv. Peat interpretierte einen sehr niedrigen Puls in manchen Fällen als Anpassung an eine Unterfunktion. Das ist eine Minderheitsposition und sollte nicht als Aufforderung verstanden werden, den eigenen Puls hochtreiben zu wollen.</p></div>
+        </div>
+        <div class="qa reveal">
+          <button>Wo kann ich Originaltexte von Ray Peat lesen? <span class="plus">+</span></button>
+          <div class="ans"><p>Peat veröffentlichte zahlreiche Essays und Newsletter, viele davon sind über raypeat.com und Interviews zugänglich. Für eine kritische Einordnung lohnt es sich, seine Quellen mit aktueller Fachliteratur und Übersichtsarbeiten abzugleichen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+  <section id="quellen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Quellen &amp; Grundlagen</span>
+        <h2>Worauf sich diese Seite bezieht</h2>
+        <p>Auswahl der klassischen Arbeiten und Konzepte, die Peats Thesen zugrunde liegen oder sie einordnen. Bitte für Details die Originalliteratur konsultieren.</p>
+      </div>
+      <div class="sources">
+        <div class="src reveal"><span class="num">01</span><div><b>Randle, Garland, Hales, Newsholme</b> . The glucose fatty-acid cycle. Lancet, 1963.</div></div>
+        <div class="src reveal"><span class="num">02</span><div><b>Christian Bohr et al.</b> . Zur Sauerstoffbindung des Hämoglobins (Bohr-Effekt), 1904.</div></div>
+        <div class="src reveal"><span class="num">03</span><div><b>Otto Warburg</b> . Über den Stoffwechsel der Tumoren, 1920er, sowie „On the origin of cancer cells", 1956.</div></div>
+        <div class="src reveal"><span class="num">04</span><div><b>Broda O. Barnes</b> . Hypothyroidism: The Unsuspected Illness, 1976.</div></div>
+        <div class="src reveal"><span class="num">05</span><div><b>Hans Selye</b> . The Stress of Life und Arbeiten zum Allgemeinen Anpassungssyndrom.</div></div>
+        <div class="src reveal"><span class="num">06</span><div><b>Cani et al.</b> . Metabolic endotoxemia initiates obesity and insulin resistance. Diabetes, 2007.</div></div>
+        <div class="src reveal"><span class="num">07</span><div><b>Raymond Peat</b> . Essays und Newsletter, u. a. auf raypeat.com.</div></div>
+        <div class="src reveal"><span class="num">08</span><div><b>Aktuelle Übersichtsarbeiten</b> zu PUFA, zugesetztem Zucker und Ruhepuls für die kritische Einordnung.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Erst verstehen, dann selbst prüfen</h2>
+        <p>Nimm die Grundthesen, sieh dir die Belege an, miss ein paar Wochen deine eigene Temperatur und deinen Puls, und beurteile jede Empfehlung im Licht des Abschnitts zu Vorsicht und Kritik.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#thesen" class="btn btn-primary">Grundthesen ansehen</a>
+          <a href="#messen" class="btn btn-ghost">Werte einordnen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a href="#top" class="brand"><span class="spark"></span> Peat<small>/ bioenergetik</small></a>
+          <p>Eine strukturierte, bildende Einordnung der bioenergetischen Thesen von Ray Peat. Kein medizinischer Rat.</p>
+        </div>
+        <div class="foot-cols">
+          <div class="foot-col">
+            <h5>Inhalt</h5>
+            <a href="#person">Person</a>
+            <a href="#thesen">Grundthesen</a>
+            <a href="#modell">Energiemodell</a>
+            <a href="#belege">Belege</a>
+          </div>
+          <div class="foot-col">
+            <h5>Praxis</h5>
+            <a href="#ernaehrung">Ernährung</a>
+            <a href="#messen">Messen</a>
+            <a href="#vorsicht">Vorsicht</a>
+            <a href="#kritik">Kritik</a>
+          </div>
+          <div class="foot-col">
+            <h5>Mehr</h5>
+            <a href="#faq">FAQ</a>
+            <a href="#quellen">Quellen</a>
+            <a href="#top">Nach oben</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>Bildungsprojekt . Ray Peat 1936 bis 2022</span>
+        <span>Immer Fachpersonen einbeziehen, bevor du etwas änderst.</span>
       </div>
     </div>
   </footer>
