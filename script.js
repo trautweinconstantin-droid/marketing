@@ -258,4 +258,11 @@
   }
 
   renderHistory();
+
+  /* ---------- PWA: register service worker (home-screen app + offline) ---------- */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* offline support optional */ });
+    });
+  }
 })();

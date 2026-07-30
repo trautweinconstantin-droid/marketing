@@ -1,0 +1,21 @@
+{
+  "name": "Ray Peat . Bioenergetik",
+  "short_name": "Bioenergetik",
+  "description": "Strukturierte Wissensseite zu Ray Peats bioenergetischen Thesen: Grundthesen, Belege, Ernaehrung, Messwerte, Zeitstrahl, Glossar und Kritik.",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#14110d",
+  "theme_color": "#14110d",
+  "categories": ["education", "health", "reference"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
